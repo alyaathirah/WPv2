@@ -13,10 +13,8 @@ try {
     echo "Database connected successfully <br>"; 
 	
     }
-catch(PDOException $e)
-    {
+catch(PDOException $e) {
     echo "Database connection failed: " . $e->getMessage();
-}
-
+    }
 
 ?>
