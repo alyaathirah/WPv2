@@ -13,13 +13,12 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title id="page_title">Fruits and Vegetables</title>
+    <title id="page"></title>
     <link rel="icon" href="images/icon.png" type="image/x-icon" />
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="user.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/styleShoppingList.css">
-    <script type="text/javascript" src="js/products.js"></script>
     <script type="text/javascript" src="js/product_des.js"></script>
     <script type="text/javascript" src="js/test.js"></script>
   </head>
@@ -99,13 +98,11 @@
             >
               Categories
             </a>
-            <div class="dropdown-menu" id="fruitVegPage" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="products.php"
-                >Fruits and Vegetables</a
-              >
-              <a class="dropdown-item" id="snackPage" href="products.php">Snacks</a>
-              <a class="dropdown-item" id="instantFoodPage" href="products.php">Instant Food</a>
-              <a class="dropdown-item" id="stationaryPage" href="products.php">Stationeries</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" id="fruitVegNav" href="products.php">Fruits and Vegetables</a>
+              <a class="dropdown-item" id="snacksNav" href="products.php">Snacks</a>
+              <a class="dropdown-item" id="instantFoodNav" href="products.php">Instant Food</a>
+              <a class="dropdown-item" id="stationeryNav" href="products.php">Stationeries</a>
             </div>
           </li>
           
@@ -131,7 +128,7 @@
     <main class="container">
 
         <div class="products">
-            <h2 class="page_title">Fruits and Vegetables</h2>
+            <h2 class="page_title" id="page_title"></h2>
             <div class="container1">
                 <div class = "product-items">
                     <!-- single product -->
@@ -150,7 +147,6 @@
                                 
                                     <button type = "button" class = "btn-add"> add to list
                                     </button>
-                                
                                 <a href="product_des.html" onclick="clickFunc()">
                                     <button type = "button" class = "btn-view"> view item
                                     </button>
@@ -392,6 +388,8 @@
                 
 
                 <script type="text/javascript" src="js/shoppingList.js"></script>
+                <script type="text/javascript" src="js/products.js"></script>
+                <script type="text/javascript" src="js/data.js"></script>
                 <script>
                   function reset(){
                     localStorage.clear();
