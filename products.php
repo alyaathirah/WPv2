@@ -1,3 +1,8 @@
+<?php
+    //Connect to database 
+    include_once('db\config.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en"><!--alya-->
   <head>
@@ -10,11 +15,11 @@
     />
     <title id="page_title">Fruits and Vegetables</title>
     <link rel="icon" href="images/icon.png" type="image/x-icon" />
-    <link rel="stylesheet" href="bootstrap.css" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="user.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/styleShoppingList.css">
-    <script type="text/javascript" src="js/product_page.js"></script>
+    <script type="text/javascript" src="js/products.js"></script>
     <script type="text/javascript" src="js/product_des.js"></script>
     <script type="text/javascript" src="js/test.js"></script>
   </head>
@@ -25,7 +30,7 @@
         <!--User's Account modal button-->
         <div class="col-4 pt-1">
           <a class="account" href="#" data-toggle="modal" data-target="#staticBackdrop" 
-            ><img src="abstract-user-flat-4.png" style="height: 50px; width: 50px; margin-left: 12px"alt="profile photo" id="profile"/>
+            ><img src="images/abstract-user-flat-4.png" style="height: 50px; width: 50px; margin-left: 12px"alt="profile photo" id="profile"/>
                <br />
             My Account</a>
             <script>
@@ -94,13 +99,13 @@
             >
               Categories
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="fruits_vegetables.html"
+            <div class="dropdown-menu" id="fruitVegPage" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="products.php"
                 >Fruits and Vegetables</a
               >
-              <a class="dropdown-item" href="snacks.html">Snacks</a>
-              <a class="dropdown-item" href="instant_food.html">Instant Food</a>
-              <a class="dropdown-item" href="#">Stationeries</a>
+              <a class="dropdown-item" id="snackPage" href="products.php">Snacks</a>
+              <a class="dropdown-item" id="instantFoodPage" href="products.php">Instant Food</a>
+              <a class="dropdown-item" id="stationaryPage" href="products.php">Stationeries</a>
             </div>
           </li>
           
@@ -126,425 +131,42 @@
     <main class="container">
 
         <div class="products">
-            <h2 class="title-veg_fruit">Fruits and Vegetables</h2>
+            <h2 class="page_title">Fruits and Vegetables</h2>
             <div class="container1">
                 <div class = "product-items">
                     <!-- single product -->
+                    <?php
+                        $sql = "SELECT * FROM item WHERE category = 'fruits and vegetables'";
+                        $result = $pdo->query($sql);
+                        while($res = $result->fetch()) {        
+            
+                    ?>
                     <div class = "product">
                         <div class = "product-content">
                             <div class = "product-img">
-                                <img id="prdimg1" alt = "product image">
+                                <img id="prdimg" src="<?= $res['image']; ?>" alt="product image">
                             </div>
                             <div class = "product-btns">
                                 
-                                    <button type = "button" class = "btn-cart"> add to list
+                                    <button type = "button" class = "btn-add"> add to list
                                     </button>
                                 
                                 <a href="product_des.html" onclick="clickFunc()">
-                                    <button type = "button" class = "btn-buy"> view item
+                                    <button type = "button" class = "btn-view"> view item
                                     </button>
                                 </a>
                             </div>
                         </div>
         
                         <div class = "product-info">
-                            <a href = "#" id="prd_name1" class = "product-name"></a>
-                            <p id="prd_price1" class = "product-price"></p>
+                            <a href = "#" id="prd_name" class = "product-name"><?= $res['name']; ?></a>
+                            <p id="prd_price1" class = "product-price"><?= $res['price']; ?></p>
                         </div>
                     </div>
-                    <!-- end of single product -->
-                    <!-- single product -->
-                    <div class = "product">
-                        <div class = "product-content">
-                            <div class = "product-img">
-                                <img id="prdimg2" alt = "apple">
-                            </div>
-                            <div class = "product-btns">
-                               
-                                    <button type = "button" class = "btn-cart"> add to list
-                                        <span><i class = "fas fa-plus"></i></span>
-                                    </button>
-                                
-                                <a href="product_des.html">
-                                    <button type = "button" class = "btn-buy"> view item
-                                        <span><i class = "fas fa-shopping-cart"></i></span>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-        
-                        <div class = "product-info">
-                            <a href = "#" id="prd_name2" class = "product-name"></a>
-                            <p id="prd_price2" class = "product-price"></p>
-                        </div>
-                    </div>
-                    <!-- end of single product -->
-                    <!-- single product -->
-                    <div class = "product">
-                        <div class = "product-content">
-                            <div class = "product-img">
-                                <img id="prdimg3" alt = "product image">
-                            </div>
-                            <div class = "product-btns">
-                                
-                                    <button type = "button" class = "btn-cart"> add to list
-                                        <span><i class = "fas fa-plus"></i></span>
-                                    </button>
-                             
-                                <a href="product_des.html">
-                                    <button type = "button" class = "btn-buy"> view item
-                                        <span><i class = "fas fa-shopping-cart"></i></span>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-        
-                        <div class = "product-info">
-                            <a href = "#" id="prd_name3" class = "product-name"></a>
-                            <p id="prd_price3" class = "product-price"></p>
-                        </div>
-                    </div>
-                    <!-- end of single product -->
-                    <!-- single product -->
-                    <div class = "product">
-                        <div class = "product-content">
-                            <div class = "product-img">
-                                <img id="prdimg4" alt = "product image">
-                            </div>
-                            <div class = "product-btns">
-                               
-                                    <button type = "button" class = "btn-cart"> add to list
-                                        <span><i class = "fas fa-plus"></i></span>
-                                    </button>
-                                
-                                <a href="product_des.html">
-                                    <button type = "button" class = "btn-buy" > view item
-                                        <span><i class = "fas fa-shopping-cart"></i></span>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-        
-                        <div class = "product-info">
-                            <a href = "#" id="prd_name4" class = "product-name"></a>
-                            <p id="prd_price4" class = "product-price"></p>
-                        </div>
-                    </div>
-                    <!-- end of single product -->
-                    <!-- single product -->
-                    <div class = "product">
-                        <div class = "product-content">
-                            <div class = "product-img">
-                                <img id="prdimg5" alt = "product image">
-                            </div>
-                            <div class = "product-btns">
-                                
-                                    <button type = "button" class = "btn-cart"> add to list
-                                        <span><i class = "fas fa-plus"></i></span>
-                                    </button>
-                            
-                                <a href="product_des.html">
-                                    <button type = "button" class = "btn-buy"> view item
-                                        <span><i class = "fas fa-shopping-cart"></i></span>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-        
-                        <div class = "product-info">
-                            <a href = "#" id="prd_name5" class = "product-name"></a>
-                            <p id="prd_price5" class = "product-price"></p>
-                        </div>
-                    </div>
-                    <!-- end of single product -->
-                    <!-- single product -->
-                    <div class = "product">
-                        <div class = "product-content">
-                            <div class = "product-img">
-                                <img id="prdimg6" alt = "product image">
-                            </div>
-                            <div class = "product-btns">
-                               
-                                    <button type = "button" class = "btn-cart"> add to list
-                                        <span><i class = "fas fa-plus"></i></span>
-                                    </button>
-                              
-                                <a href="product_des.html">
-                                    <button type = "button" class = "btn-buy"> view item
-                                        <span><i class = "fas fa-shopping-cart"></i></span>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-        
-                        <div class = "product-info">
-                            <a href = "#" id="prd_name6" class = "product-name"></a>
-                            <p id="prd_price6" class = "product-price"></p>
-                        </div>
-                    </div>
-                    <!-- end of single product -->
-                    <!-- single product -->
-                    <div class = "product">
-                        <div class = "product-content">
-                            <div class = "product-img">
-                                <img id="prdimg7" alt = "product image">
-                            </div>
-                            <div class = "product-btns">
-                              
-                                    <button type = "button" class = "btn-cart"> add to list
-                                        <span><i class = "fas fa-plus"></i></span>
-                                    </button>
-                                
-                                <a href="product_des.html">
-                                    <button type = "button" class = "btn-buy"> view item
-                                        <span><i class = "fas fa-shopping-cart"></i></span>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-        
-                        <div class = "product-info">
-                            <a href = "#" id="prd_name7" class = "product-name"></a>
-                            <p id="prd_price7" class = "product-price"></p>
-                        </div>
-                    </div>
-                    <!-- end of single product -->
-                    <!-- single product -->
-                    <div class = "product">
-                        <div class = "product-content">
-                            <div class = "product-img">
-                                <img id="prdimg8" alt = "product image">
-                            </div>
-                            <div class = "product-btns">
-                            
-                                    <button type = "button" class = "btn-cart"> add to list
-                                        <span><i class = "fas fa-plus"></i></span>
-                                    </button>
-                               
-                                <a href="product_des.html">
-                                    <button type = "button" class = "btn-buy"> view item
-                                        <span><i class = "fas fa-shopping-cart"></i></span>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-        
-                        <div class = "product-info">
-                            <a href = "#" id="prd_name8" class = "product-name"></a>
-                            <p id="prd_price8" class = "product-price"></p>
-                        </div>
-                    </div>
-                    <!-- end of single product -->
-                    <!-- single product -->
-                    <div class = "product">
-                        <div class = "product-content">
-                            <div class = "product-img">
-                                <img id="prdimg9" alt = "product image">
-                            </div>
-                            <div class = "product-btns">
-                              
-                                    <button type = "button" class = "btn-cart"> add to list
-                                        <span><i class = "fas fa-plus"></i></span>
-                                    </button>
-                             
-                                <a href="product_des.html">
-                                    <button type = "button" class = "btn-buy"> view item
-                                        <span><i class = "fas fa-shopping-cart"></i></span>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-        
-                        <div class = "product-info">
-                            <a href = "#" id="prd_name9" class = "product-name"></a>
-                            <p id="prd_price9" class = "product-price"></p>
-                        </div>
-                    </div>
-                    <!-- end of single product -->
-                    <!-- single product -->
-                    <div class = "product">
-                        <div class = "product-content">
-                            <div class = "product-img">
-                                <img id="prdimg10" alt = "product image">
-                            </div>
-                            <div class = "product-btns">
-                              
-                                    <button type = "button" class = "btn-cart"> add to list
-                                        <span><i class = "fas fa-plus"></i></span>
-                                    </button>
-                                
-                                <a href="product_des.html">
-                                    <button type = "button" class = "btn-buy"> view item
-                                        <span><i class = "fas fa-shopping-cart"></i></span>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-        
-                        <div class = "product-info">
-                            <a href = "#" id="prd_name10" class = "product-name"></a>
-                            <p id="prd_price10" class = "product-price"></p>
-                        </div>
-                    </div>
-                    <!-- end of single product -->
-                    <!-- single product -->
-                    <div class = "product">
-                        <div class = "product-content">
-                            <div class = "product-img">
-                                <img id="prdimg11" alt = "product image">
-                            </div>
-                            <div class = "product-btns">
-                             
-                                    <button type = "button" class = "btn-cart"> add to list
-                                        <span><i class = "fas fa-plus"></i></span>
-                                    </button>
-                             
-                                <a href="product_des.html">
-                                    <button type = "button" class = "btn-buy"> view item
-                                        <span><i class = "fas fa-shopping-cart"></i></span>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-        
-                        <div class = "product-info">
-                            <a href = "#" id="prd_name11" class = "product-name"></a>
-                            <p id="prd_price11" class = "product-price"></p>
-                        </div>
-                    </div>
-                    <!-- end of single product -->  
-                    <!-- single product -->
-                    <div class = "product">
-                        <div class = "product-content">
-                            <div class = "product-img">
-                                <img id="prdimg12" alt = "product image">
-                            </div>
-                            <div class = "product-btns">
-                                
-                                    <button type = "button" class = "btn-cart"> add to list
-                                        <span><i class = "fas fa-plus"></i></span>
-                                    </button>
-                              
-                                <a href="product_des.html">
-                                    <button type = "button" class = "btn-buy"> view item
-                                        <span><i class = "fas fa-shopping-cart"></i></span>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-        
-                        <div class = "product-info">
-                            <a href = "#" id="prd_name12" class = "product-name"></a>
-                            <p id="prd_price12" class = "product-price"></p>
-                        </div>
-                    </div>
-                    <!-- end of single product -->
-                    <!-- single product -->
-                    <div class = "product">
-                        <div class = "product-content">
-                            <div class = "product-img">
-                                <img id="prdimg13" alt = "product image">
-                            </div>
-                            <div class = "product-btns">
-                              
-                                    <button type = "button" class = "btn-cart"> add to list
-                                        <span><i class = "fas fa-plus"></i></span>
-                                    </button>
-                               
-                                <a href="product_des.html">
-                                    <button type = "button" class = "btn-buy"> view item
-                                        <span><i class = "fas fa-shopping-cart"></i></span>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-        
-                        <div class = "product-info">
-                            <a href = "#" id="prd_name13" class = "product-name"></a>
-                            <p id="prd_price13" class = "product-price"></p>
-                        </div>
-                    </div>
-                    <!-- end of single product -->
-                    <!-- single product -->
-                    <div class = "product">
-                        <div class = "product-content">
-                            <div class = "product-img">
-                                <img id="prdimg14" alt = "product image">
-                            </div>
-                            <div class = "product-btns">
-                               
-                                    <button type = "button" class = "btn-cart"> add to list
-                                        <span><i class = "fas fa-plus"></i></span>
-                                    </button>
-                            
-                                <a href="product_des.html">
-                                    <button type = "button" class = "btn-buy"> view item
-                                        <span><i class = "fas fa-shopping-cart"></i></span>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-        
-                        <div class = "product-info">
-                            <a href = "#" id="prd_name14" class = "product-name"></a>
-                            <p id="prd_price14" class = "product-price"></p>
-                        </div>
-                    </div>
-                    <!-- end of single product -->
-                    <!-- single product -->
-                    <div class = "product">
-                        <div class = "product-content">
-                            <div class = "product-img">
-                                <img id="prdimg15" alt = "product image">
-                            </div>
-                            <div class = "product-btns">
-                             
-                                    <button type = "button" class = "btn-cart"> add to list
-                                        <span><i class = "fas fa-plus"></i></span>
-                                    </button>
-                               
-                                <a href="product_des.html">
-                                    <button type = "button" class = "btn-buy"> view item
-                                        <span><i class = "fas fa-shopping-cart"></i></span>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-        
-                        <div class = "product-info">
-                            <a href = "#" id="prd_name15" class = "product-name"></a>
-                            <p id="prd_price15" class = "product-price"></p>
-                        </div>
-                    </div>
-                    <!-- end of single product -->
-                    <!-- single product -->
-                    <div class = "product">
-                        <div class = "product-content">
-                            <div class = "product-img">
-                                <img id="prdimg16" alt = "product image">
-                            </div>
-                            <div class = "product-btns">
-                             
-                                    <button type = "button" class = "btn-cart"> add to list
-                                        <span><i class = "fas fa-plus"></i></span>
-                                    </button>
-                            
-                                <a href="product_des.html">
-                                    <button type = "button" class = "btn-buy"> view item
-                                        <span><i class = "fas fa-shopping-cart"></i></span>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-        
-                        <div class = "product-info">
-                            <a href = "#" id="prd_name16" class = "product-name"></a>
-                            <p id="prd_price16" class = "product-price"></p>
-                        </div>
-                    </div>
-                    <!-- end of single product -->                  
-                </div>
+                    <?php } ?>
+                </div> 
             </div>
+            
         </div>        
     </main>
     <!--End of Main-->
@@ -780,5 +402,9 @@
           </div>
           </div> 
         </div>
+        <?php
+        //Freeing Resource and closing connection
+        $pdo = null;
+        ?>
   </body>
 </html>

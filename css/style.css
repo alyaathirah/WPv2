@@ -170,9 +170,8 @@
   @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700;900&display=swap");
   
   :root {
-    --white-light: rgba(255, 255, 255, 0.5);
+    --white-light: rgba(255, 255, 255, 0.2);
     --alice-blue: #f8f9fa;
-    --carribean-green: #40c9a2;
     --gray: #ededed;
   }
   * {
@@ -189,7 +188,7 @@
     display: inline-block;
   }
   
-  .title-veg_fruit {
+  .page_title {
     color: black;
     padding-left: 0.3em;
   }
@@ -229,8 +228,8 @@
     transition: opacity 0.6s ease;
   }
   
-  .btn-cart,
-  .btn-buy {
+  .btn-add,
+  .btn-view {
     background: transparent;
     border: 1px solid black;
     padding: 0.8rem 0;
@@ -242,20 +241,20 @@
     transition: all 0.6s ease;
   }
   
-  .btn-cart {
+  .btn-add {
     background: black;
     color: white;
   }
   
-  .btn-cart:hover {
+  .btn-add:hover {
     background: maroon;
   }
   
-  .btn-buy {
+  .btn-view {
     background: white;
   }
   
-  .btn-buy:hover {
+  .btn-view:hover {
     background: maroon;
     color: #fff;
   }
@@ -301,6 +300,6 @@
     background-color: #fff;
   }
   .product-info {
-    background-color: #d0d0d0;
+    background-color: var(--white-light);
   }
   
