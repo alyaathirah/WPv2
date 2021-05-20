@@ -1,6 +1,7 @@
 <?php
     //Connect to database 
     include_once('db\config.php');
+    
 ?>
 
 <!DOCTYPE html>
@@ -99,6 +100,7 @@
               Categories
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" id="allCategoriesNav" href="products.php">All Categories</a>
               <a class="dropdown-item" id="fruitVegNav" href="products.php">Fruits and Vegetables</a>
               <a class="dropdown-item" id="snacksNav" href="products.php">Snacks</a>
               <a class="dropdown-item" id="instantFoodNav" href="products.php">Instant Food</a>
@@ -133,11 +135,24 @@
                 <div class = "product-items">
                     <!-- single product -->
                     <?php
-                        $sql = "SELECT * FROM item WHERE category = 'fruits and vegetables'";
-                        $result = $pdo->query($sql);
+                        //set the limit for one page
+                        $limit = 16;
+                        $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                        $start = ($page - 1) * $limit;
+                        $item = "SELECT * FROM item LIMIT $start, $limit";
+                        $result = $pdo->query($item);
+                       
+                        //count number of items/rows in the database
+                        $itemCountQuery = "SELECT count(*) FROM item";
+                        $itemCount = $pdo->query($itemCountQuery)->fetchColumn(); 
+                        $numOfPages = ceil( $itemCount / $limit);
+                        $previous = $page - 1;
+                        $next = $page + 1;
+
                         while($res = $result->fetch()) {        
             
                     ?>
+                   
                     <div class = "product">
                         <div class = "product-content">
                             <div class = "product-img">
@@ -163,7 +178,31 @@
                 </div> 
             </div>
             
-        </div>        
+        </div>
+        
+        <!--Pagination-->
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                
+                <li class="page-item">
+				    <a class="page-link" href="products.php?page=<?= $previous; ?>" aria-label="Previous">
+				        <span aria-hidden="true">&laquo;</span>
+				    </a>
+				</li>
+
+                <?php for($i = 1; $i<= $numOfPages; $i++) : ?>
+				    <li class="page-item"><a class="page-link" href="products.php?page=<?= $i; ?>"><?= $i; ?></a></li>
+			    <?php endfor; ?>
+
+                <li class="page-item">
+				    <a class="page-link" href="products.php?page=<?= $next; ?>" aria-label="Previous">
+				        <span aria-hidden="true">&raquo;</span>
+				    </a>
+				</li>
+
+            </ul>
+        </nav>
+
     </main>
     <!--End of Main-->
     <!--Start of Footer-->
