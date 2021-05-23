@@ -20,8 +20,11 @@
     <link rel="stylesheet" href="user.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/styleShoppingList.css">
-    <script type="text/javascript" src="js/product_des.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript" src="js/products.js"></script>
     <script type="text/javascript" src="js/test.js"></script>
+    
+
   </head>
   <body class="container">
     <!--Start of header-->
@@ -99,9 +102,9 @@
             >
               Categories
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" id="allCategoriesNav" href="products.php">All Categories</a>
-              <a class="dropdown-item" id="fruitVegNav" href="products.php">Fruits and Vegetables</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" method="GET">
+              <a class="dropdown-item" name="dropdown-item" id="allCategoriesNav" href="products.php">All Categories</a>
+              <a class="dropdown-item" name="dropdown-item" id="fruitVegNav" href="products.php">Fruits and Vegetables</a>
               <a class="dropdown-item" id="snacksNav" href="products.php">Snacks</a>
               <a class="dropdown-item" id="instantFoodNav" href="products.php">Instant Food</a>
               <a class="dropdown-item" id="stationeryNav" href="products.php">Stationeries</a>
@@ -112,6 +115,7 @@
             <a class="nav-link" href="about_us.html">About Us</a>
           </li>
         </ul>
+        <script> alert(<?= $_GET['dropdown-item'] ;?>);</script>
         
         <form class="form-inline my-2 my-lg-0" action = "/search.html">
             <input class="searchBar form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -139,8 +143,8 @@
                         $limit = 16;
                         $page = isset($_GET['page']) ? $_GET['page'] : 1;
                         $start = ($page - 1) * $limit;
-                        $item = "SELECT * FROM item LIMIT $start, $limit";
-                        $result = $pdo->query($item);
+                        $item_query = "SELECT * FROM item LIMIT $start, $limit";
+                        $result = $pdo->query($item_query);
                        
                         //count number of items/rows in the database
                         $itemCountQuery = "SELECT count(*) FROM item";
@@ -190,18 +194,19 @@
 				    </a>
 				</li>
 
-                <?php for($i = 1; $i<= $numOfPages; $i++) : ?>
-				    <li class="page-item"><a class="page-link" href="products.php?page=<?= $i; ?>"><?= $i; ?></a></li>
-			    <?php endfor; ?>
+            <?php for($i = 1; $i<= $numOfPages; $i++) : ?>
+				        <li class="page-item"><a class="page-link" href="products.php?page=<?= $i; ?>"><?= $i; ?></a></li>
+			      <?php endfor; ?>
 
                 <li class="page-item">
-				    <a class="page-link" href="products.php?page=<?= $next; ?>" aria-label="Previous">
+				    <a class="page-link" href="products.php?page=<?= $next; ?>" aria-label="Next">
 				        <span aria-hidden="true">&raquo;</span>
 				    </a>
 				</li>
 
             </ul>
         </nav>
+         <!--End of Pagination-->
 
     </main>
     <!--End of Main-->
@@ -287,8 +292,7 @@
       <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
         © 2020 Copyright:
         <a class="text-dark" style="font-style: italic" href="#"
-          >webprogramming2021@gmail.com</a
-        >
+          >webprogramming2021@gmail.com</a>
       </div>
       <!-- Copyright -->
     </footer>
@@ -425,7 +429,7 @@
                 <a href="setting.html"><button type="submit" class="setting-btn rounded-pill float-end" id="Setting">Setting</button></a>
                 <a href="homepage.html" onclick="reset()"><button type="submit" class="logout setting-btn rounded-pill" id="Logout">Logout</button>
                 
-
+                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
                 <script type="text/javascript" src="js/shoppingList.js"></script>
                 <script type="text/javascript" src="js/products.js"></script>
                 <script type="text/javascript" src="js/data.js"></script>

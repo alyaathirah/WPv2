@@ -16,18 +16,6 @@ window.onload = function() {
     }
 }
 
-
-/*
-function fruitVegNav() {
-    var fruitVegNav = document.getElementById("fruitVegNav").textContent;
-    document.getElementById("page_title").innerHTML = fruitVegNav;
-
-
-  }
- 
-  function snacksNav() {
-    var snacksNav = document.getElementById("snacksNav").textContent;
-    document.getElementById("page_title").innerText = snacksNav;
     
-  }*/
-  
+
+
