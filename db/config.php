@@ -1,22 +1,41 @@
 <?php
-//Step 1: Connecting to a Database using PDO API
-// modify these variables for your installation 
-        try {	
-        
-            $connectionString = "mysql:host=localhost:3325;dbname=shoppingllist";
-            $databaseUsername = 'root';
-            $databasePassword = '';
+/*
+//Sample MySQLi config file
+ */
+//Step 1: Connecting to a Database using MySQLi API 
+// modify these variables for your installation
+$databaseHost = 'localhost:3325';
+$databaseName = 'shoppingllist';
+$databaseUsername = 'root';
+$databasePassword = '';
 
-            $pdo = new PDO($connectionString, $databaseUsername, $databasePassword);
-            // set the PDO error mode to exception
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-            echo "Database connected successfully <br>"; 
-        
-        }
-        catch(PDOException $e) {
-            echo "Database connection failed: " . $e->getMessage();
-        }
+
+//MySQLi Procedural
+$mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName); 
+
+//MySQLi Object-Oriented approach
+/*
+$mysqli = new mysqli($databaseHost, $databaseUsername, $databasePassword, $databaseName); 
+*/
+
+//MySQLi Procedural approach
+// mysqli_connect_errno returns the last error code
+if ( mysqli_connect_errno() ) {
+	// die() is equivalent to exit()
+	die( "Database connection failed: " . mysqli_connect_error() );
+} 
+
+//Step 2: Handling Connection Errors - mysqli 
+//MySQLi Object-Oriented approach
+//connect_errno returns the last error code
+// Check connection
+/*
+if ($mysqli->connect_error) {
+	die("Connection failed: " . $mysqli->connect_error);
+}
+*/
+
+echo "Database connected successfully <br>";
 
 
 ?>

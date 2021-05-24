@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="css/styleShoppingList.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script type="text/javascript" src="js/products.js"></script>
+    <script type="text/javascript" src="js/data.js"></script>
     <script type="text/javascript" src="js/test.js"></script>
     
 
@@ -92,7 +93,7 @@
           </li>
           <li class="nav-item dropdown">
             <a
-              class="nav-link dropdown-toggle"
+              class="nav-link dropdown-togglekjgg"
               href="#"
               id="navbarDropdownMenuLink"
               role="button"
@@ -144,16 +145,18 @@
                         $page = isset($_GET['page']) ? $_GET['page'] : 1;
                         $start = ($page - 1) * $limit;
                         $item_query = "SELECT * FROM item LIMIT $start, $limit";
-                        $result = $pdo->query($item_query);
+                        $result = $mysqli->query($item_query);
                        
                         //count number of items/rows in the database
-                        $itemCountQuery = "SELECT count(*) FROM item";
-                        $itemCount = $pdo->query($itemCountQuery)->fetchColumn(); 
-                        $numOfPages = ceil( $itemCount / $limit);
+                        $itemCountQuery = "SELECT count(item_id) as id FROM item";
+                        $result1 = $mysqli->query($itemCountQuery); 
+                        $itemCount = $result1->fetch_all(MYSQLI_ASSOC);
+                        $total = $itemCount[0]['id'];
+                        $numOfPages = ceil( $total / $limit);
                         $previous = $page - 1;
                         $next = $page + 1;
 
-                        while($res = $result->fetch()) {        
+                        while($res = mysqli_fetch_array($result)) {        
             
                     ?>
                    
