@@ -14,16 +14,14 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title id="page"></title>
+    <title id="page">Products</title>
     <link rel="icon" href="images/icon.png" type="image/x-icon" />
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="user.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/styleShoppingList.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script type="text/javascript" src="js/products.js"></script>
-    <script type="text/javascript" src="js/data.js"></script>
-    <script type="text/javascript" src="js/test.js"></script>
+    <script type="text/javascript" src="../WPv2/js/testJS.js"></script>
     
 
   </head>
@@ -104,11 +102,11 @@
               Categories
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" method="GET">
-              <a class="dropdown-item" name="dropdown-item" id="allCategoriesNav" href="products.php">All Categories</a>
-              <a class="dropdown-item" name="dropdown-item" id="fruitVegNav" href="products.php">Fruits and Vegetables</a>
-              <a class="dropdown-item" id="snacksNav" href="products.php">Snacks</a>
-              <a class="dropdown-item" id="instantFoodNav" href="products.php">Instant Food</a>
-              <a class="dropdown-item" id="stationeryNav" href="products.php">Stationeries</a>
+              <a class="dropdown-item" id="allCategoriesNav" href="#">All Categories</a>
+              <a class="dropdown-item" id="fruitVegNav" href="#">Fruits and Vegetables</a>
+              <a class="dropdown-item" id="snacksNav" href="#">Snacks</a>
+              <a class="dropdown-item" id="instantFoodNav" href="#">Instant Food</a>
+              <a class="dropdown-item" id="stationeryNav" href="#">Stationeries</a>
             </div>
           </li>
           
@@ -116,7 +114,6 @@
             <a class="nav-link" href="about_us.html">About Us</a>
           </li>
         </ul>
-        <script> alert(<?= $_GET['dropdown-item'] ;?>);</script>
         
         <form class="form-inline my-2 my-lg-0" action = "/search.html">
             <input class="searchBar form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -133,31 +130,17 @@
     <!--End of Navigation Bar-->
     <!--Start of Main-->
     <main class="container">
-
+    <?php require('db\fetchItems.php') ?>
         <div class="products">
-            <h2 class="page_title" id="page_title"></h2>
+            <h2 class="page_title" id="page_title"><?= $category ?></h2>
             <div class="container1">
                 <div class = "product-items">
                     <!-- single product -->
                     <?php
                         //set the limit for one page
-                        $limit = 16;
-                        $page = isset($_GET['page']) ? $_GET['page'] : 1;
-                        $start = ($page - 1) * $limit;
-                        $item_query = "SELECT * FROM item LIMIT $start, $limit";
-                        $result = $mysqli->query($item_query);
-                       
-                        //count number of items/rows in the database
-                        $itemCountQuery = "SELECT count(item_id) as id FROM item";
-                        $result1 = $mysqli->query($itemCountQuery); 
-                        $itemCount = $result1->fetch_all(MYSQLI_ASSOC);
-                        $total = $itemCount[0]['id'];
-                        $numOfPages = ceil( $total / $limit);
-                        $previous = $page - 1;
-                        $next = $page + 1;
-
-                        while($res = mysqli_fetch_array($result)) {        
-            
+                        if ($result) {
+                          if ($result->num_rows>0) {
+                            while($res = $result->fetch_assoc()) {       
                     ?>
                    
                     <div class = "product">
@@ -181,7 +164,7 @@
                             <p id="prd_price1" class = "product-price"><?= $res['price']; ?></p>
                         </div>
                     </div>
-                    <?php } ?>
+                    <?php }}} ?>
                 </div> 
             </div>
             
@@ -190,19 +173,18 @@
         <!--Pagination-->
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
-                
                 <li class="page-item">
-				    <a class="page-link" href="products.php?page=<?= $previous; ?>" aria-label="Previous">
+				    <a class="page-link" href="<?= currentPage($CurPageURL,$key) ;?>&page=<?=$previous;?>" aria-label="Previous">
 				        <span aria-hidden="true">&laquo;</span>
 				    </a>
 				</li>
 
             <?php for($i = 1; $i<= $numOfPages; $i++) : ?>
-				        <li class="page-item"><a class="page-link" href="products.php?page=<?= $i; ?>"><?= $i; ?></a></li>
+				        <li class="page-item"><a class="page-link" href="<?= currentPage($CurPageURL,$key);?>&page=<?= $i; ?>"><?= $i; ?></a></li>
 			      <?php endfor; ?>
 
                 <li class="page-item">
-				    <a class="page-link" href="products.php?page=<?= $next; ?>" aria-label="Next">
+				    <a class="page-link" href="<?= currentPage($CurPageURL,$key) ;?>&page=<?= $next; ?>" aria-label="Next">
 				        <span aria-hidden="true">&raquo;</span>
 				    </a>
 				</li>
@@ -434,8 +416,7 @@
                 
                 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
                 <script type="text/javascript" src="js/shoppingList.js"></script>
-                <script type="text/javascript" src="js/products.js"></script>
-                <script type="text/javascript" src="js/data.js"></script>
+                <script type="text/javascript" src="../WPv2/js/testJS.js"></script>
                 <script>
                   function reset(){
                     localStorage.clear();

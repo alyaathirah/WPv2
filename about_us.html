@@ -13,7 +13,8 @@
         <link rel="stylesheet" href="css/bootstrap.css" />
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="user.css">
-        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src="../WPv2/js/testJS.js"></script>
         <script>
           window.onload = function(){
           console.log(status)
@@ -103,12 +104,12 @@
                 >
                     Categories
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" name="dropdown-item" id="allCategoriesNav" href="products.php">All Categories</a>
-                  <a class="dropdown-item" name="dropdown-item" id="fruitVegNav" href="products.php">Fruits and Vegetables</a>
-                  <a class="dropdown-item" id="snacksNav" href="products.php">Snacks</a>
-                  <a class="dropdown-item" id="instantFoodNav" href="products.php">Instant Food</a>
-                  <a class="dropdown-item" id="stationeryNav" href="products.php">Stationeries</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" method="GET">
+                  <a class="dropdown-item" id="allCategoriesNav" href="#">All Categories</a>
+                  <a class="dropdown-item" id="fruitVegNav" href="#">Fruits and Vegetables</a>
+                  <a class="dropdown-item" id="snacksNav" href="#">Snacks</a>
+                  <a class="dropdown-item" id="instantFoodNav" href="#">Instant Food</a>
+                  <a class="dropdown-item" id="stationeryNav" href="#">Stationeries</a>
                 </div>
                 </li>
                
@@ -323,8 +324,7 @@
               <div class="modal-footer">
                 <a href="setting.html"><button type="submit" class="setting-btn rounded-pill float-end" id="Setting">Setting</button></a>
                 <a href="homepage.html" onclick="reset()"><button type="submit" class="logout setting-btn rounded-pill" id="Logout">Logout</button>
-                <script type="text/javascript" src="js/products.js"></script>
-                <script type="text/javascript" src="js/data.js"></script>
+                  
                 <script>
                   function reset(){
                     localStorage.clear();
@@ -336,4 +336,7 @@
           </div> 
         </div>
       </body>
+
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+      <script type="text/javascript" src="../WPv2/js/testJS.js"></script>
 </html>
