@@ -148,6 +148,7 @@
                             <div class = "product-img">
                                 <img id="prdimg" src="<?= $res['image']; ?>" alt="product image">
                             </div>
+
                             <div class = "product-btns">
                                 
                                     <button type = "button" class = "btn-add"> add to list
@@ -156,6 +157,7 @@
                                     <button  type = "button" id="<?= $res['item_id']; ?>" class = "btn-view"> view item
                                     </button>
                                 </a>
+                                
                             </div>
                         </div>
         

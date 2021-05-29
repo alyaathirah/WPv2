@@ -39,7 +39,7 @@
   #myform {
     text-align: left;
     padding: 0px;
-    margin-bottom: 1em;
+    margin-bottom: .3em;
   }
   
   .qty {
@@ -82,13 +82,23 @@
   input.qtyminus:hover,
   input.qtyplus:hover { 
     background: maroon;
-    color: #efefef;
+    color: #efefef;    
+    transition-delay: 2ms;
   }
-  
 
-  /*Add to list Buutton*/
-  
+  #btn-add:hover {
+    background: maroon;
+    border-color: maroon;
+  }
 
+  #btn-add {
+    background: black;
+    border-color: black;
+  }
+
+  .stock {
+    font-size: small;
+  }
   /*About Us - Header*/
   
   .about_us {

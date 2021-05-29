@@ -150,9 +150,8 @@
                     <p id="description"><?= $res['description']; ?></p>
 
                     <div><p id="localOrImport">Import</p></div>
-                    <div><p class="product_qty" id="product_qty">Quantity: <?= $res['qty']; ?></p></div>
                     <div><p class="exp_date" id="exp_date">Expiry Date: <?= $res['expiry_date']; ?></p></>
-                    <div><p class="stock">Stock: 100</p></div>
+                    
                     <div>
                     <div>
 
@@ -160,13 +159,11 @@
                           <input type='button' value='-' class='qtyminus' field='quantity' />
                           <input type='text' name='quantity' value='0' class='qty' />
                           <input type='button' value='+' class='qtyplus' field='quantity' />
+                          <input type="submit" class="btn btn-dark" id="btn-add" value="Add to List" />
                       </form>
 
                     </div>
-                    
-                    <div class="">
-                      <button  type="button" class="btn btn-dark btn-add" id="btn-cart" style="color: aliceblue;">Add to List</button>
-                    </div>
+                    <div><p class="stock">Stock: <?= $res['qty']; ?></p></div>
                     </div>
               </div>
         </div>
