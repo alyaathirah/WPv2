@@ -17,8 +17,7 @@
     <link rel="icon" href="images/icon.png" type="image/x-icon" />
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="user.css">
-    <link rel="stylesheet" href="../WPv2/css/style.css">
-    <link rel="stylesheet" href="../WPv2/css/styleTest.css">
+    <link rel="stylesheet" type="text/css" href="../WPv2/css/style.css">
     <link rel="stylesheet" href="css/styleShoppingList.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="../WPv2/js/project_desc.js"></script>

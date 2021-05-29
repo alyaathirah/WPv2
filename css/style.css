@@ -36,12 +36,13 @@
   
   /* -- quantity box -- */
   
-  .quantity {
-    display: inline-block;
-    padding-bottom: 1em;
+  #myform {
+    text-align: left;
+    padding: 0px;
+    margin-bottom: 1em;
   }
   
-  .quantity1 .input-text.qty {
+  .qty {
     width: 35px;
     height: 39px;
     padding: 0 5px;
@@ -49,40 +50,42 @@
     background-color: transparent;
     border: 1px solid #efefef;
   }
-  
-  .quantity1.buttons_added {
+
+  input.qtyplus { 
     position: relative;
     white-space: nowrap;
     vertical-align: top;
     padding-bottom: 1em;
-  }
-  
-  .quantity1.buttons_added input {
-    display: inline-block;
-    margin: 0;
-    vertical-align: top;
-    box-shadow: none;
-  }
-  
-  .quantity1.buttons_added .minus,
-  .quantity1.buttons_added .plus {
     padding: 7px 10px 8px;
     height: 41px;
     background-color: lightgrey;
     border: 1px solid #efefef;
     cursor: pointer;
     border-radius: .25em;
-  }
-  
-  .quantity1.buttons_added .minus {
-    border-right: 0;
-  }
-  
-  .quantity1.buttons_added .plus {
     border-left: 0;
   }
-  
-  .quantity1.buttons_added .minus:hover,
+
+  input.qtyminus { 
+    position: relative;
+    white-space: nowrap;
+    vertical-align: top;
+    padding-bottom: 1em;
+    padding: 7px 12px 8px;
+    height: 41px;
+    background-color: lightgrey;
+    border: 1px solid #efefef;
+    cursor: pointer;
+    border-radius: .25em;
+    border-right: 0;
+  }
+
+  input.qtyminus:hover,
+  input.qtyplus:hover { 
+    background: maroon;
+    color: #efefef;
+  }
+
+  .input .qtyplus:hover,
   .quantity1.buttons_added .plus:hover {
     background: maroon;
     color: #efefef;
