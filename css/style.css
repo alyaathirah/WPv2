@@ -85,6 +85,10 @@
     color: #efefef;
   }
   
+
+  /*Add to list Buutton*/
+  
+
   /*About Us - Header*/
   
   .about_us {
@@ -284,6 +288,7 @@
   .container1 {
     background-color: #fff;
   }
+
   .product-info {
     background-color: var(--white-light);
   }

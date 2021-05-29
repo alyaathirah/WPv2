@@ -165,7 +165,7 @@
                     </div>
                     
                     <div class="">
-                      <button  type="button" class="btn btn-light btn-cart" id="btn-cart" style="color: aliceblue;">Add to List</button>
+                      <button  type="button" class="btn btn-dark btn-add" id="btn-cart" style="color: aliceblue;">Add to List</button>
                     </div>
                     </div>
               </div>
