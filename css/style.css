@@ -84,24 +84,6 @@
     background: maroon;
     color: #efefef;
   }
-
-  .input .qtyplus:hover,
-  .quantity1.buttons_added .plus:hover {
-    background: maroon;
-    color: #efefef;
-  }
-  
-  .quantity1 input::-webkit-outer-spin-button,
-  .quantity1 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    margin: 0;
-  }
-  
-  .quantity1.buttons_added .minus:focus,
-  .quantity1.buttons_added .plus:focus {
-    outline: none;
-  }
   
   /*About Us - Header*/
   
