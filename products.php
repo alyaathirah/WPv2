@@ -161,7 +161,7 @@
         
                         <div class = "product-info">
                             <a href = "#" id="prd_name" class = "product-name"><?= $res['name']; ?></a>
-                            <p id="prd_price1" class = "product-price"><?= $res['price']; ?></p>
+                            <p id="prd_price1" class = "product-price">RM <?= $res['price']; ?></p>
                         </div>
                     </div>
                     <?php }}} ?>
