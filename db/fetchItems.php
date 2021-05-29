@@ -28,6 +28,7 @@
     $result1 = mysqli_query($mysqli,$itemCountQuery);
     $itemCount = mysqli_fetch_row($result1)[0];
     $numOfPages = ceil( $itemCount / $limit);
+
     $result = $mysqli->query($item_query);
     $previous = $page - 1;
     $next = $page + 1;

@@ -1,9 +1,8 @@
 <?php
     //Connect to database 
     include_once('db\config.php');
-    
+    require('db\fetchItemDetail.php');
 ?>
-
 <!DOCTYPE html>
 <html lang="en"><!--alya-->
   <head>
@@ -14,17 +13,18 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title id="page">Products</title>
+    <title id="page_title">Product Description</title>
     <link rel="icon" href="images/icon.png" type="image/x-icon" />
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="user.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../WPv2/css/style.css">
+    <link rel="stylesheet" href="../WPv2/css/styleTest.css">
     <link rel="stylesheet" href="css/styleShoppingList.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="../WPv2/js/project_desc.js"></script>
     <script type="text/javascript" src="../WPv2/js/testJS.js"></script>
-    
-
-  </head>
+    <script type="text/javascript" src="../WPv2/js/product_desc.js"></script>
+</head>
   <body class="container">
     <!--Start of header-->
     <header class="blog-header py-3">
@@ -91,7 +91,7 @@
           </li>
           <li class="nav-item dropdown">
             <a
-              class="nav-link dropdown-togglekjgg"
+              class="nav-link dropdown-toggle"
               href="#"
               id="navbarDropdownMenuLink"
               role="button"
@@ -129,70 +129,49 @@
     </nav>
     <!--End of Navigation Bar-->
     <!--Start of Main-->
-    <main class="container">
-    <?php require('db\fetchItems.php') ?>
-        <div class="products">
-            <h2 class="page_title" id="page_title"><?= $category ?></h2>
-            <div class="container1">
-                <div class = "product-items">
-                    <!-- single product -->
-                    <?php
-                        //set the limit for one page
-                        if ($result) {
-                          if ($result->num_rows>0) {
-                            while($res = $result->fetch_assoc()) {       
-                    ?>
-                   
-                    <div class = "product">
-                        <div class = "product-content">
-                            <div class = "product-img">
-                                <img id="prdimg" src="<?= $res['image']; ?>" alt="product image">
-                            </div>
-                            <div class = "product-btns">
-                                
-                                    <button type = "button" class = "btn-add"> add to list
-                                    </button>
-                                <a href="#">
-                                    <button  type = "button" id="<?= $res['item_id']; ?>" class = "btn-view"> view item
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-        
-                        <div class = "product-info">
-                            <a href = "#" id="prd_name" class = "product-name"><?= $res['name']; ?></a>
-                            <p id="prd_price1" class = "product-price"><?= $res['price']; ?></p>
-                        </div>
+    <main class="container1">
+    <?php
+          
+            if($item_details->num_rows > 0){
+              while($res = $item_details->fetch_assoc()) {
+                 
+          ?>
+        <div class="page_product ">
+            <div class="product_details">
+                <div class="product_details-img">
+                    <a class="product_img" href="#">
+                        <img src="<?= $res['image']; ?>">
+                    </a>
+                </div>
+                    
+                <div class="product_details-desc">
+                    
+                    <h4 id="product_name" class="font-weight-bold"><?= $res['name']; ?></h4>
+                    <h5 id="product_price" class="">RM <?= $res['price']; ?></h5>
+                    <p id="description"><?= $res['description']; ?></p>
+
+                    <div><p id="localOrImport">Import</p></div>
+                    <div><p class="product_qty" id="product_qty">Quantity: <?= $res['qty']; ?></p></div>
+                    <div><p class="exp_date" id="exp_date">Expiry Date: <?= $res['expiry_date']; ?></p></>
+                    <div><p class="stock">Stock: 100</p></div>
+                    <div>
+                    <div>
+
+                      <form id='myform' method='POST' action='#'>
+                          <input type='button' value='-' class='qtyminus' field='quantity' />
+                          <input type='text' name='quantity' value='0' class='qty' />
+                          <input type='button' value='+' class='qtyplus' field='quantity' />
+                      </form>
+
                     </div>
-                    <?php }}} ?>
-                </div> 
-            </div>
-            
+                    
+                    <div class="">
+                      <button  type="button" class="btn btn-light btn-cart" id="btn-cart" style="color: aliceblue;">Add to List</button>
+                    </div>
+                    </div>
+              </div>
         </div>
-        
-        <!--Pagination-->
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-                <li class="page-item">
-				    <a class="page-link" href="<?= currentPage($CurPageURL,$key) ;?>&page=<?=$previous;?>" aria-label="Previous">
-				        <span aria-hidden="true">&laquo;</span>
-				    </a>
-				</li>
-
-            <?php for($i = 1; $i<= $numOfPages; $i++) : ?>
-				        <li class="page-item"><a class="page-link" href="<?= currentPage($CurPageURL,$key);?>&page=<?= $i; ?>"><?= $i; ?></a></li>
-			      <?php endfor; ?>
-
-                <li class="page-item">
-				    <a class="page-link" href="<?= currentPage($CurPageURL,$key) ;?>&page=<?= $next; ?>" aria-label="Next">
-				        <span aria-hidden="true">&raquo;</span>
-				    </a>
-				</li>
-
-            </ul>
-        </nav>
-         <!--End of Pagination-->
-
+        <?php }} ?>
     </main>
     <!--End of Main-->
     <!--Start of Footer-->
@@ -207,8 +186,8 @@
             <h5 class="text-uppercase text-dark">Company Policy</h5>
 
             <p class="text-dark">
-                This is our company policy, which is the policy of our company. This policy is for those who ask what is our policy and not for those that didnt ask.
-              </p>
+              This is our company policy, which is the policy of our company. This policy is for those who ask what is our policy and not for those that didnt ask.
+            </p>
           </div>
           <!--Grid column-->
 
@@ -277,7 +256,8 @@
       <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
         © 2020 Copyright:
         <a class="text-dark" style="font-style: italic" href="#"
-          >webprogramming2021@gmail.com</a>
+          >webprogramming2021@gmail.com</a
+        >
       </div>
       <!-- Copyright -->
     </footer>
@@ -317,13 +297,16 @@
                     <div class="col-md-auto">
                     
                     </div>
+                    <div class="col col-lg-2">
+                    </div>
+        
                 </div>
                 </div>
         
                 <div class = "shoppingList" id = "shoppinglist2">
                 <div class="row">
                     <div class="col">
-                    <a href="#" style="color: black;"><div id = "titleList">Grocery List</div></a>
+                    <a href="#" style="color: black;">Grocery List</a>
                     </div>
                     <div class="col-md-auto">
                     </div>
@@ -345,7 +328,7 @@
                     
                         <input type="text" id="input" size="20" name="fname">
                         <button type="button" class = "submit-btn rounded-pill float-sm-end" style = "width: 50px;" onClick = 'addSL()'>+</button>
-                        <button id="btnClose" class = "submit-btn rounded-pill float-sm-end" style = "width: 150px;" data-dismiss="modal">Cancel</button>
+                        <button id="btnClose" class = "submit-btn rounded-pill float-sm-end" style = "width: 150px;">Cancel</button>
                     </form>
                     </div>
                 
@@ -368,7 +351,7 @@
             Please login first before adding item(s) to your list
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <a href="product_des.html"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button></a>
                 <a href="login.html">
                     <button type="button" class="btn" style="background-color:  maroon; color: white;">Login</button>
                 </a>    
@@ -414,9 +397,8 @@
                 <a href="setting.html"><button type="submit" class="setting-btn rounded-pill float-end" id="Setting">Setting</button></a>
                 <a href="homepage.html" onclick="reset()"><button type="submit" class="logout setting-btn rounded-pill" id="Logout">Logout</button>
                 
-                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+                <script src="../WPv2/js/project_desc.js"></script>
                 <script type="text/javascript" src="js/shoppingList.js"></script>
-                <script type="text/javascript" src="../WPv2/js/testJS.js"></script>
                 <script>
                   function reset(){
                     localStorage.clear();
@@ -427,9 +409,9 @@
           </div>
           </div> 
         </div>
-        <?php
+  </body>
+  <?php
         //Freeing Resource and closing connection
         $pdo = null;
-        ?>
-  </body>
+  ?>
 </html>
