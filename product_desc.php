@@ -1,8 +1,37 @@
 <?php
+    session_start();
     //Connect to database 
-    include_once('db\config.php');
-    require('db\fetchItemDetail.php');
+    include_once('db/config.php');
+
+    //For Modal
+    if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
+      //getting id from url
+      $id = $_SESSION['id'];
+      
+      //selecting data associated with this particular id
+      $result = mysqli_query($mysqli, "SELECT * FROM users2 WHERE id=$id");
+      
+      while($res = mysqli_fetch_array($result))
+      {
+        
+        $FName=$res['FirstName'];
+        $LName=$res['LastName'];
+        $UName=$res['Username'];	
+        $Email=$res['Email'];
+        $Bio=$res['Bio'];
+        $PNumber=$res['PhoneNumber'];	
+        $Birthday=$res['Birthday'];	
+        $Address=$res['Address1'];
+        $City=$res['City'];
+        $State=$res['State1'];
+        $Zip=$res['Zip'];
+        $Password=$res['Password1'];
+        $images=$res['images'];
+        $Gender=$res['Gender'];
+      }
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en"><!--alya-->
   <head>
@@ -13,36 +42,29 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title id="page_title">Product Description</title>
+    <title id="page">Products</title>
     <link rel="icon" href="images/icon.png" type="image/x-icon" />
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="user.css">
-    <link rel="stylesheet" type="text/css" href="../WPv2/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/styleShoppingList.css">
+    <link rel="stylesheet" href="css/styleProfile.css" >
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="../WPv2/js/project_desc.js"></script>
     <script type="text/javascript" src="../WPv2/js/testJS.js"></script>
-    <script type="text/javascript" src="../WPv2/js/product_desc.js"></script>
-</head>
+    
+
+  </head>
   <body class="container">
     <!--Start of header-->
     <header class="blog-header py-3">
       <div class="row flex-itemrap justify-content-between align-items-center">
         <!--User's Account modal button-->
         <div class="col-4 pt-1">
-          <a class="account" href="#" data-toggle="modal" data-target="#staticBackdrop" 
+          <a class="account" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
             ><img src="images/abstract-user-flat-4.png" style="height: 50px; width: 50px; margin-left: 12px"alt="profile photo" id="profile"/>
                <br />
             My Account</a>
-            <script>
-                var status = localStorage.getItem("status");
-                 if(status != "logged in"){
-                 account = document.querySelector(".account");
-                 account.setAttribute("data-toggle","''");
-                 account.setAttribute("data-target","''")
-                 account.setAttribute("href","login.html");
-                }
-                </script>
+
           <br />
         </div>
         <div class="col-4 text-center">
@@ -90,7 +112,7 @@
           </li>
           <li class="nav-item dropdown">
             <a
-              class="nav-link dropdown-toggle"
+              class="nav-link dropdown-togglekjgg"
               href="#"
               id="navbarDropdownMenuLink"
               role="button"
@@ -128,46 +150,8 @@
     </nav>
     <!--End of Navigation Bar-->
     <!--Start of Main-->
-    <main class="container1">
-    <?php
+    <main class="container">
           
-            if($item_details->num_rows > 0){
-              while($res = $item_details->fetch_assoc()) {
-                 
-          ?>
-        <div class="page_product ">
-            <div class="product_details">
-                <div class="product_details-img">
-                    <a class="product_img" href="#">
-                        <img src="<?= $res['image']; ?>">
-                    </a>
-                </div>
-                    
-                <div class="product_details-desc">
-                    
-                    <h4 id="product_name" class="font-weight-bold"><?= $res['name']; ?></h4>
-                    <h5 id="product_price" class="">RM <?= $res['price']; ?></h5>
-                    <p id="description"><?= $res['description']; ?></p>
-
-                    <div><p id="localOrImport">Import</p></div>
-                    <div><p class="exp_date" id="exp_date">Expiry Date: <?= $res['expiry_date']; ?></p></>
-                    
-                    <div>
-                    <div>
-
-                      <form id='myform' method='POST' action='#'>
-                          <input type='button' value='-' class='qtyminus' field='quantity' />
-                          <input type='text' name='quantity' value='0' class='qty' />
-                          <input type='button' value='+' class='qtyplus' field='quantity' />
-                          <input type="submit" class="btn btn-dark" id="btn-add" value="Add to List" />
-                      </form>
-
-                    </div>
-                    <div><p class="stock">Stock: <?= $res['qty']; ?></p></div>
-                    </div>
-              </div>
-        </div>
-        <?php }} ?>
     </main>
     <!--End of Main-->
     <!--Start of Footer-->
@@ -182,8 +166,8 @@
             <h5 class="text-uppercase text-dark">Company Policy</h5>
 
             <p class="text-dark">
-              This is our company policy, which is the policy of our company. This policy is for those who ask what is our policy and not for those that didnt ask.
-            </p>
+                This is our company policy, which is the policy of our company. This policy is for those who ask what is our policy and not for those that didnt ask.
+              </p>
           </div>
           <!--Grid column-->
 
@@ -252,8 +236,7 @@
       <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
         © 2020 Copyright:
         <a class="text-dark" style="font-style: italic" href="#"
-          >webprogramming2021@gmail.com</a
-        >
+          >webprogramming2021@gmail.com</a>
       </div>
       <!-- Copyright -->
     </footer>
@@ -293,16 +276,13 @@
                     <div class="col-md-auto">
                     
                     </div>
-                    <div class="col col-lg-2">
-                    </div>
-        
                 </div>
                 </div>
         
                 <div class = "shoppingList" id = "shoppinglist2">
                 <div class="row">
                     <div class="col">
-                    <a href="#" style="color: black;">Grocery List</a>
+                    <a href="#" style="color: black;"><div id = "titleList">Grocery List</div></a>
                     </div>
                     <div class="col-md-auto">
                     </div>
@@ -324,7 +304,7 @@
                     
                         <input type="text" id="input" size="20" name="fname">
                         <button type="button" class = "submit-btn rounded-pill float-sm-end" style = "width: 50px;" onClick = 'addSL()'>+</button>
-                        <button id="btnClose" class = "submit-btn rounded-pill float-sm-end" style = "width: 150px;">Cancel</button>
+                        <button id="btnClose" class = "submit-btn rounded-pill float-sm-end" style = "width: 150px;" data-dismiss="modal">Cancel</button>
                     </form>
                     </div>
                 
@@ -347,7 +327,7 @@
             Please login first before adding item(s) to your list
             </div>
             <div class="modal-footer">
-                <a href="product_des.html"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button></a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 <a href="login.html">
                     <button type="button" class="btn" style="background-color:  maroon; color: white;">Login</button>
                 </a>    
@@ -356,45 +336,71 @@
         </div>
       </div>
         <!-- Profile Modal -->
-        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="UserProfileLabel" aria-hidden="true">
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="UserProfileLabel" style="font-weight: bold; color:#bb4166f5; background: linear-gradient(to right, rgb(87, 14, 14) 30%,#8d1a3cf5 50%); -webkit-background-clip: text; -webkit-text-fill-color:transparent;">My Account</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+                <h4 class="modal-title" id="staticBackdropLabel" style="color: #a82c21; font-size:40px;">Profile</h4>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div class="modal-body">
-                <div class="container-fluid">
-                  <img src="images/abstract-user-flat-4.png" class="wrapper2" alt="profile photo" id="profile photo">
-                  <div class="row" >
-                  <div class="col-sm-4 label">First Name</div>
-                  <div class="col-sm-4 label">Last Name</div>
-                  <div class="col-sm-4 label">Username</div>
-                  <div class="col-sm-4 text-muted" id="FName">Maria</div>
-                  <div class="col-sm-4 text-muted" id="LName">Mariam</div>
-                  <div class="col-sm-4 text-muted" id="Username">@marry</div>
-                  <div class="col-sm-6 label">Email</div>
-                  <div class="col-sm-6 label">Bio</div>
-                  <div class="col-sm-6 text-muted" id="LName">Mariamariam@gmail.com</div>
-                  <div class="col-sm-6 text-muted" id="LName">Shopping is my cardio ;)</div>
-                  <div class="col-sm-4 label">Gender</div>
-                  <div class="col-sm-4" style="color:maroon; font-size:15px; font-weight:bold;">Phone Number</div>
-                  <div class="col-sm-4 label">Birthday</div>
-                  <div class="col-sm-4 text-muted" id="Gender">Female</div>
-                  <div class="col-sm-4 text-muted" id="PNumber">+6012345789</div>
-                  <div class="col-sm-4 text-muted" id="Birthday">01-01-01</div>
-                  <div class="col-sm-12 label">Address</div>
-                  <div class="col-sm-12 text-muted" id="Address">121 Blue Hill Rd Hopewell Junction 12533 New York</div>
-                  </div>
-                </div>
+              <div class="modal-body container">
+                <img src="<?php echo $images;?>" class="wrapper" alt="profile photo" id="profile photo">
+                <div class="row"   >
+                    <div class="col-sm-4">
+                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">First Name</label><br>   
+                      <label class="text-muted" id="FName" style="text-indent: 30px;"><?php echo $FName; ?></label>
+                    </div>
+                    <div class="col-sm-4">
+                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Last Name</label><br>   
+                      <label class="text-muted" id="LName" style="text-indent: 30px;"><?php echo $LName; ?></label>
+                    </div>
+                    <div class="col-sm-4">
+                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Username</label><br>   
+                      <label class="text-muted" id="UName" style="text-indent: 30px;">@<?php echo $UName; ?></label>
+                    </div>
+                    <div class="col-sm-6">
+                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Email</label><br>   
+                      <label class="text-muted" id="Email" style="text-indent: 30px;"><?php echo $Email; ?></label>
+                    </div>
+                    <div class="col-sm-6">
+                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Bio</label> <br>  
+                      <label class="text-muted" id="Email" style="text-indent: 30px;"><?php echo $Bio; ?></label>
+                    </div>
+                    <div class="col-sm-3">
+                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Gender</label><br>   
+                      <label class="text-muted" id="Gender" style="text-indent: 30px;"><?php echo $Gender; ?></label>
+                    </div>
+                    <div class="col-sm-5">
+                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Phone Number</label><br>  
+                      <label class="text-muted" id="PNumber" style="text-indent: 30px;"><?php echo $PNumber; ?></label>
+                    </div>
+                    <div class="col-sm-4">
+                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Birthday</label><br>   
+                      <label class="text-muted" id="Birthday" style="text-indent: 30px;"><?php echo $Birthday; ?></label>
+                    </div>
+                    <div class="col-sm-12">
+                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Address</label><br>   
+                      <label class="text-muted" id="Address" style="text-indent: 30px;"><?php echo $Address," ",$City," ",$Zip," ",$State; ?></label>
+                    </div>
+                <div>
+              </div>
+
+              <?php 
+                }else{
+                    header("Location: loginDummy.php");
+                    exit();
+                }
+              ?>
               <div class="modal-footer">
-                <a href="setting.html"><button type="submit" class="setting-btn rounded-pill float-end" id="Setting">Setting</button></a>
-                <a href="homepage.html" onclick="reset()"><button type="submit" class="logout setting-btn rounded-pill" id="Logout">Logout</button>
-                
-                <script src="../WPv2/js/project_desc.js"></script>
-                <script type="text/javascript" src="js/shoppingList.js"></script>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a href="profile.php">
+                    <button type="button" class="btn" style="background-color:  maroon; color: white;">Setting</button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
                 <script>
                   function reset(){
                     localStorage.clear();
@@ -405,9 +411,13 @@
           </div>
           </div> 
         </div>
-  </body>
-  <?php
+        <?php
         //Freeing Resource and closing connection
         $pdo = null;
-  ?>
+        ?>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="js/shoppingList.js"></script>
+        <script type="text/javascript" src="../WPv2/js/testJS.js"></script>
+  </body>
 </html>
