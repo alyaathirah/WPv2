@@ -135,7 +135,7 @@
           </li>
           
           <li class="nav-item">
-            <a class="nav-link" href="about_us.php">About Us</a>
+            <a class="nav-link" href="about_us.html">About Us</a>
           </li>
         </ul>
         
@@ -152,48 +152,62 @@
         </script>
     </nav>
     <!--End of Navigation Bar-->
+
+    <section class="about_us">
+        <div class="about_us--mask">
+            <h2 class="title-about_us">Gro-Sir</h2>
+            <h4 class="subtitle-about_us">About Us</h4>
+            <p> <strong>Gro-Sir</strong> is an online shopping list that connected directly to our store.
+                  It also show the quantity of the stock at the store to ease our customer in planning for the
+                  shopping trips. Other than that, the purpose for this shopping list also to ensure that no
+                  necessary items are forgotten during the trip and to avoid any money on unneeded item during
+                  shopping spree.
+            </p>
+            <a class="btn btn-outline-light btn-lg" href="homepage.html" role="button">Let's Go!</a>
+        </div>
+    </section>
+
     <!--Start of Main-->
     <main class="container1">
-        
-          <?php
-              require('db\fetchItemDetail.php');
-              if($item_details->num_rows > 0){
-                while($item_res = $item_details->fetch_assoc()) {
-          ?>
-          <div class="page_product ">
-            <div class="product_details">
-                <div class="product_details-img">
-                    <a class="product_img" href="#">
-                        <img src="<?= $item_res['image']; ?>">
-                    </a>
-                </div>
-                    
-                <div class="product_details-desc">
-                    
-                    <h4 id="product_name" class="font-weight-bold"><?= $item_res['name']; ?></h4>
-                    <h5 id="product_price" class="">RM <?= $item_res['price']; ?></h5>
-                    <p id="description"><?= $item_res['description']; ?></p>
-
-                    <div><p id="localOrImport"><?= $item_res['origin']; ?></p></div>
-                    <div><p class="exp_date" id="exp_date">Expiry Date: <?= $item_res['expiry_date']; ?></p></>
-                    
-                    <div>
-                    <div>
-
-                      <form id='myform' method='POST' action='#'>
-                          <input type='button' value='-' class='qtyminus' field='quantity' />
-                          <input type='text' name='quantity' value='0' class='qty' />
-                          <input type='button' value='+' class='qtyplus' field='quantity' />
-                          <input type="submit" class="btn btn-dark" id="btn-add" value="Add to List" />
-                      </form>
-
-                    </div>
-                    <div><p class="stock">Stock: <?= $item_res['qty']; ?></p></div>
-                    </div>
-              </div>
+    <div class="visionandmision">
+        <div class="vision">
+              <h4 class="subtitle--vision"><strong>Vision</strong></h4>
+              <p> To become the front-runner supermarket of Malaysian in which consumers
+                  can obtain great bargain and saving from grocery shopping.  </p>
         </div>
-        <?php }} ?>
 
+        <div class="mision">
+            <h4 class="subtitle--mision"><strong>Mision</strong></h4>
+            <p> To provide the customer with a platform that going to make
+                the shopping trip much more efficient, time saving and productive
+                in order to deliver the full satisfaction to the customer.
+            </p>
+        </div>
+    </div>
+                 <!-- End of Vision and Mision-->
+
+                 <!--We are here map-->
+    <div class="container p-4">
+        <h1 class="text-center" style="color:black">We are here!</h1>
+          <hr>
+          <div class="row">
+             <div class="col-sm-8">
+                <div class="map">
+                   <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1Dkek1ZL97ImBQsddBmHPFOtU7hqGz4V5"  width="500" height="700" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                 </div>
+               </div>
+               <div class="col-sm-4" id="contact2">
+                  <h4 class="pt-2" style="color:black" >Address</h4>
+                   <p style="color:black">PJ Industrial Park, No. 13 Jalan Kemajuan,
+                    Petaling Jaya, Selangor Darul Ehsan</p>
+                   <h4 class="pt-2" style="color:black">Contact Us</h4>
+                   <p style="color:black">03-7957-3959</a></p>
+                   <h4 class="pt-2" style="color:black" >Email</h4>
+                   <p style="color:black">shoppinglist.com</a></p>
+               </div>
+              </div>
+            </div>
+                    <!--End of We are here map-->     
     </main>
     <!--End of Main-->
     <!--Start of Footer-->

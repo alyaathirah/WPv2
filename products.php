@@ -133,7 +133,7 @@
           </li>
           
           <li class="nav-item">
-            <a class="nav-link" href="about_us.html">About Us</a>
+            <a class="nav-link" href="about_us.php">About Us</a>
           </li>
         </ul>
         
