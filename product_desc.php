@@ -49,6 +49,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/styleShoppingList.css">
     <link rel="stylesheet" href="css/styleProfile.css" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script type="text/javascript" src="../WPv2/js/testJS.js"></script>
     
@@ -150,8 +151,47 @@
     </nav>
     <!--End of Navigation Bar-->
     <!--Start of Main-->
-    <main class="container">
-          
+    <main class="container1">
+        
+          <?php
+              require('db\fetchItemDetail.php');
+              if($item_details->num_rows > 0){
+                while($item_res = $item_details->fetch_assoc()) {
+          ?>
+          <div class="page_product ">
+            <div class="product_details">
+                <div class="product_details-img">
+                    <a class="product_img" href="#">
+                        <img src="<?= $item_res['image']; ?>">
+                    </a>
+                </div>
+                    
+                <div class="product_details-desc">
+                    
+                    <h4 id="product_name" class="font-weight-bold"><?= $item_res['name']; ?></h4>
+                    <h5 id="product_price" class="">RM <?= $item_res['price']; ?></h5>
+                    <p id="description"><?= $item_res['description']; ?></p>
+
+                    <div><p id="localOrImport"><?= $item_res['origin']; ?></p></div>
+                    <div><p class="exp_date" id="exp_date">Expiry Date: <?= $item_res['expiry_date']; ?></p></>
+                    
+                    <div>
+                    <div>
+
+                      <form id='myform' method='POST' action='#'>
+                          <input type='button' value='-' class='qtyminus' field='quantity' />
+                          <input type='text' name='quantity' value='0' class='qty' />
+                          <input type='button' value='+' class='qtyplus' field='quantity' />
+                          <input type="submit" class="btn btn-dark" id="btn-add" value="Add to List" />
+                      </form>
+
+                    </div>
+                    <div><p class="stock">Stock: <?= $item_res['qty']; ?></p></div>
+                    </div>
+              </div>
+        </div>
+        <?php }} ?>
+
     </main>
     <!--End of Main-->
     <!--Start of Footer-->
@@ -337,54 +377,18 @@
       </div>
         <!-- Profile Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-          <div class="modal-dialog">
+        <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <h4 class="modal-title" id="staticBackdropLabel" style="color: #a82c21; font-size:40px;">Profile</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times" style="font-size: 35px;"></i></button>
               </div>
-              <div class="modal-body container">
-                <img src="<?php echo $images;?>" class="wrapper" alt="profile photo" id="profile photo">
-                <div class="row"   >
-                    <div class="col-sm-4">
-                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">First Name</label><br>   
-                      <label class="text-muted" id="FName" style="text-indent: 30px;"><?php echo $FName; ?></label>
-                    </div>
-                    <div class="col-sm-4">
-                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Last Name</label><br>   
-                      <label class="text-muted" id="LName" style="text-indent: 30px;"><?php echo $LName; ?></label>
-                    </div>
-                    <div class="col-sm-4">
-                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Username</label><br>   
-                      <label class="text-muted" id="UName" style="text-indent: 30px;">@<?php echo $UName; ?></label>
-                    </div>
-                    <div class="col-sm-6">
-                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Email</label><br>   
-                      <label class="text-muted" id="Email" style="text-indent: 30px;"><?php echo $Email; ?></label>
-                    </div>
-                    <div class="col-sm-6">
-                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Bio</label> <br>  
-                      <label class="text-muted" id="Email" style="text-indent: 30px;"><?php echo $Bio; ?></label>
-                    </div>
-                    <div class="col-sm-3">
-                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Gender</label><br>   
-                      <label class="text-muted" id="Gender" style="text-indent: 30px;"><?php echo $Gender; ?></label>
-                    </div>
-                    <div class="col-sm-5">
-                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Phone Number</label><br>  
-                      <label class="text-muted" id="PNumber" style="text-indent: 30px;"><?php echo $PNumber; ?></label>
-                    </div>
-                    <div class="col-sm-4">
-                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Birthday</label><br>   
-                      <label class="text-muted" id="Birthday" style="text-indent: 30px;"><?php echo $Birthday; ?></label>
-                    </div>
-                    <div class="col-sm-12">
-                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Address</label><br>   
-                      <label class="text-muted" id="Address" style="text-indent: 30px;"><?php echo $Address," ",$City," ",$Zip," ",$State; ?></label>
-                    </div>
-                <div>
-              </div>
-
+                <?php 
+                
+                require_once('testModal.php');
+                getModal($images,$FName,$LName,$UName,$Email,$Bio,$Gender,$PNumber,$Birthday,$Address,$City,$Zip,$State); 
+                ?>
+            </div>
               <?php 
                 }else{
                     header("Location: loginDummy.php");
