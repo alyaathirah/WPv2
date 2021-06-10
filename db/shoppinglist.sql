@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1: 3325
--- Generation Time: May 29, 2021 at 12:30 PM
+-- Generation Time: Jun 10, 2021 at 05:25 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `shoppinglist`
 --
-CREATE DATABASE IF NOT EXISTS `shoppinglist` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `shoppinglist`;
 
 -- --------------------------------------------------------
 
@@ -117,6 +115,40 @@ INSERT INTO `item` (`item_id`, `image`, `name`, `price`, `weight`, `expiry_date`
 ('8', 'images/products/Vegetables and Fruits/grapefruit.png', 'Grapefruit 1kg', '10.90', '1kg', '21/3/2021', '60', 'Import', 'Fruits and Vegetables', 'Product of Turkey. Grapefruit has a distinctive flesh colour, juicy, sweet and slightly sour flavor. It is an excellent source of vitamin C and a good source of dietary fibre. Available in M to L size.', ''),
 ('9', 'images/products/Vegetables and Fruits/kiwi.png', 'Kiwi ', '10.90', '0.6kg', '21/3/2021', '50', 'Local', 'Fruits and Vegetables', 'Product of Italy. ​With its sweet, tropical flavour and smooth, green flesh, Zespri Green Kiwi 4\'s (ITA) sets the benchmark for the global kiwifruit category', '');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users2`
+--
+
+CREATE TABLE `users2` (
+  `id` int(11) NOT NULL,
+  `FirstName` varchar(100) NOT NULL,
+  `LastName` varchar(100) NOT NULL,
+  `Username` varchar(100) NOT NULL,
+  `Email` varchar(100) NOT NULL,
+  `Bio` varchar(300) NOT NULL,
+  `PhoneNumber` varchar(11) DEFAULT NULL,
+  `Birthday` date NOT NULL,
+  `Address1` varchar(60) NOT NULL,
+  `City` varchar(60) NOT NULL,
+  `State1` varchar(60) NOT NULL,
+  `Zip` varchar(5) NOT NULL,
+  `Password1` varchar(60) NOT NULL,
+  `images` varchar(100) NOT NULL,
+  `Gender` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users2`
+--
+
+INSERT INTO `users2` (`id`, `FirstName`, `LastName`, `Username`, `Email`, `Bio`, `PhoneNumber`, `Birthday`, `Address1`, `City`, `State1`, `Zip`, `Password1`, `images`, `Gender`) VALUES
+(1, 'Ong', 'Wei', 'ong', 'ongwei12345@gmail.com', ':D Be happy :D', '011-8871238', '1995-04-26', 'Mile 3 1/2 Penampang Road', 'Kota Kinabalu', 'Sabah', '68100', '12345', 'images/fam.jpg', 'Female'),
+(3, 'Hafiz', 'Salem', 'salem', 'hafizsale56m@gmail.com', 'Be yourself:)', '019-8765432', '1992-08-07', '2239  Hart Country Lane', 'Columbus', 'Georgia', '31907', '12345', 'images/nanas.jpg', 'Male'),
+(5, 'Mika', 'Kayla', 'kyle', 'messybun@gmail.com', 'Shopping is an ART.', '012-3486957', '1994-09-04', 'Jalan Cenderasari', 'Kuala Lumpur', 'Wilayah Persekutuan', '50646', '12345', 'images/fd2c5ed381d58299866d95d64913aa40daisy.jpg', 'Female'),
+(6, 'Mila', 'Natasha', 'mila', 'milanatasha_99@yahoo.com', 'I love shopping :]', '012-2717783', '1999-02-05', 'No 4 Jalan Raja Laut,', 'Kuala Lumpur', 'Wilayah Persekutuan', '50350', 'stywm99', 'images/pink clloud.jpg', 'Other');
+
 --
 -- Indexes for dumped tables
 --
@@ -133,6 +165,22 @@ ALTER TABLE `category`
 ALTER TABLE `item`
   ADD PRIMARY KEY (`item_id`),
   ADD KEY `category_name(FK)` (`category_name(FK)`);
+
+--
+-- Indexes for table `users2`
+--
+ALTER TABLE `users2`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `users2`
+--
+ALTER TABLE `users2`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
