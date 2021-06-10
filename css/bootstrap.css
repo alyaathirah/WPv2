@@ -6269,6 +6269,7 @@ button.close {
   padding: 0;
   background-color: transparent;
   border: 0;
+  color: #000;
 }
 
 a.close.disabled {
@@ -6478,6 +6479,7 @@ a.close.disabled {
 .modal-header .close {
   padding: 1rem 1rem;
   margin: -1rem -1rem -1rem auto;
+  color: #000;
 }
 
 .modal-title {

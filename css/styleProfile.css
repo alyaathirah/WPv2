@@ -1,0 +1,19 @@
+/*User Profile Modal*/
+.wrapper{
+    height: 250px;
+    width: 250px;
+    position: relative;
+    border: 5px solid #fff;
+    border-radius: 50%;
+    background-size: 100% 100%;
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    display: block;
+    border-color:#bb4166f5;
+  }
+
+  #row{
+    left:50%;
+  }

@@ -1,7 +1,35 @@
 <?php
+    session_start();
     //Connect to database 
-    include_once('db\config.php');
-    
+    include_once('db/config.php');
+
+    //For Modal
+    if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
+      //getting id from url
+      $id = $_SESSION['id'];
+      
+      //selecting data associated with this particular id
+      $result = mysqli_query($mysqli, "SELECT * FROM users2 WHERE id=$id");
+      
+      while($res = mysqli_fetch_array($result))
+      {
+        
+        $FName=$res['FirstName'];
+        $LName=$res['LastName'];
+        $UName=$res['Username'];	
+        $Email=$res['Email'];
+        $Bio=$res['Bio'];
+        $PNumber=$res['PhoneNumber'];	
+        $Birthday=$res['Birthday'];	
+        $Address=$res['Address1'];
+        $City=$res['City'];
+        $State=$res['State1'];
+        $Zip=$res['Zip'];
+        $Password=$res['Password1'];
+        $images=$res['images'];
+        $Gender=$res['Gender'];
+      }
+
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +48,7 @@
     <link rel="stylesheet" href="user.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/styleShoppingList.css">
+    <link rel="stylesheet" href="css/styleProfile.css" >
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script type="text/javascript" src="../WPv2/js/testJS.js"></script>
     
@@ -31,19 +60,11 @@
       <div class="row flex-itemrap justify-content-between align-items-center">
         <!--User's Account modal button-->
         <div class="col-4 pt-1">
-          <a class="account" href="#" data-toggle="modal" data-target="#staticBackdrop" 
+          <a class="account" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
             ><img src="images/abstract-user-flat-4.png" style="height: 50px; width: 50px; margin-left: 12px"alt="profile photo" id="profile"/>
                <br />
             My Account</a>
-            <script>
-                var status = localStorage.getItem("status");
-                 if(status != "logged in"){
-                 account = document.querySelector(".account");
-                 account.setAttribute("data-toggle","''");
-                 account.setAttribute("data-target","''")
-                 account.setAttribute("href","login.html");
-                }
-                </script>
+
           <br />
         </div>
         <div class="col-4 text-center">
@@ -379,46 +400,71 @@
         </div>
       </div>
         <!-- Profile Modal -->
-        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="UserProfileLabel" aria-hidden="true">
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="UserProfileLabel" style="font-weight: bold; color:#bb4166f5; background: linear-gradient(to right, rgb(87, 14, 14) 30%,#8d1a3cf5 50%); -webkit-background-clip: text; -webkit-text-fill-color:transparent;">My Account</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+                <h4 class="modal-title" id="staticBackdropLabel" style="color: #a82c21; font-size:40px;">Profile</h4>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div class="modal-body">
-                <div class="container-fluid">
-                  <img src="images/abstract-user-flat-4.png" class="wrapper2" alt="profile photo" id="profile photo">
-                  <div class="row" >
-                  <div class="col-sm-4 label">First Name</div>
-                  <div class="col-sm-4 label">Last Name</div>
-                  <div class="col-sm-4 label">Username</div>
-                  <div class="col-sm-4 text-muted" id="FName">Maria</div>
-                  <div class="col-sm-4 text-muted" id="LName">Mariam</div>
-                  <div class="col-sm-4 text-muted" id="Username">@marry</div>
-                  <div class="col-sm-6 label">Email</div>
-                  <div class="col-sm-6 label">Bio</div>
-                  <div class="col-sm-6 text-muted" id="LName">Mariamariam@gmail.com</div>
-                  <div class="col-sm-6 text-muted" id="LName">Shopping is my cardio ;)</div>
-                  <div class="col-sm-4 label">Gender</div>
-                  <div class="col-sm-4" style="color:maroon; font-size:15px; font-weight:bold;">Phone Number</div>
-                  <div class="col-sm-4 label">Birthday</div>
-                  <div class="col-sm-4 text-muted" id="Gender">Female</div>
-                  <div class="col-sm-4 text-muted" id="PNumber">+6012345789</div>
-                  <div class="col-sm-4 text-muted" id="Birthday">01-01-01</div>
-                  <div class="col-sm-12 label">Address</div>
-                  <div class="col-sm-12 text-muted" id="Address">121 Blue Hill Rd Hopewell Junction 12533 New York</div>
-                  </div>
-                </div>
+              <div class="modal-body container">
+                <img src="<?php echo $images;?>" class="wrapper" alt="profile photo" id="profile photo">
+                <div class="row"   >
+                    <div class="col-sm-4">
+                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">First Name</label><br>   
+                      <label class="text-muted" id="FName" style="text-indent: 30px;"><?php echo $FName; ?></label>
+                    </div>
+                    <div class="col-sm-4">
+                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Last Name</label><br>   
+                      <label class="text-muted" id="LName" style="text-indent: 30px;"><?php echo $LName; ?></label>
+                    </div>
+                    <div class="col-sm-4">
+                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Username</label><br>   
+                      <label class="text-muted" id="UName" style="text-indent: 30px;">@<?php echo $UName; ?></label>
+                    </div>
+                    <div class="col-sm-6">
+                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Email</label><br>   
+                      <label class="text-muted" id="Email" style="text-indent: 30px;"><?php echo $Email; ?></label>
+                    </div>
+                    <div class="col-sm-6">
+                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Bio</label> <br>  
+                      <label class="text-muted" id="Email" style="text-indent: 30px;"><?php echo $Bio; ?></label>
+                    </div>
+                    <div class="col-sm-3">
+                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Gender</label><br>   
+                      <label class="text-muted" id="Gender" style="text-indent: 30px;"><?php echo $Gender; ?></label>
+                    </div>
+                    <div class="col-sm-5">
+                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Phone Number</label><br>  
+                      <label class="text-muted" id="PNumber" style="text-indent: 30px;"><?php echo $PNumber; ?></label>
+                    </div>
+                    <div class="col-sm-4">
+                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Birthday</label><br>   
+                      <label class="text-muted" id="Birthday" style="text-indent: 30px;"><?php echo $Birthday; ?></label>
+                    </div>
+                    <div class="col-sm-12">
+                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Address</label><br>   
+                      <label class="text-muted" id="Address" style="text-indent: 30px;"><?php echo $Address," ",$City," ",$Zip," ",$State; ?></label>
+                    </div>
+                <div>
+              </div>
+
+              <?php 
+                }else{
+                    header("Location: loginDummy.php");
+                    exit();
+                }
+              ?>
               <div class="modal-footer">
-                <a href="setting.html"><button type="submit" class="setting-btn rounded-pill float-end" id="Setting">Setting</button></a>
-                <a href="homepage.html" onclick="reset()"><button type="submit" class="logout setting-btn rounded-pill" id="Logout">Logout</button>
-                
-                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-                <script type="text/javascript" src="js/shoppingList.js"></script>
-                <script type="text/javascript" src="../WPv2/js/testJS.js"></script>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a href="profile.php">
+                    <button type="button" class="btn" style="background-color:  maroon; color: white;">Setting</button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
                 <script>
                   function reset(){
                     localStorage.clear();
@@ -433,5 +479,9 @@
         //Freeing Resource and closing connection
         $pdo = null;
         ?>
+                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+                <script type="text/javascript" src="js/shoppingList.js"></script>
+                <script type="text/javascript" src="../WPv2/js/testJS.js"></script>
   </body>
 </html>
