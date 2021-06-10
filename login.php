@@ -52,3 +52,4 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 	header("Location: login1.php");
 	exit();
 }
+?>
