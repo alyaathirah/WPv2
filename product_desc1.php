@@ -1,37 +1,9 @@
 <?php
     session_start();
     //Connect to database 
-    include_once('db/config.php');
-
-    //For Modal
-    if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
-      //getting id from url
-      $id = $_SESSION['id'];
-      
-      //selecting data associated with this particular id
-      $result = mysqli_query($mysqli, "SELECT * FROM users2 WHERE id=$id");
-      
-      while($res = mysqli_fetch_array($result))
-      {
-        
-        $FName=$res['FirstName'];
-        $LName=$res['LastName'];
-        $UName=$res['Username'];	
-        $Email=$res['Email'];
-        $Bio=$res['Bio'];
-        $PNumber=$res['PhoneNumber'];	
-        $Birthday=$res['Birthday'];	
-        $Address=$res['Address1'];
-        $City=$res['City'];
-        $State=$res['State1'];
-        $Zip=$res['Zip'];
-        $Password=$res['Password1'];
-        $images=$res['images'];
-        $Gender=$res['Gender'];
-      }
-
+    include_once('db\config.php');
+    require('db\fetchItemDetail.php');
 ?>
-
 <!DOCTYPE html>
 <html lang="en"><!--alya-->
   <head>
@@ -42,32 +14,37 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title id="page">Products</title>
+    <title id="page_title">Product Description</title>
     <link rel="icon" href="images/icon.png" type="image/x-icon" />
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="user.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="../WPv2/css/style.css">
     <link rel="stylesheet" href="css/styleShoppingList.css">
-    <link rel="stylesheet" href="css/styleProfile.css" >
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script type="text/javascript" src="../WPv2/js/testJS.js"></script>
-    <script type="text/javascript" src="../WPv2/js/product_desc.js"></script>   
-    
 
-  </head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript" src="../WPv2/js/project_desc.js"></script>
+    <script type="text/javascript" src="../WPv2/js/testJS.js"></script>
+    <script type="text/javascript" src="../WPv2/js/product_desc.js"></script>
+</head>
   <body class="container">
     <!--Start of header-->
     <header class="blog-header py-3">
       <div class="row flex-itemrap justify-content-between align-items-center">
         <!--User's Account modal button-->
         <div class="col-4 pt-1">
-          <a class="account" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+          <a class="account" href="#" data-toggle="modal" data-target="#staticBackdrop" 
             ><img src="images/abstract-user-flat-4.png" style="height: 50px; width: 50px; margin-left: 12px"alt="profile photo" id="profile"/>
                <br />
             My Account</a>
-
+            <script>
+                var status = localStorage.getItem("status");
+                 if(status != "logged in"){
+                 account = document.querySelector(".account");
+                 account.setAttribute("data-toggle","''");
+                 account.setAttribute("data-target","''")
+                 account.setAttribute("href","login.html");
+                }
+                </script>
           <br />
         </div>
         <div class="col-4 text-center">
@@ -115,7 +92,7 @@
           </li>
           <li class="nav-item dropdown">
             <a
-              class="nav-link dropdown-togglekjgg"
+              class="nav-link dropdown-toggle"
               href="#"
               id="navbarDropdownMenuLink"
               role="button"
@@ -154,13 +131,13 @@
     <!--End of Navigation Bar-->
     <!--Start of Main-->
     <main class="container1">
-        
-          <?php
-              require('db\fetchItemDetail.php');
-              if($item_details->num_rows > 0){
-                while($item_res = $item_details->fetch_assoc()) {
+    <?php
+          
+            if($item_details->num_rows > 0){
+              while($item_res = $item_details->fetch_assoc()) {
+                 
           ?>
-          <div class="page_product ">
+        <div class="page_product ">
             <div class="product_details">
                 <div class="product_details-img">
                     <a class="product_img" href="#">
@@ -193,7 +170,6 @@
               </div>
         </div>
         <?php }} ?>
-
     </main>
     <!--End of Main-->
     <!--Start of Footer-->
@@ -208,8 +184,8 @@
             <h5 class="text-uppercase text-dark">Company Policy</h5>
 
             <p class="text-dark">
-                This is our company policy, which is the policy of our company. This policy is for those who ask what is our policy and not for those that didnt ask.
-              </p>
+              This is our company policy, which is the policy of our company. This policy is for those who ask what is our policy and not for those that didnt ask.
+            </p>
           </div>
           <!--Grid column-->
 
@@ -278,7 +254,8 @@
       <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
         © 2020 Copyright:
         <a class="text-dark" style="font-style: italic" href="#"
-          >webprogramming2021@gmail.com</a>
+          >webprogramming2021@gmail.com</a
+        >
       </div>
       <!-- Copyright -->
     </footer>
@@ -318,13 +295,16 @@
                     <div class="col-md-auto">
                     
                     </div>
+                    <div class="col col-lg-2">
+                    </div>
+        
                 </div>
                 </div>
         
                 <div class = "shoppingList" id = "shoppinglist2">
                 <div class="row">
                     <div class="col">
-                    <a href="#" style="color: black;"><div id = "titleList">Grocery List</div></a>
+                    <a href="#" style="color: black;">Grocery List</a>
                     </div>
                     <div class="col-md-auto">
                     </div>
@@ -346,7 +326,7 @@
                     
                         <input type="text" id="input" size="20" name="fname">
                         <button type="button" class = "submit-btn rounded-pill float-sm-end" style = "width: 50px;" onClick = 'addSL()'>+</button>
-                        <button id="btnClose" class = "submit-btn rounded-pill float-sm-end" style = "width: 150px;" data-dismiss="modal">Cancel</button>
+                        <button id="btnClose" class = "submit-btn rounded-pill float-sm-end" style = "width: 150px;">Cancel</button>
                     </form>
                     </div>
                 
@@ -369,7 +349,7 @@
             Please login first before adding item(s) to your list
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <a href="product_des.html"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button></a>
                 <a href="login.html">
                     <button type="button" class="btn" style="background-color:  maroon; color: white;">Login</button>
                 </a>    
@@ -378,35 +358,45 @@
         </div>
       </div>
         <!-- Profile Modal -->
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="UserProfileLabel" aria-hidden="true">
+          <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h4 class="modal-title" id="staticBackdropLabel" style="color: #a82c21; font-size:40px;">Profile</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times" style="font-size: 35px;"></i></button>
+                <h5 class="modal-title" id="UserProfileLabel" style="font-weight: bold; color:#bb4166f5; background: linear-gradient(to right, rgb(87, 14, 14) 30%,#8d1a3cf5 50%); -webkit-background-clip: text; -webkit-text-fill-color:transparent;">My Account</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
-                <?php 
-                
-                require_once('testModal.php');
-                getModal($images,$FName,$LName,$UName,$Email,$Bio,$Gender,$PNumber,$Birthday,$Address,$City,$Zip,$State); 
-                ?>
-            </div>
-              <?php 
-                }else{
-                    header("Location: loginDummy.php");
-                    exit();
-                }
-              ?>
+              <div class="modal-body">
+                <div class="container-fluid">
+                  <img src="images/abstract-user-flat-4.png" class="wrapper2" alt="profile photo" id="profile photo">
+                  <div class="row" >
+                  <div class="col-sm-4 label">First Name</div>
+                  <div class="col-sm-4 label">Last Name</div>
+                  <div class="col-sm-4 label">Username</div>
+                  <div class="col-sm-4 text-muted" id="FName">Maria</div>
+                  <div class="col-sm-4 text-muted" id="LName">Mariam</div>
+                  <div class="col-sm-4 text-muted" id="Username">@marry</div>
+                  <div class="col-sm-6 label">Email</div>
+                  <div class="col-sm-6 label">Bio</div>
+                  <div class="col-sm-6 text-muted" id="LName">Mariamariam@gmail.com</div>
+                  <div class="col-sm-6 text-muted" id="LName">Shopping is my cardio ;)</div>
+                  <div class="col-sm-4 label">Gender</div>
+                  <div class="col-sm-4" style="color:maroon; font-size:15px; font-weight:bold;">Phone Number</div>
+                  <div class="col-sm-4 label">Birthday</div>
+                  <div class="col-sm-4 text-muted" id="Gender">Female</div>
+                  <div class="col-sm-4 text-muted" id="PNumber">+6012345789</div>
+                  <div class="col-sm-4 text-muted" id="Birthday">01-01-01</div>
+                  <div class="col-sm-12 label">Address</div>
+                  <div class="col-sm-12 text-muted" id="Address">121 Blue Hill Rd Hopewell Junction 12533 New York</div>
+                  </div>
+                </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <a href="profile.php">
-                    <button type="button" class="btn" style="background-color:  maroon; color: white;">Setting</button>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
+                <a href="setting.html"><button type="submit" class="setting-btn rounded-pill float-end" id="Setting">Setting</button></a>
+                <a href="homepage.html" onclick="reset()"><button type="submit" class="logout setting-btn rounded-pill" id="Logout">Logout</button>
+                
+                <script src="../WPv2/js/project_desc.js"></script>
+                <script type="text/javascript" src="js/shoppingList.js"></script>
                 <script>
                   function reset(){
                     localStorage.clear();
@@ -417,14 +407,6 @@
           </div>
           </div> 
         </div>
-        <?php
-        //Freeing Resource and closing connection
-        $pdo = null;
-        ?>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="js/shoppingList.js"></script>
-        <script type="text/javascript" src="../WPv2/js/testJS.js"></script>
   </body>
   <?php
         //Freeing Resource and closing connection
