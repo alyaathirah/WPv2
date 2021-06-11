@@ -133,7 +133,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
         <!--User's Account modal button-->
         <div class="col-4 pt-1" style="color: black; font-size: medium;"><strong>
           <img src="<?php echo $images;?>"  style="border-radius:50%; height: 50px; width: 50px; margin-left: 12px; border: 1px solid black;"alt="profile photo" id="profile"/>
-          <br>My profile
+          <a href="logout.php">Logout</a>
           <br /></strong>
         </div>
         <div class="col-4 text-center">
@@ -184,7 +184,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
             <ul class="navbar-nav">
                 <li class="nav-item">
                 <a class="nav-link" href="homepage.html">
-                    Home <span class="sr-only">(current)</span></a>
+                    Home</a>
                 </li>
                 <li class="nav-item dropdown">
                 <a
@@ -207,8 +207,8 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
                 </div>
                 </li>
                
-                <li class="nav-item active">
-                <a class="nav-link disabled" href="#" style="color: white;">About Us</a>
+                <li class="nav-item">
+                <a class="nav-link" href="#" style="color: white;">About Us</a>
                 </li>
             </ul>
             </div>
