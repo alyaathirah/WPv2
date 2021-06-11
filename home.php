@@ -122,9 +122,11 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
                 <div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <a href="profile.php">
                     <button type="button" class="btn" style="background-color:  maroon; color: white;">Setting</button>
+                </a>
+                <a href="logout.php">
+                    <button type="button" class="btn btn-secondary">Logout</button>
                 </a>
               </div>
             </div>
