@@ -184,7 +184,12 @@
                             <p id="prd_price1" class = "product-price">RM <?= $res['price']; ?></p>
                         </div>
                     </div>
-                    <?php }}} ?>
+                    <?php }}}
+                    else{
+                        ?>
+                        <a> Sorry the product you searched is not available</a>
+                        <?php
+                    } ?>
                 </div> 
             </div>
             

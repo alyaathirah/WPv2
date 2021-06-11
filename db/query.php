@@ -16,7 +16,7 @@
       $itemCountQuery =  "SELECT count(item_id) as id FROM item";
     } 
     else {
-        $item_query = "SELECT * from item where tags1 like '%$query%' or tags2 like '%$query%' or tags3 like '%$query%' or tags4 like '%$query%' or tags5 like '%$query%' LIMIT $start, $limit";
+        $item_query = "SELECT * from item where UPPER(tags1) like UPPER('%$query%') or UPPER(tags2) like UPPER('%$query%') or UPPER(tags3) like UPPER('%$query%') or UPPER(tags4) like UPPER('%$query%') or UPPER(tags5) like UPPER('%$query%') or UPPER(name) like UPPER('%$query%') LIMIT $start, $limit";
         $itemCountQuery = "SELECT count(item_id) as id FROM item";
     }
 
