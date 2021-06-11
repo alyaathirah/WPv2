@@ -156,17 +156,11 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
           </li>
         </ul>
         
-        <form class="form-inline my-2 my-lg-0" action = "/search.html" style="margin-right: 200px;">
-          <input class="searchBar form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="getQuery()">Search</button>
+        <form class="form-inline my-2 my-lg-0" action = "search.php" method = "get" style="margin-right: 200px;">
+          <input class="searchBar form-control mr-sm-2" type="text" placeholder="Search" name = "query">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>
-      <script>
-        function getQuery(){
-          var query = document.querySelector(".searchBar").value;
-          localStorage.setItem("query",query)
-        }
-      </script>
     </nav>
     <!--Start of Carousel-->
     <div

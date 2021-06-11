@@ -5,7 +5,7 @@
 //Step 1: Connecting to a Database using MySQLi API 
 // modify these variables for your installation
 $databaseHost = 'localhost';
-$databaseName = 'setting';
+$databaseName = 'shoppinglist';
 $databaseUsername = 'root';
 $databasePassword = '';
 
