@@ -183,7 +183,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                <a class="nav-link" href="homepage.html">
+                <a class="nav-link" href="home.php">
                     Home</a>
                 </li>
                 <li class="nav-item dropdown">
@@ -208,7 +208,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
                 </li>
                
                 <li class="nav-item">
-                <a class="nav-link" href="#" style="color: white;">About Us</a>
+                <a class="nav-link" href="about_us.php">About Us</a>
                 </li>
             </ul>
             </div>
