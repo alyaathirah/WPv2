@@ -157,11 +157,11 @@ else if(isset($_POST['update_p']))
 		}	
     
         if($NPassword != $CPassword) {
-			$_SESSION['status_ps'] = "Not matching new password,$CPassword";
+			$_SESSION['status_ps'] = "Not matching new password";
 	    }
 
         if($OPassword != $Password){
-			$_SESSION['status_ps'] = "Not matching current password,$OPassword,$APassword";
+			$_SESSION['status_ps'] = "Not matching current password";
         }
 		header("Location:profile.php");
         mysqli_close($mysqli);
