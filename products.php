@@ -188,7 +188,13 @@
                             <p id="prd_price1" class = "product-price">RM <?= $res['price']; ?></p>
                         </div>
                     </div>
-                    <?php }}} ?>
+                    <?php }}
+                    if(mysql_num_rows($result) == 0){
+                      echo "test";
+                    }  
+                  }
+                        
+                     ?>
                 </div> 
             </div>
             
@@ -379,7 +385,6 @@
             </div>
             </div>
         </div>
-        <div id="snackbar">Item was added into Shopping List</div>
         <!------End of Shopping List modal -------->
         <!--Login Alert Modal-->
       <div class="modal fade" id="loginAlrertModal" tabindex="-1" aria-labelledby="loginAlrertModalLabel" aria-hidden="true">
