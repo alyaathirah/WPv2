@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include_once("config.php");
+include_once("db/config.php");
 
 if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
   

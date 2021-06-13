@@ -3,7 +3,7 @@ session_start();
 
 if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
 
-  include_once("config.php");
+  include_once("db/config.php");
   //getting id from url
   $id = $_SESSION['id'];
   
