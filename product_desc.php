@@ -64,7 +64,7 @@
         <!--User's Account modal button-->
         <div class="col-4 pt-1">
           <a class="account" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-            ><img src="images/abstract-user-flat-4.png" style="height: 50px; width: 50px; margin-left: 12px"alt="profile photo" id="profile"/>
+            ><img src=<?php echo $images;?> alt="profile photo" id="profile photo" style="height: 50px;; width: 50px;; border-radius: 50%;">
                <br />
             My Account</a>
 
@@ -164,7 +164,7 @@
             <div class="product_details">
                 <div class="product_details-img">
                     <a class="product_img" href="#">
-                        <img src="<?= $item_res['image']; ?>">
+                        <img src="images/<?= $item_res['image']; ?>">
                     </a>
                 </div>
                     
@@ -398,20 +398,16 @@
                 }
               ?>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <a href="profile.php">
                     <button type="button" class="btn" style="background-color:  maroon; color: white;">Setting</button>
+                </a>
+                <a href="logout.php">
+                    <button type="button" class="btn btn-secondary">Logout</button>
                 </a>
               </div>
             </div>
           </div>
         </div>
-
-                <script>
-                  function reset(){
-                    localStorage.clear();
-                  }
-                </script>
               </div>
               </div>
           </div>

@@ -511,12 +511,6 @@
                 getModal($images,$FName,$LName,$UName,$Email,$Bio,$Gender,$PNumber,$Birthday,$Address,$City,$Zip,$State); 
                 ?>
             </div>
-              <?php 
-                }else{
-                    header("Location: login.php");
-                    exit();
-                }
-              ?>
               <div class="modal-footer">
                 <a href="profile.php">
                     <button type="button" class="btn" style="background-color:  maroon; color: white;">Setting</button>
@@ -533,10 +527,13 @@
           </div>
           </div> 
         </div>
-        <?php
-        //Freeing Resource and closing connection
-        $pdo = null;
-        ?>
+        <?php 
+                }else{
+                    header("Location: login.php");
+                    exit();
+                }
+                $pdo = null;
+              ?>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
         <script type="text/javascript" src="../WPv2/js/testJS.js"></script>
