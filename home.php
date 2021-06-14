@@ -195,7 +195,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
                     <div class = "product">
                         <div class = "product-content">
                             <div class = "product-img">
-                                <img id="prdimg" src="<?= $res['image']; ?>" alt="product image">
+                                <img id="prdimg" src="images/<?= $res['image']; ?>" alt="product image">
                             </div>
 
                             <div class = "product-btns">
@@ -220,11 +220,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
             </div>
             
         </div>
-      
-
-
-
-
     </main>
     <!-- Footer -->
     <footer class="text-center text-lg-start">
@@ -325,12 +320,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
                 getModal($images,$FName,$LName,$UName,$Email,$Bio,$Gender,$PNumber,$Birthday,$Address,$City,$Zip,$State); 
                 ?>
             </div>
-              <?php 
-                }else{
-                    header("Location: login.php");
-                    exit();
-                }
-              ?>
+
               <div class="modal-footer">
                 <a href="profile.php">
                     <button type="button" class="btn" style="background-color:  maroon; color: white;">Setting</button>
@@ -342,7 +332,12 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
             </div>
           </div>
         </div>
-        
+              <?php 
+                }else{
+                    header("Location: login.php");
+                    exit();
+                }
+              ?>
         <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
