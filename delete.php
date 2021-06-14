@@ -20,7 +20,7 @@ mysqli_close($mysqli);
 
 //4. Process the results.
 //redirecting to the display page (index.php in our case)
-header("Location:login.php");
+header("Location:home.php");
 }
 ?>
 
