@@ -28,49 +28,49 @@
         $Password=$res['Password1'];
         $images=$res['images'];
         $Gender=$res['Gender'];
-    if(empty($FName) || empty($LName) || empty($UName) || empty($Email) || empty($Bio) || empty($PNumber) || empty($Birthday) || empty($Address) || empty($City) || empty($State) || empty($State) || empty($Zip) || empty($Gender)|| empty($images))
-    {
-      if(empty($images)) {
-        $images="images/default.png";
-      }
+        if(empty($FName) || empty($LName) || empty($UName) || empty($Email) || empty($Bio) || empty($PNumber) || empty($Birthday) || empty($Address) || empty($City) || empty($State) || empty($State) || empty($Zip) || empty($Gender)|| empty($images))
+        {
+          if(empty($images)) {
+            $images="images/default.png";
+          }
 
-      if(empty($FName)) {
-        $FName="Set Now";
-      }
-      
-      if(empty($LName)) {
-        $LName="Set Now";
-      }
-      
-      if(empty($Bio)) {
-        $Bio="Set Now";
-      }
-  
-      if(empty($Address)) {
-        $Address="Set Now";
-      }	
-      
-      if(empty($State)) {
-        $State="";
-      }
-  
-      if(empty($City)) {
-        $City="";
-      }	
-      
-      if(empty($Zip)) {
-        $Zip="";
-      }
+          if(empty($FName)) {
+            $FName="Set Now";
+          }
 
-      if(empty($Gender)) {
-        $Gender="Set Now";
-      }
+          if(empty($LName)) {
+            $LName="Set Now";
+          }
 
-      if(empty($PNumber)) {
-        $PNumber="Set Now";
+          if(empty($Bio)) {
+            $Bio="Set Now";
+          }
+
+          if(empty($Address)) {
+            $Address="Set Now";
+          }	
+
+          if(empty($State)) {
+            $State="";
+          }
+
+          if(empty($City)) {
+            $City="";
+          }	
+
+          if(empty($Zip)) {
+            $Zip="";
+          }
+
+          if(empty($Gender)) {
+            $Gender="Set Now";
+          }
+
+          if(empty($PNumber)) {
+            $PNumber="Set Now";
+          }
+        }
       }
-    }
-  }
 ?>
 
 <!DOCTYPE html>
