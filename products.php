@@ -69,7 +69,7 @@
           <br />
         </div>
         <div class="col-4 text-center">
-          <a class="blog-header-logo text-dark" href="homepage.html"
+          <a class="blog-header-logo text-dark" href="home.php"
             ><img src="images/logo.png" style="width: 200px; height: auto"
           /></a>
         </div>
@@ -107,7 +107,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="homepage.html"
+            <a class="nav-link" href="home.php"
               >Home <span class="sr-only">(current)</span></a
             >
           </li>
