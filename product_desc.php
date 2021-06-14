@@ -71,7 +71,7 @@
           <br />
         </div>
         <div class="col-4 text-center">
-          <a class="blog-header-logo text-dark" href="homepage.html"
+          <a class="blog-header-logo text-dark" href="home.php"
             ><img src="images/logo.png" style="width: 200px; height: auto"
           /></a>
         </div>
@@ -139,17 +139,11 @@
           </li>
         </ul>
         
-        <form class="form-inline my-2 my-lg-0" action = "/search.html">
-            <input class="searchBar form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="getQuery()">Search</button>
-          </form>
+        <form class="form-inline my-2 my-lg-0" action = "search.php" method = "get" style="margin-right: 200px;">
+          <input class="searchBar form-control mr-sm-2" type="text" placeholder="Search" name = "query">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
         </div>
-        <script>
-          function getQuery(){
-            var query = document.querySelector(".searchBar").value;
-            localStorage.setItem("query",query)
-          }
-        </script>
     </nav>
     <!--End of Navigation Bar-->
     <!--Start of Main-->

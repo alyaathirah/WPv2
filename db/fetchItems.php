@@ -1,16 +1,26 @@
 <?php
     include_once('config.php');
 
+    
+
+
     $limit = 16;
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
     $start = ($page - 1) * $limit;
 
-    $category = $_GET['category'];
+    
+
+    if (empty($_GET['category'])) {
+      $category = "All Categories";
+    } else {
+      $category = $_GET['category'];
+    }
+
 
     $itemCountQuery = "SELECT count(item_id) as id FROM item";
     $result1 = $mysqli->query($itemCountQuery); 
 
-    if(empty($category)) {
+    if($category == null) {
       $item_query = "SELECT * FROM `item` LIMIT $start, $limit";
       $itemCountQuery =  "SELECT count(item_id) as id FROM item";
     } 
