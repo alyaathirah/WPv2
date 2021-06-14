@@ -47,26 +47,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script type="text/javascript" src="../WPv2/js/testJS.js"></script>
     <title>Homepage</title>
-    <style>
-      .wrapper{
-        height: 250px;
-        width: 250px;
-        position: relative;
-        border: 5px solid #fff;
-        border-radius: 50%;
-        background-size: 100% 100%;
-        margin-top: 0px;
-        margin-left: auto;
-        margin-right: auto;
-        overflow: hidden;
-        display: block;
-        border-color:#bb4166f5;
-      }
-      #row{
-        left:50%;
-      }
-    </style>
-
     
   </head>
   <body >
@@ -78,15 +58,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
           <br>
           <a class="account" href="#" data-toggle="modal" data-target="#staticBackdrop" 
             >My Account</a>
-            <script>
-            var status = localStorage.getItem("status");
-             if(status != "logged in"){
-             account = document.querySelector(".account");
-             account.setAttribute("data-toggle","''");
-             account.setAttribute("data-target","''")
-             account.setAttribute("href","login.html");
-            }
-            </script>
           <br />
         </div>
         <div class="col-4 text-center">
@@ -342,53 +313,24 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
     </footer>
         <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-          <div class="modal-dialog">
+        <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <h4 class="modal-title" id="staticBackdropLabel" style="color: #a82c21; font-size:40px;">Profile</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times" style="font-size: 35px;"></i></button>
               </div>
-              <div class="modal-body container">
-                <img src="<?php echo $images;?>" class="wrapper" alt="profile photo" id="profile photo">
-                <div class="row"   >
-                    <div class="col-sm-4">
-                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">First Name</label><br>   
-                      <label class="text-muted" id="FName" style="text-indent: 30px;"><?php echo $FName; ?></label>
-                    </div>
-                    <div class="col-sm-4">
-                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Last Name</label><br>   
-                      <label class="text-muted" id="LName" style="text-indent: 30px;"><?php echo $LName; ?></label>
-                    </div>
-                    <div class="col-sm-4">
-                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Username</label><br>   
-                      <label class="text-muted" id="UName" style="text-indent: 30px;">@<?php echo $UName; ?></label>
-                    </div>
-                    <div class="col-sm-6">
-                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Email</label><br>   
-                      <label class="text-muted" id="Email" style="text-indent: 30px;"><?php echo $Email; ?></label>
-                    </div>
-                    <div class="col-sm-6">
-                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Bio</label> <br>  
-                      <label class="text-muted" id="Email" style="text-indent: 30px;"><?php echo $Bio; ?></label>
-                    </div>
-                    <div class="col-sm-3">
-                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Gender</label><br>   
-                      <label class="text-muted" id="Gender" style="text-indent: 30px;"><?php echo $Gender; ?></label>
-                    </div>
-                    <div class="col-sm-5">
-                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Phone Number</label><br>  
-                      <label class="text-muted" id="PNumber" style="text-indent: 30px;"><?php echo $PNumber; ?></label>
-                    </div>
-                    <div class="col-sm-4">
-                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Birthday</label><br>   
-                      <label class="text-muted" id="Birthday" style="text-indent: 30px;"><?php echo $Birthday; ?></label>
-                    </div>
-                    <div class="col-sm-12">
-                      <label style="font-weight:bold; color:maroon; text-indent: 30px;">Address</label><br>   
-                      <label class="text-muted" id="Address" style="text-indent: 30px;"><?php echo $Address," ",$City," ",$Zip," ",$State; ?></label>
-                    </div>
-                <div>
-              </div>
+                <?php 
+                
+                require_once('testModal.php');
+                getModal($images,$FName,$LName,$UName,$Email,$Bio,$Gender,$PNumber,$Birthday,$Address,$City,$Zip,$State); 
+                ?>
+            </div>
+              <?php 
+                }else{
+                    header("Location: login.php");
+                    exit();
+                }
+              ?>
               <div class="modal-footer">
                 <a href="profile.php">
                     <button type="button" class="btn" style="background-color:  maroon; color: white;">Setting</button>
@@ -411,11 +353,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
       integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
       crossorigin="anonymous"
     ></script>
+    <script type="text/javascript" src="../WPv2/js/testJS.js"></script>
   </body>
 </html>
-<?php 
-}else{
-     header("Location: login1.php");
-     exit();
-}
- ?>

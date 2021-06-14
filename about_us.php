@@ -64,7 +64,7 @@
         <!--User's Account modal button-->
         <div class="col-4 pt-1">
           <a class="account" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-            ><img src="images/abstract-user-flat-4.png" style="height: 50px; width: 50px; margin-left: 12px"alt="profile photo" id="profile"/>
+            ><img src="<?php echo $images;?>" alt="profile photo" id="profile photo" style="height: 50px;; width: 50px;; border-radius: 50%;">
                <br />
             My Account</a>
 
@@ -109,7 +109,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="homepage.html"
+            <a class="nav-link" href="home.php"
               >Home <span class="sr-only">(current)</span></a
             >
           </li>
@@ -407,14 +407,16 @@
             </div>
               <?php 
                 }else{
-                    header("Location: loginDummy.php");
+                    header("Location: login.php");
                     exit();
                 }
               ?>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <a href="profile.php">
                     <button type="button" class="btn" style="background-color:  maroon; color: white;">Setting</button>
+                </a>
+                <a href="logout.php">
+                    <button type="button" class="btn btn-secondary">Logout</button>
                 </a>
               </div>
             </div>
