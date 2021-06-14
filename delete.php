@@ -4,7 +4,7 @@
 //Step 2. Handle connection errors
 //including the database connection file
 session_start();
-include_once("config.php");
+include_once("db/config.php");
 
 if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
 
