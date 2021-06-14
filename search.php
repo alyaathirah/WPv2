@@ -147,8 +147,8 @@
     <!--Start of Main-->
     <main class="container">
     <?php require('db\query.php') ?>
-        <div class="products">
-            <h2 class="page_title" id="page_title">Search: <?= $query ?></h2>
+        <div class="products" style = "background-color: white">
+            <h2 class="page_title" id="page_title" >Search: <?= $query ?></h2>
             <div class="container1">
                
                 <div class = "product-items">
