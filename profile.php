@@ -438,7 +438,13 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                 <a href="delete.php">
-                    <button type="button" class="btn" style="background-color:  maroon; color: white; ">Delete</button>
+                    <button type="button" class="btn" style="background-color:  maroon; color: white; "onclick="Delete()">Delete</button>
+                    <script>
+                      function Delete(){
+                        localStorage.setItem('status','logged out');
+                      }
+                      
+                    </script>
                 </a>
             </div>
         </div>

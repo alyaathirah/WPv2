@@ -74,7 +74,15 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
       <div class="row flex-nowrap justify-content-between align-items-center">
         <!--User's Account modal button-->
         <div class="col-4 pt-1">
-        <img src="<?php echo $images;?>" alt="profile photo" id="profile photo" style="height: 50px;; width: 50px;; border-radius: 50%;">
+         
+        <img src="<?php echo $images;?>" alt="profile photo" id="profilePhoto" style="height: 50px;; width: 50px;; border-radius: 50%;">
+        <script>
+          var status = localStorage.getItem("status");
+             if(status != "logged in"){
+              img = document.querySelector("#profilePhoto").src = 'images/abstract-user-flat-4.png';
+              //img.setAttribute("img","'images/abstract-user-flat-4.png'")
+             }
+        </script>
           <br>
           <a class="account" href="#" data-toggle="modal" data-target="#staticBackdrop" 
             >My Account</a>
@@ -84,7 +92,8 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
              account = document.querySelector(".account");
              account.setAttribute("data-toggle","''");
              account.setAttribute("data-target","''")
-             account.setAttribute("href","login.html");
+             account.setAttribute("href","login1.php");
+             
             }
             </script>
           <br />
@@ -393,8 +402,14 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
                 <a href="profile.php">
                     <button type="button" class="btn" style="background-color:  maroon; color: white;">Setting</button>
                 </a>
-                <a href="logout.php">
-                    <button type="button" class="btn btn-secondary">Logout</button>
+                <a>
+                    <button type="button" class="btn btn-secondary" onclick="Logout()">Log Out</button>
+                    <script>
+                      function Logout(){
+                        localStorage.setItem('status','logged out');
+                        window.location.href = "home.php";
+                      }
+                      </script>
                 </a>
               </div>
             </div>
