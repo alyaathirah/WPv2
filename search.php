@@ -187,7 +187,7 @@
                     <?php }}
                     else{
                       ?>
-                      <a style = "color: black">hai</a>
+                      <a style = "color: black">Sorry the product that you searched is not available.</a>
                       <?php
                   }}
                      ?>

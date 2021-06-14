@@ -189,9 +189,7 @@
                         </div>
                     </div>
                     <?php }}
-                    if(mysql_num_rows($result) == 0){
-                      echo "test";
-                    }  
+                    
                   }
                         
                      ?>
