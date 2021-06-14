@@ -126,7 +126,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
           </li>
         </ul>
         
-        <form class="form-inline my-2 my-lg-0" action = "search.php" method = "get" style="margin-right: 200px;">
+        <form class="form-inline my-2 my-lg-0" action = "search.php" method = "get" style="margin-right: 2px;">
           <input class="searchBar form-control mr-sm-2" type="text" placeholder="Search" name = "query">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
