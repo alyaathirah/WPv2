@@ -143,12 +143,11 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
               Categories
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="fruits_vegetables.html"
-                >Fruits and Vegetables</a
-              >
-              <a class="dropdown-item" href="snacks.html">Snacks</a>
-              <a class="dropdown-item" href="instant_food.html">Instant Food</a>
-              <a class="dropdown-item" href="#">Stationeries</a>
+              <a class="dropdown-item" id="allCategoriesNav" href="#">All Categories</a>
+              <a class="dropdown-item" id="fruitVegNav" href="#">Fruits and Vegetables</a>
+              <a class="dropdown-item" id="snacksNav" href="#">Snacks</a>
+              <a class="dropdown-item" id="instantFoodNav" href="#">Instant Food</a>
+              <a class="dropdown-item" id="stationeryNav" href="#">Stationeries</a>
             </div>
           </li>
           <li class="nav-item">
