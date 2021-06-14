@@ -1,0 +1,254 @@
+.titleSL{
+    padding-top: 10px;
+    color: #5E6977;
+    font-size: 20px;
+    font-weight: 400;
+    }
+      .item {
+      padding: 20px 30px;
+      height: 150px;
+      width: 100%;
+      display: flex;
+    }
+    
+      .buttons {
+        position: relative;
+        padding-top: 30px;
+        margin-right: 60px;
+    }
+  
+      .deletebtn {
+        display: inline-block;
+        cursor: pointer;
+        width: 18px;
+        height: 17px;
+        background: url("/images/delete-icn.png") no-repeat center;
+        margin-right: 20px;
+    }
+   
+    .images {
+      padding: 0.25rem;
+      background-color: #fff;
+      max-width: 100%;
+      height: auto;
+    }
+    
+    .description {
+      padding-top: 39px;
+      margin-right: 60px;
+      width: 150px;
+    }
+    
+    .description span {
+      display: block;
+      font-size: 14px;
+      color: #080808;
+      font-weight: 400;
+    }
+    
+    .quantity {
+      padding-top: 35px;
+      margin-right: 60px;
+      margin-left: 20%;
+    }
+    .quantity input {
+      -webkit-appearance: none;
+      border: none;
+      text-align: center;
+      width: 32px;
+      font-size: 16px;
+      color: #43484D;
+      font-weight: 300;
+    }
+    
+    .button {
+      width: 30px;
+      height: 30px;
+      background-color: #E1E8EE;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+    }
+  
+    .button2 {
+      width: 150px;
+      height: 30px;
+      background-color: #E1E8EE;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+    }
+    .minus-btn img {
+      background-color: #E1E8EE;
+      border-radius: 1px;
+      margin-bottom: 3px;
+    }
+    .plus-btn img {
+      margin-top: 1px;
+    }
+    button:focus,
+    input:focus {
+      outline:0;
+    }
+    
+    .total-price {
+      width: 83px;
+      padding-top: 40px;
+      font-size: 14px;
+      color: #080808;
+      font-weight: 400;
+    }
+  
+    .stock-avail {
+      text-align: center;
+      width: 83px;
+      margin-top: 40px;
+      font-size: 16px;
+      background: #62c46f;
+      color: #fff;
+      font-weight: 500;
+      border-radius: 10px;
+    }
+  
+    .stock-notavail {
+      text-align: center;
+      width: 100px;
+      margin-top: 40px;
+      font-size: 16px;
+      background: #d83c20;
+      color: #fff;
+      font-weight: 500;
+      border-radius: 10px;
+    }
+  
+  
+    .buttonz{
+      background-color: #800808; 
+      border: none; 
+      color: white; 
+      padding: 12px 16px; 
+      font-size: 16px; 
+      cursor: pointer; 
+      transition: 0.3s;
+    }
+    .buttonz:hover {
+      background-color: rgb(212, 218, 236);
+      color: #000;
+    }
+  
+    .modal-content {
+      color: #000;
+    }
+  
+    .shoppingList {
+      padding: 20px 30px;
+      border-bottom: 1px solid #E1E8EE;
+    }
+  
+    .mainList {
+    padding: 20px 30px;
+    }
+  
+    
+    #secList {
+      padding-left:20px;
+      }
+  
+      #snackbar {
+        visibility: hidden; 
+        min-width: 250px; 
+        margin-left: -125px; 
+        background-color: #333; 
+        color: #fff; 
+        text-align: center; 
+        border-radius: 2px; 
+        padding: 16px; 
+        position: fixed; 
+        z-index: 1; 
+        left: 50%; 
+        bottom: 30px; 
+      }
+      
+      #snackbar.show {
+        visibility: visible; 
+        -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
+      }
+      
+      /* Animations to fade the snackbar in and out */
+      @-webkit-keyframes fadein {
+        from {bottom: 0; opacity: 0;}
+        to {bottom: 30px; opacity: 1;}
+      }
+      
+      @keyframes fadein {
+        from {bottom: 0; opacity: 0;}
+        to {bottom: 30px; opacity: 1;}
+      }
+      
+      @-webkit-keyframes fadeout {
+        from {bottom: 30px; opacity: 1;}
+        to {bottom: 0; opacity: 0;}
+      }
+      
+      @keyframes fadeout {
+        from {bottom: 30px; opacity: 1;}
+        to {bottom: 0; opacity: 0;}
+      }
+  
+      .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+      }
+  
+      .productHeader{
+        width: 100%;
+        display: flex;
+        border-bottom: 3px solid #E1E8EE; 
+        color: black;
+      }
+  
+      .product-title{
+        padding-left: 2%;
+        width: 43%;
+      }
+  
+      .price-title{
+        width: 12%;
+        display: flex;
+      }
+  
+      .quantity-title{
+        width: 20%;
+        display: flex;
+      }
+  
+      .subprice-title{
+        width: 15%;
+        display: flex;
+      }
+  
+      .productFooter{
+        width: 100%;
+        display: flex;
+        border-top: 3px solid #E1E8EE; 
+        color: black;
+        padding-top: 2%;
+        padding-left: 55%;
+      }
+  
+      
+      .sumPrice-title{
+        width: 45%;
+      }
+  
+      .sumPrice{
+        width: 12%;
+        display: flex;
+      }
+  
+      #extra{
+        padding-left: 57%
+      }

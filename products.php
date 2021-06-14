@@ -76,7 +76,8 @@
         <div class="col-4 d-flex justify-content-end align-items-center">
           <a
             class="btn btn-sm btn-outline-secondary"
-            href="shoppingList.html"
+            data-toggle="modal" 
+            data-target="#exampleModal2"
             style="margin-right: 10px;"
             ><img
             class="list"
@@ -173,8 +174,23 @@
 
                             <div class = "product-btns">
                                 
-                                    <button type = "button" class = "btn-add"> add to list
-                                    </button>
+                          <!--  <a href="addToList.php?id=<?php echo $res['item_id'];?>">
+                              <button type = "button" class = "btn-add"> add to list
+                              </button>
+                            </a>-->
+               
+                          <!--  <button type = "button" class = "btn-add" data-toggle="modal" 
+                              data-target="#exampleModal" data-id="<?php echo $res['item_id'];?>"> add to list
+                              </button>-->
+
+                              <form method = "POST" name = "hiddenForm" id = "hiddenForm">
+                              <input type = "button" class = "btn-add" data-toggle="modal" 
+                              data-target="#exampleModal" data-id="<?php echo $res['item_id'];?>"
+                              value = "add to list"> 
+                              <input name = "hiddenID" type = "hidden" id="feed_id" value="" />
+                              </form>
+
+                                                    
                                 <a href="#">
                                     <button  type = "button" id="<?= $res['item_id']; ?>" class = "btn-view"> view item
                                     </button>
@@ -316,73 +332,154 @@
       integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
       crossorigin="anonymous"
     ></script>
-       <!----------Shopping List modal -------->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h6 class="modal-title title" id="UserProfileLabel" style="font-size: 25px;">Select List</h6>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                
-            <!-- Content in Modal -->
-            <div class="modal-body">
-                <div class="container-fluid">
-                
-                <div class = "shoppingList" id = "shoppinglist1">
-                <div class="row">
-                    <div class="col">
-                    <a class = "addToList" href="#" class="close" data-dismiss="modal" style="color: black;" onclick="snack()">
-                        <div id = "titleList">Shopping List</div>
-                    </a>
-                    </div>
-                    <div class="col-md-auto">
-                    
-                    </div>
-                </div>
-                </div>
+    <script>
+        $('.btn-add').click(function(){
+            var id=$(this).data('id');
+            document.getElementById("feed_id").value = $(this).attr('data-id');
+            //document.getElementById('hiddenForm').submit();
+            console.log(document.getElementById("feed_id").value);
+           //document.getElementById('itemid').value = id; 
+           //window.location.href = "http://localhost/products.php?id=" + id;
+          // window.localStorage.setItem('id', id);
+         })
+        </script>
+   <!-----------------------------------Shopping List modal to ADD ITEM ----------------------------------------->
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title title" id="UserProfileLabel" style="font-size: 40px;">My List</h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
         
-                <div class = "shoppingList" id = "shoppinglist2">
-                <div class="row">
-                    <div class="col">
-                    <a href="#" style="color: black;"><div id = "titleList">Grocery List</div></a>
-                    </div>
-                    <div class="col-md-auto">
-                    </div>
-        
-                    <div class="col col-lg-2">
-                        <span class="deletebtn" id = "2" onClick = "myFunction2()"></span>
-                    </div>
-        
-                </div>
-                </div>
-        
-                <div id = "newSL"></div>
-            
-                    <div class = "row">
-                    <br><br><br>
-                    <button id="btn" class="submit-btn rounded-pill float-sm-end" style = "width: 150px; margin:auto; display:block;" >Add New List</button>
-                    
-                    <form id="editForm"  action="" method="post" name="editForm" style = "margin:auto; display:block;">
-                    
-                        <input type="text" id="input" size="20" name="fname">
-                        <button type="button" class = "submit-btn rounded-pill float-sm-end" style = "width: 50px;" onClick = 'addSL()'>+</button>
-                        <button id="btnClose" class = "submit-btn rounded-pill float-sm-end" style = "width: 150px;" data-dismiss="modal">Cancel</button>
-                    </form>
-                    </div>
-                
-                </div>
-                </div>
-            
-            </div>
-            </div>
+    <!-- Content in Modal -->
+    <div class="modal-body">
+      <div class="container-fluid">
+      <?php 
+      require('addList.php');
+      if ($try->num_rows > 0) {
+        while($rows = $try->fetch_assoc()) {
+      
+      ?>
+      
+        <div class = "shoppingList" id = "<?php echo $rows['sl_id'];?>">
+        <div class="row">
+          <div class="col">
+
+        <!--  <form method = "POST" name = "hiddenForm" id = "hiddenForm">
+          <input name = "hiddenID" type = "hidden" id="feed_id" value="" />
+          </form>-->
+          <?php 
+           echo '<script type="text/javascript">' . 
+           'document.getElementById("feed_id").value'.
+           '</script>';
+          ?>
+    
+          <a href="addToList.php?id=<?php echo $rows['sl_id']?>&id2=4" style="color: black;">
+              <div id = "titleList"><?php echo $rows['sl_name'];?></div>
+            </a>
+          </div>
+          <div class="col-md-auto">
+          <a href="deleteList.php?id=<?php echo $rows['sl_id']?>">
+          <img src = "images/delete-icn.png" alt="" width="13" height="13"/></a>
+          </div>
+
         </div>
-        <div id="snackbar">Item was added into Shopping List</div>
-        <!------End of Shopping List modal -------->
+        
+      </div>
+      <?php
+          }} else {
+            echo "0 results";
+          }?>
+     
+      <div id = "newSL"></div>
+     
+          <div class = "row">
+            <br><br><br>
+            <button id="btn" class="buttonz" style = "width: 150px; margin:auto; display:block;" >Add New List</button>
+            
+            <form id="editForm"  action="addList.php" method="post" name="editForm" style = "margin:auto; display:block;">
+            
+              <input type="text" id="input" size="20" name="slname">
+              <input type = "submit" name = "Submit" value = "+" >
+              </input>
+            </form>
+          </div>
+      
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-----------------------------------End of Shopping List modal ----------------------------------------->
+   <!-----------------------------------Shopping List modal to VIEW LIST ----------------------------------------->
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title title" id="UserProfileLabel" style="font-size: 40px;">My List</h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        
+    <!-- Content in Modal -->
+    <div class="modal-body">
+      <div class="container-fluid">
+      <?php 
+      require('addList.php');
+      if ($try->num_rows > 0) {
+        while($rows = $try->fetch_assoc()) {
+      
+      ?>
+      
+        <div class = "shoppingList" id = "<?php echo $rows['sl_id'];?>">
+        <div class="row">
+          <div class="col">
+
+          <a href="viewList.php?id=<?php echo $rows['sl_id']?>" style="color: black;">
+              <div id = "titleList"><?php echo $rows['sl_name'];?></div>
+            </a>
+          </div>
+          <div class="col-md-auto">
+          <a href="deleteList.php?id=<?php echo $rows['sl_id']?>">
+          <img src = "images/delete-icn.png" alt="" width="13" height="13"/></a>
+          </div>
+
+        </div>
+        
+      </div>
+      <?php
+          }} else {
+            echo "0 results";
+          }?>
+     
+      <div id = "newSL"></div>
+     
+      <div class = "row">
+            <br><br><br>
+            <button id="btn" class="buttonz" style = "width: 150px; margin:auto; display:block;" >Add New List</button>
+            
+            <form id="editForm"  action="addList.php" method="post" name="editForm" style = "margin:auto; display:block;">
+            
+              <input type="text" id="input" size="20" name="slname">
+              <input type = "submit" name = "Submit" value = "+" >
+              </input>
+            </form>
+          </div>
+      
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-----------------------------------End of Shopping List modal ----------------------------------------->
         <!--Login Alert Modal-->
-      <div class="modal fade" id="loginAlrertModal" tabindex="-1" aria-labelledby="loginAlrertModalLabel" aria-hidden="true">
+<!--      <div class="modal fade" id="loginAlrertModal" tabindex="-1" aria-labelledby="loginAlrertModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -399,7 +496,7 @@
             </div>
         </div>
         </div>
-      </div>
+      </div>-->
         <!-- Profile Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -446,7 +543,16 @@
         ?>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="js/shoppingList.js"></script>
         <script type="text/javascript" src="../WPv2/js/testJS.js"></script>
+        <script>
+         //modal addSL
+            $(document).ready(function(){
+                $("#editForm").hide();
+                $("#btn").click(function(e) {
+                    $("#editForm").show();
+                    $("#btn").hide();
+                });
+            });
+            </script>
   </body>
 </html>
