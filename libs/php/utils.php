@@ -114,22 +114,7 @@ class Utils{
 		}
 	}
 
-	// send email using built in php mailer
-	public function sendEmailViaPhpMail($send_to_email, $subject, $body){
 
-		$from_name="Mike Dalisay";
-		$from_email="mike@codeofaninja.com";
-
-		$headers  = "MIME-Version: 1.0\r\n";
-		$headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
-		$headers .= "From: {$from_name} <{$from_email}> \n";
-
-		if(mail($send_to_email, $subject, $body, $headers)){
-			return true;
-		}else{
-			return false;
-		}
-	}
 
 	function crypto_rand_secure($min, $max) {
 		$range = $max - $min;

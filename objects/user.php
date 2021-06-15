@@ -29,7 +29,7 @@ class User{
     function emailExists(){
     
         // query to check if email exists
-        $query = "SELECT id, firstname, lastname, access_level, password, status
+        $query = "SELECT id, email, firstname, lastname, access_level, contact_number, address, password, status
                 FROM " . $this->table_name . "
                 WHERE email = ?
                 LIMIT 0,1";
@@ -62,6 +62,18 @@ class User{
             $this->access_level = $row['access_level'];
             $this->password = $row['password'];
             $this->status = $row['status'];
+            $this->email  = $row['email'];
+            //$_SESSION['username'] = $row['username'];
+            $this->contact_number = $row['contact_number'];
+            // $_SESSION['bio'] = $row['bio'];
+
+
+            $this->address = $row['address'];
+            // $_SESSION['City'] = $row['City'];
+            // $_SESSION['State1'] = $row['State1'];
+            // $_SESSION['Zip'] = $row['Zip'];
+            // $_SESSION['password'] = $row['password'];
+            // $_SESSION['images'] = $row['images'];
     
             // return true because email exists in the database
             return true;
@@ -94,7 +106,7 @@ class User{
         // prepare the query
         $stmt = $this->conn->prepare($query);
     
-        // sanitize
+        // // sanitize
         $this->firstname=htmlspecialchars(strip_tags($this->firstname));
         $this->lastname=htmlspecialchars(strip_tags($this->lastname));
         $this->email=htmlspecialchars(strip_tags($this->email));
@@ -112,13 +124,14 @@ class User{
         $stmt->bindParam(':address', $this->address);
     
         // hash the password before saving to database
-        $password_hash = password_hash($this->password, PASSWORD_BCRYPT);
-        $stmt->bindParam(':password', $password_hash);
+        //$password_hash = password_hash($this->password, PASSWORD_BCRYPT);
+        $stmt->bindParam(':password', $this->password);
     
         $stmt->bindParam(':access_level', $this->access_level);
         $stmt->bindParam(':status', $this->status);
         $stmt->bindParam(':created', $this->created);
-    
+
+        //$stmt->bind_param("sss", $firstname, $lastname, $email, $contact_number, $address, $password, $accesslevel, $status, $created);
         // execute the query, also check if query was successful
         if($stmt->execute()){
             return true;
