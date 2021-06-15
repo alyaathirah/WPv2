@@ -1,15 +1,11 @@
-<html>
-<head>
-	<title>Add</title>
-</head>
 
-<body>
 <?php
 include("db/config.php");
 
 //Add List 
 if(isset($_POST['Submit'])) {	
 	$name = mysqli_real_escape_string($mysqli, $_POST['slname']);
+	$id = mysqli_real_escape_string($mysqli, $_POST['id']);
 				
 	if(empty($name)) {
 		echo "<font color='red'>Name field is empty.</font><br/>";
@@ -18,7 +14,8 @@ if(isset($_POST['Submit'])) {
 		$listIn = mysqli_query($mysqli, "INSERT INTO `list`(`sl_name`) VALUES ('$name')");
 		//echo $name;
 		//echo "<font color='green'>Data added successfully.";
-        header("Location:shoppinglist.php");
+        //header("Location:viewlist.php?id=$id");
+		header('Location: ' . $_SERVER['HTTP_REFERER']);
 	}
 }
 
@@ -37,5 +34,3 @@ $try = mysqli_query($mysqli, $que);
 //mysqli_close($mysqli);
 
 ?>
-</body>
-</html>

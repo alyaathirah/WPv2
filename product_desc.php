@@ -218,11 +218,12 @@
                     <div>
                     <div>
 
-                      <form id='myform' method='POST' action='#'>
-                          <input type='button' value='-' class='qtyminus' field='quantity' />
+                    <form id='myform' method='POST' action='addToList.php'>
+                          <input type='submit' value='-' class='qtyminus' field='quantity' />
                           <input type='text' name='quantity' value='0' class='qty' />
-                          <input type='button' value='+' class='qtyplus' field='quantity' />
-                          <input type="submit" class="btn btn-dark" id="btn-add" value="Add to List" />
+                          <input type='submit' value='+' class='qtyplus' field='quantity' />
+                          <input type="button" class="btn btn-dark" id="btn-add" value="Add to List" 
+                          data-toggle="modal" data-target="#exampleModal"/>
                       </form>
 
                     </div>
@@ -331,71 +332,32 @@
       integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
       crossorigin="anonymous"
     ></script>
-       <!----------Shopping List modal -------->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h6 class="modal-title title" id="UserProfileLabel" style="font-size: 25px;">Select List</h6>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                
-            <!-- Content in Modal -->
-            <div class="modal-body">
-                <div class="container-fluid">
-                
-                <div class = "shoppingList" id = "shoppinglist1">
-                <div class="row">
-                    <div class="col">
-                    <a class = "addToList" href="#" class="close" data-dismiss="modal" style="color: black;" onclick="snack()">
-                        <div id = "titleList">Shopping List</div>
-                    </a>
-                    </div>
-                    <div class="col-md-auto">
-                    
-                    </div>
-                </div>
-                </div>
-        
-                <div class = "shoppingList" id = "shoppinglist2">
-                <div class="row">
-                    <div class="col">
-                    <a href="#" style="color: black;"><div id = "titleList">Grocery List</div></a>
-                    </div>
-                    <div class="col-md-auto">
-                    </div>
-        
-                    <div class="col col-lg-2">
-                        <span class="deletebtn" id = "2" onClick = "myFunction2()"></span>
-                    </div>
-        
-                </div>
-                </div>
-        
-                <div id = "newSL"></div>
-            
-                    <div class = "row">
-                    <br><br><br>
-                    <button id="btn" class="submit-btn rounded-pill float-sm-end" style = "width: 150px; margin:auto; display:block;" >Add New List</button>
-                    
-                    <form id="editForm"  action="" method="post" name="editForm" style = "margin:auto; display:block;">
-                    
-                        <input type="text" id="input" size="20" name="fname">
-                        <button type="button" class = "submit-btn rounded-pill float-sm-end" style = "width: 50px;" onClick = 'addSL()'>+</button>
-                        <button id="btnClose" class = "submit-btn rounded-pill float-sm-end" style = "width: 150px;" data-dismiss="modal">Cancel</button>
-                    </form>
-                    </div>
-                
-                </div>
-                </div>
-            
+    <script>
+        $('#btn-add').click(function(){
+            $('.modal-body').load('getModalContent.php?id=<?php echo $_GET['item_id']?>',function(){
+            });
+         })
+
+        </script>
+          <!--------Shopping List modal ------------>
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h6 class="modal-title title" id="UserProfileLabel" style="font-size: 40px;">My List</h6>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-            </div>
+              
+          <!-- Content in Modal -->
+          <div class="modal-body">
+          </div>
+
         </div>
-        <div id="snackbar">Item was added into Shopping List</div>
-        <!------End of Shopping List modal -------->
+      </div>
+      <!--------End of Shopping List modal ---------------->
         <!--Login Alert Modal-->
       <div class="modal fade" id="loginAlrertModal" tabindex="-1" aria-labelledby="loginAlrertModalLabel" aria-hidden="true">
         <div class="modal-dialog">
