@@ -77,7 +77,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en"><!--alya-->
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -393,7 +393,7 @@
       </div>
       </div>
         <!--Login Alert Modal-->
-<!--      <div class="modal fade" id="loginAlrertModal" tabindex="-1" aria-labelledby="loginAlrertModalLabel" aria-hidden="true">
+    <div class="modal fade" id="loginAlrertModal" tabindex="-1" aria-labelledby="loginAlrertModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
