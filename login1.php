@@ -48,8 +48,32 @@
         <br />
         <p>Sign In</p>
 		<!-- SIGN IN -->
-		
-        <form class='form-signin' action='login.php' method='post'>
+    <?php 
+     session_start();
+      if (isset($_SESSION['fail'])) {
+      ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px; margin-bottom: 0px;">
+          <strong><?php echo $_SESSION['fail'];?></strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <?php
+        unset ($_SESSION['fail']);
+      }
+      else if (isset($_SESSION['success'])) {
+      ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px; margin-bottom: 0px;">
+          <strong><?php echo $_SESSION['success'];?></strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <?php
+        unset ($_SESSION['success']);
+      }
+    ?>
+      <form class='form-signin' action='login.php' method='post'>
           <br />
           <label>Email:</label><br />
           <input type="text" name="email" class="form-control" placeholder="Email" required="" autofocus="">
@@ -57,7 +81,7 @@
           <label>Password:</label><br />
           <input type="password" name="password" class="form-control" placeholder="Password" required="">
           <br />
-          <input type="submit" class="btn btn-lg btn-primary btn-block" value="Log In" >
+          <input type="submit"  class="btn btn-lg btn-primary btn-block" value="Log In" >
             
           <!--onclick="window.location.href='homepage.html';               
                      localStorage.setItem('status','logged in');"-->
@@ -82,7 +106,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action = "Login">
+        <form action = "register.php" method="post">
           <div class="form-group">
             <label for="recipient-name" class="col-form-label" style = "color: black">Username</label>
             <input type="text" class="form-control" name="uname" required>
@@ -96,7 +120,7 @@
             <input type="password" class="form-control" name="password" required>
           </div>
 		<button type="button" class="btn btn-secondary" data-dismiss="modal" style = "align: right">Cancel</button>
-        <button type="submit" class="btn btn-primary" style = "align: right">Submit</button>
+        <button type="submit" class="btn btn-primary" name="Submit" style = "align: right">Submit</button>
         </form>
       </div>
       

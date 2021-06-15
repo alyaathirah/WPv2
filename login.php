@@ -43,12 +43,14 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 			}
 		        exit();
             }else{
-				header("Location: login.php?error=Incorect email or password");
+				$_SESSION['fail'] ='Invalid email or password!';
+				header("Location: login.php");
 		        exit();
 			}
 		}else{
-			header("Location: login.php?error=Incorect email or password");
-	        exit();
+			$_SESSION['fail'] ='Invalid email or password!';
+			header("Location: login.php");
+			exit();
 		}
 	}
 	
