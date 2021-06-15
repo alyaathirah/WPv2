@@ -130,6 +130,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
           /></a>
         </div>
         <div class="col-4 d-flex justify-content-end align-items-center">
+        <!-- list button -->
         <a
             class="btn btn-sm btn-outline-secondary"
             data-toggle="modal" 
@@ -139,9 +140,17 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
             class="list"
             src="images/list.png"
             style="width: auto; height: 50px"
+            onclick = "loginFirst()"
           /><br />My List</a
         >
           <script>
+            function loginFirst(){
+              if (localStorage.getItem("status") === "logged in"){
+                if (confirm("Login first to access shopping list!")) {//gi login
+                  location.replace("login1.php")
+                } 
+              }
+            }
             var switchImg = document.querySelector(".list");
             switchImg.addEventListener("mouseover", function(){
               switchImg.setAttribute("src","images/listwhite.png")
