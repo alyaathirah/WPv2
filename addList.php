@@ -14,7 +14,7 @@ if(isset($_POST['Submit'])) {
 		echo "<font color='red'>Name field is empty.</font><br/>";
 	}
 	else { 
-		$listIn = mysqli_query($mysqli, "INSERT INTO `list`(`sl_name`, `user_id`) VALUES ('$name','$id')");
+		$listIn = mysqli_query($mysqli, "INSERT INTO `list`(`sl_name`, `user_id`) VALUES ('$name','$userid')");
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
 	}
 }
