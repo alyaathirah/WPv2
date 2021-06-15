@@ -66,7 +66,7 @@ else{
        
        <form id="editForm"  action="addList.php" method="post" name="editForm" style = "margin:auto; display:block;">
        
-         <input type="text" id="input" size="20" name="slname">
+         <input type="text" id="input" size="20" name="slname" required>
          <input type = "submit" class="btn" style="background-color:  maroon; color: white" name = "Submit" value = "+" >
          </input>
        </form>
