@@ -1,36 +1,28 @@
-
 <?php
+session_start();
 include("db/config.php");
+if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
+	//getting id from url
+	$id = $_SESSION['id'];
+
 
 //Add List 
 if(isset($_POST['Submit'])) {	
 	$name = mysqli_real_escape_string($mysqli, $_POST['slname']);
-	$id = mysqli_real_escape_string($mysqli, $_POST['id']);
 				
 	if(empty($name)) {
 		echo "<font color='red'>Name field is empty.</font><br/>";
 	}
 	else { 
-		$listIn = mysqli_query($mysqli, "INSERT INTO `list`(`sl_name`) VALUES ('$name')");
-		//echo $name;
-		//echo "<font color='green'>Data added successfully.";
-        //header("Location:viewlist.php?id=$id");
+		$listIn = mysqli_query($mysqli, "INSERT INTO `list`(`sl_name`, `user_id`) VALUES ('$name','$id')");
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
 	}
 }
 
- /*$que = "SELECT 
- list.sl_id, itemlist.itemlist_id
- FROM 
- list
- INNER JOIN 
- itemlist
- ON
- itemlist.sl_id = list.sl_id";*/
 
 //View List
-$que = "SELECT * from list";
+$que = "SELECT * FROM `list` WHERE `user_id` = '$id'";
 $try = mysqli_query($mysqli, $que);
 //mysqli_close($mysqli);
-
+}
 ?>
