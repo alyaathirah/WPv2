@@ -440,7 +440,9 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h4 class="modal-title" id="staticBackdropLabel" style="color: #a82c21; font-size:40px;">Profile</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times" style="font-size: 35px;"></i></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
               </div>
                 <?php 
                 
@@ -448,6 +450,23 @@
                 getModal($images,$FName,$LName,$UName,$Email,$Bio,$Gender,$PNumber,$Birthday,$Address,$City,$Zip,$State); 
                 ?>
             </div>
+              
+              <div class="modal-footer">
+                <a href="profile.php">
+                    <button type="button" class="btn" style="background-color:  maroon; color: white;">Setting</button>
+                </a>
+                <a href = "home.php">
+                    <button type="button" class="btn btn-secondary" onClick = "Logout()">Logout</button>
+                    <script>
+                  function Logout(){
+                    localStorage.setItem("status","logged out");
+                  }
+                  </script>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
               <?php 
                 }else{
                     header("Location: loginDummy.php");
