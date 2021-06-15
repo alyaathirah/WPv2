@@ -44,7 +44,10 @@
         <!-- no need to set size here -->
       </div>
       <div class="content">
+        
         <h2>Welcome to Gro-Sir</h2>
+
+        
         <br />
         <p>Sign In</p>
 		<!-- SIGN IN -->
