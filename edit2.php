@@ -63,68 +63,18 @@ else if (isset($_POST['update'])) {
 	$State = mysqli_real_escape_string($mysqli, $_POST['State']);	
 	$Zip = mysqli_real_escape_string($mysqli, $_POST['Zip']);
 	$Gender = mysqli_real_escape_string($mysqli, $_POST['Gender']);
-	// checking empty fields
-	if(empty($FName) || empty($LName) || empty($UName) || empty($Email) || empty($Bio)
-		|| empty($PNumber) || empty($Birthday) || empty($Address) || empty($City) 
-		|| empty($State) || empty($State) || empty($Zip) || empty($Gender)) {	
-			
-		if(empty($FName)) {
-			$_SESSION['status_pr'] = "Empty field ";
-		}
 		
-		if(empty($LName)) {
-			$_SESSION['status_pr'] = "Empty field ";
-		}
+	//Step 3. Execute the SQL query.
+	//updating the table
+	$result = mysqli_query($mysqli, "UPDATE users2 SET FirstName='$FName',LastName='$LName',Username='$UName',Email='$Email', Bio='$Bio', PhoneNumber='$PNumber', Birthday='$Birthday', Address1='$Address', City='$City', State1='$State', Zip='$Zip', Gender='$Gender' WHERE id=$id");
+	$_SESSION['status_pr1'] = "Updated successfully";
+	//redirectig to the display page. In our case, it is index.php
+	header("Location: profile.php");
+	exit();
 		
-		if(empty($Email)) {
-			$_SESSION['status_pr'] = "Empty field ";
-		}	
-		
-		if(empty($Bio)) {
-			$_SESSION['status_pr'] = "Empty field ";
-		}
-
-		if(empty($PNumber)) {
-			$_SESSION['status_pr'] = "Empty field ";
-		}
-		
-		if(empty($Birthday)) {
-			$_SESSION['status_pr'] = "Empty field ";
-		}
-		
-		if(empty($Address)) {
-			$_SESSION['status_pr'] = "Empty field ";
-		}	
-		
-		if(empty($State)) {
-			$_SESSION['status_pr'] = "Empty field ";
-		}
-
-		if(empty($City)) {
-			$_SESSION['status_pr'] = "Empty field ";
-		}	
-		
-		if(empty($Zip)) {
-			$_SESSION['status_pr'] = "Empty field ";
-		}	
-
-		if(empty($Gender)) {
-			$_SESSION['status_pr'] = "Empty field ";
-		}	
-		header("Location:profile.php");	
-	} else {	
-		
-		//Step 3. Execute the SQL query.
-		//updating the table
-		$result = mysqli_query($mysqli, "UPDATE users2 SET FirstName='$FName',LastName='$LName',Username='$UName',Email='$Email', Bio='$Bio', PhoneNumber='$PNumber', Birthday='$Birthday', Address1='$Address', City='$City', State1='$State', Zip='$Zip', Gender='$Gender' WHERE id=$id");
-		$_SESSION['status_pr1'] = "Updated successfully";
-		//redirectig to the display page. In our case, it is index.php
-		header("Location: profile.php");
-		exit();
-		
-		//Step 5: Freeing Resources and Closing Connection using mysqli
-		mysqli_close($mysqli);
-	}
+	//Step 5: Freeing Resources and Closing Connection using mysqli
+	mysqli_close($mysqli);
+	
 }
 else if(isset($_POST['update_p']))
 {	
