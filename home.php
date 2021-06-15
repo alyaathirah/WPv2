@@ -149,6 +149,9 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
                 if (confirm("Login first to access shopping list!")) {//gi login
                   location.replace("login1.php")
                 } 
+                else{
+                  location.replace("home.php")
+                }
               }
             }
             var switchImg = document.querySelector(".list");
