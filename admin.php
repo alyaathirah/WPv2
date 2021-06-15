@@ -132,7 +132,7 @@ $result = mysqli_query($mysqli,"SELECT * FROM item");
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
-                <a href="login.html" type="button" class="btn btn-outline-info">Confirm</a>
+                <a href="login1.php" type="button" class="btn btn-outline-info">Confirm</a>
               </div>
             </div>
           </div>

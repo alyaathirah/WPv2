@@ -1,13 +1,13 @@
 <?php
 // core configuration
-include_once "Login/config/config.php";
+include_once "../config.php";
 
 // set page title
 $page_title = "Login";
 
 // include login checker
 $require_login=false;
-include_once "Login/login_checker.php";
+include_once "login_checker.php";
 
 // default to false
 $access_denied=false;
