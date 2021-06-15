@@ -1,0 +1,153 @@
+.adminBody{
+  background-color: palegoldenrod;
+}
+#textwhite{
+  color: white;
+}
+.admin-btn{
+  position:relative;    
+    background-image: linear-gradient(125deg,#971006, #a72879);
+    color: white;
+    text-transform: capitalize ;
+    letter-spacing: 1px ;
+    font-size: 14px;
+    padding: 8px;
+    border:none;
+    margin-top: 2%;
+    text-align: center;
+}
+.admin-btn:hover{
+    color: #fff;
+    text-decoration: underline;
+}
+
+.adminbreadcrumb{
+  color: maroon;
+}
+.adminbreadcrumb:hover{
+  color:darkkhaki;
+  text-decoration: underline;
+}
+.dis{
+  background-image: linear-gradient(125deg,#660a03, #641647);
+    color: white;
+    text-transform: capitalize ;
+    letter-spacing: 1px ;
+    font-size: 14px;
+    padding: 8px;
+    border:none;
+    margin-top: 2%;
+    text-align: center;
+    cursor: default;
+}
+.dis:hover {
+  color: #fff;
+  text-decoration: none;
+  cursor: default;
+}
+.productdesc{
+    background-color:rgb(255, 255, 255);
+    border-bottom: 2px solid black; 
+    box-shadow: 0.5px 0.5px 5px 1px rgb(230, 228, 228);
+}
+
+#padmin{
+    margin-bottom: 0px;
+    font-size:large; 
+    padding-bottom: 7px;
+    color: rgb(0, 0, 0);
+}
+#padmin:hover {
+    color: rgb(0, 0, 0);
+    text-decoration: underline;
+}
+
+
+.collapsible {
+    background-color:palegoldenrod;
+    color:#660a03;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+  }
+  
+  .descactive, .collapsible:hover {
+    background-color: #660a03;
+    color: #f1f1f1;
+  }
+  
+  .content {
+    padding-top: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    display: none;
+    overflow: hidden;
+    background-color: #660a03;
+  }
+
+  .collapsible:after {
+    content: '\02795'; /* Unicode character for "plus" sign (+) */
+    font-size: 13px;
+    color: white;
+    float: right;
+    margin-left: 5px;
+  }
+  
+  .descactive:after {
+    content: "\2796"; /* Unicode character for "minus" sign (-) */
+  }
+
+  .navbar {
+    transition: all 0.4s;
+}
+
+.navbar .nav-link {
+    color: palegoldenrod;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    color: palegoldenrod;
+    text-decoration: none;
+}
+
+.navbar .navbar-brand {
+    color: palegoldenrod;
+}
+
+
+/* Change navbar styling on scroll */
+.navbar.active {
+    color: palegoldenrod;
+    box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar.active .nav-link {
+  color: var(--secondary);
+}
+
+.navbar.active .nav-link:hover,
+.navbar.active .nav-link:focus {
+    color: var(--secondary);
+    text-decoration: none;
+}
+
+.navbar.active .navbar-brand {
+  background-color: var(--secondary);
+}
+
+/* Change navbar styling on small viewports */
+@media (max-width:px) {
+    .navbar {
+      background-color: var(--secondary);
+    }
+
+    .navbar .navbar-brand, .navbar .nav-link {
+      background-color: var(--secondary);
+    }
+}
+  
