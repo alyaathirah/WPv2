@@ -10,7 +10,7 @@
 //Step 2. Handle connection errors
 //including the database connection file
 include_once("db/config.php");
-
+session_start();
 if(isset($_POST['Submit']))
 {	
 	//The mysqli_real_escape_string() function escapes special characters in a string for use in an SQL statement.

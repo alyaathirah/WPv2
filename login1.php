@@ -48,8 +48,32 @@
         <br />
         <p>Sign In</p>
 		<!-- SIGN IN -->
-		
-        <form class='form-signin' action='login.php' method='post'>
+    <?php 
+     session_start();
+      if (isset($_SESSION['fail'])) {
+      ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px; margin-bottom: 0px;">
+          <strong><?php echo $_SESSION['fail'];?></strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <?php
+        unset ($_SESSION['fail']);
+      }
+      else if (isset($_SESSION['success'])) {
+      ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px; margin-bottom: 0px;">
+          <strong><?php echo $_SESSION['success'];?></strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <?php
+        unset ($_SESSION['success']);
+      }
+    ?>
+      <form class='form-signin' action='login.php' method='post'>
           <br />
           <label>Email:</label><br />
           <input type="text" name="email" class="form-control" placeholder="Email" required="" autofocus="">
@@ -101,7 +125,7 @@
             <input type="password" class="form-control" name="password" required>
           </div>
 		<button type="button" class="btn btn-secondary" data-dismiss="modal" style = "align: right">Cancel</button>
-        <button type="submit" class="btn btn-primary" name = "Submit" style = "align: right">Submit</button>
+        <button type="submit" class="btn btn-primary" name = "Submit" style = "align: right" onClick = "Login()">Submit</button>
         </form>
       </div>
       

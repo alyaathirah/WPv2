@@ -68,7 +68,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
         $PNumber="Set Now";
       }
       if(empty($Birthday)) {
-        $PNumber="Set Now";
+        $Birthday="Set Now";
       }
     }
   }
@@ -100,6 +100,9 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
       <div class="row flex-nowrap justify-content-between align-items-center">
         <!--User's Account modal button-->
         <div class="col-4 pt-1">
+        <?php 
+          echo $id;
+        ?>
         <img src="<?php echo $images;?>" alt="profile photo" id="profilePhoto" style="height: 50px;; width: 50px;; border-radius: 50%;">
         <script>
           var status = localStorage.getItem("status");
@@ -393,6 +396,9 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
                     <script>
                   function Logout(){
                     localStorage.setItem("status","logged out");
+                    <?php 
+                    session_destroy();
+                    ?>
                   }
                   </script>
                 </a>
