@@ -390,6 +390,7 @@
 
         </div>
       </div>
+      </div>
         <!--Login Alert Modal-->
 <!--      <div class="modal fade" id="loginAlrertModal" tabindex="-1" aria-labelledby="loginAlrertModalLabel" aria-hidden="true">
         <div class="modal-dialog">

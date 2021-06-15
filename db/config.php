@@ -35,7 +35,7 @@ if ($mysqli->connect_error) {
 }
 */
 
-echo "Database connected successfully <br>";
+//echo "Database connected successfully <br>";
 
 
 ?>
