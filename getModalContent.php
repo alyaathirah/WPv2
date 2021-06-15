@@ -2,7 +2,8 @@
 include_once("db/config.php");
 
 
-if(!empty($_GET['id'])){ 
+if(!empty($_GET['id'])){
+    //for add to list button 
     $id = $_GET['id'];
     require('addList.php');
         if ($try->num_rows > 0) {
@@ -31,6 +32,7 @@ if(!empty($_GET['id'])){
 
 <?php }}}
 else{
+    //for my list button
     require('addList.php');
     if ($try->num_rows > 0) {
         while($rows = $try->fetch_assoc()) {

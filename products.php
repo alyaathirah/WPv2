@@ -367,7 +367,7 @@
          })
 
          $('.list').click(function(){
-            $('.modal-body').load('getModalContent.php',function(){
+            $('#modal-body-list').load('getModalContent.php',function(){
             });
          })
 
@@ -385,10 +385,11 @@
             </div>
               
           <!-- Content in Modal -->
-          <div class="modal-body">
+          <div class="modal-body" id = "modal-body-list">
           </div>
 
         </div>
+      </div>
       </div>
       </div>
         <!--Login Alert Modal-->
