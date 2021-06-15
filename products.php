@@ -419,19 +419,19 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- <script>
+     <script>
         $('.btn-add').click(function(){
             console.log($(this).data('id'));
-            $('.modal-body').load('getModalContent.php?id='+$(this).data('id'),function(){
+            $('#modal-body-list').load('getModalContent.php?id='+$(this).data('id'),function(){
             });
          })
 
          $('.list').click(function(){
             $('#modal-body-list').load('getModalContent.php',function(){
             });
-         }) -->
+         }) 
 
-        
+        </script>
           <!--------Shopping List modal ------------>
           <!-- Modal -->
           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -446,11 +446,6 @@
               
           <!-- Content in Modal -->
           <div class="modal-body" id = "modal-body-list">
-            <script>
-              console.log($(this).data('id'));
-            $('.modal-body').load('getModalContent.php?id='+$(this).data('id'),function(){
-            });
-              </script>
           </div>
 
         </div>

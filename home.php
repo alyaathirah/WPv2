@@ -404,10 +404,10 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
       </div>
       <!-- Copyright -->
     </footer>
-<!-- <script>
+ <script>
     $('.btn-add').click(function(){
      console.log($(this).data('id'));
-     $('.modal-body').load('getModalContent.php?id='+$(this).data('id'),function(){
+     $('#modal-body-list').load('getModalContent.php?id='+$(this).data('id'),function(){
      });
     })
 
@@ -416,7 +416,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
     });
     })
 
-    </script> -->
+    </script> 
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -427,11 +427,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
               </button>
             </div>
           <div class="modal-body" id = "modal-body-list">
-          <script>
-              console.log($(this).data('id'));
-            $('#modal-body-list').load('getModalContent.php?id='+$(this).data('id'),function(){
-            });
-              </script>
           </div>
 
         </div>
