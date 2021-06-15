@@ -103,16 +103,33 @@
   </head>
   <body class="container">
     <!--Start of header-->
-    <header class="blog-header py-3">
-      <div class="row flex-itemrap justify-content-between align-items-center">
+    <header class="container blog-header py-3">
+      <div class="row flex-nowrap justify-content-between align-items-center">
         <!--User's Account modal button-->
         <div class="col-4 pt-1">
-          <a class="account" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-            ><img src=<?php echo $images;?> alt="profile photo" id="profile photo" style="height: 50px;; width: 50px;; border-radius: 50%;">
-               <br />
-            My Account</a>
-
+        <?php 
+          echo $id;
+        ?>
+        <img src="<?php echo $images;?>" alt="profile photo" id="profilePhoto" style="height: 50px;; width: 50px;; border-radius: 50%;">
+        <script>
+          var status = localStorage.getItem("status");
+             if(status != "logged in"){
+          document.getElementById("profilePhoto").src = "images/default.png";
+             }
+        </script>  
+        <br>
+          <a class="account" href="#" data-toggle="modal" data-target="#staticBackdrop" 
+            >My Account</a>
           <br />
+          <script>
+            var status = localStorage.getItem("status");
+             if(status != "logged in"){
+             account = document.querySelector(".account");
+             account.setAttribute("data-toggle","''");
+             account.setAttribute("data-target","''")
+             account.setAttribute("href","login1.php");
+            }
+          </script>
         </div>
         <div class="col-4 text-center">
           <a class="blog-header-logo text-dark" href="home.php"
@@ -120,32 +137,70 @@
           /></a>
         </div>
         <div class="col-4 d-flex justify-content-end align-items-center">
+        <!-- list button -->
         <a
             class="btn btn-sm btn-outline-secondary"
             data-toggle="modal" 
             data-target="#exampleModal"
             style="margin-right: 10px;"
+            id = "viewList"
             ><img
             class="list"
             src="images/list.png"
             style="width: auto; height: 50px"
-            
           /><br />My List</a
         >
-        <script>
-          var switchImg = document.querySelector(".list");
-          switchImg.addEventListener("mouseover", function(){
-            switchImg.setAttribute("src","images/listwhite.png")
-          })
-          switchImg.addEventListener("mouseout",function(){
-            switchImg.setAttribute("src","images/list.png")
-          })
-        </script>
-          <a></a>
+          <script>
+            if(localStorage.getItem("status")!="logged in"){
+            $('#viewList').attr('data-target','#loginAlertModal');
+          }
+            var switchImg = document.querySelector(".list");
+            switchImg.addEventListener("mouseover", function(){
+              switchImg.setAttribute("src","images/listwhite.png")
+            })
+            switchImg.addEventListener("mouseout",function(){
+              switchImg.setAttribute("src","images/list.png")
+            })
+          </script>
+        </div>
+      </div>
+      <div class="modal fade" id="loginAlertModal" tabindex="-1" aria-labelledby="loginAlrertModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Deletion" style="color: #a82c21;"><strong>Login Alert</strong> </h5>
+            </div>
+            <div class="modal-body" style="color: black;">
+            Please login first before adding item(s) to your list
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <a href="login1.php">
+                    <button type="button" class="btn" style="background-color:  maroon; color: white;">Login</button>
+                </a>    
+            </div>
+        </div>
+        </div>
+      </div>
+      <div class="modal fade" id="loginAlertModal" tabindex="-1" aria-labelledby="loginAlrertModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Deletion" style="color: #a82c21;"><strong>Login Alert</strong> </h5>
+            </div>
+            <div class="modal-body" style="color: black;">
+            Please login first before adding item(s) to your list
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <a href="login1.php">
+                    <button type="button" class="btn" style="background-color:  maroon; color: white;">Login</button>
+                </a>    
+            </div>
+        </div>
         </div>
       </div>
     </header>
-    <!--End of header-->
     <!--Start of Navigation Bar-->
     <nav class="navbar sticky-top navbar-expand-lg navbar-light">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -226,6 +281,14 @@
                           <input type='submit' value='+' class='qtyplus' field='quantity' />
                           <input type="button" class="btn btn-dark" id="btn-add" value="Add to List" 
                           data-toggle="modal" data-target="#exampleModal"/>
+                          <script>
+                                if(localStorage.getItem("status")!="logged in"){
+                                  //$('#viewList').attr('data-target','#loginAlertModal');
+                                  $('#btn-add').attr('data-target','');
+                                  $('#btn-add').attr('data-target','#loginAlertModal');
+                                }
+            
+                              </script>
                       </form>
 
                     </div>
@@ -334,7 +397,7 @@
       integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
       crossorigin="anonymous"
     ></script>
-    <script>
+    <!-- <script>
         $('#btn-add').click(function(){
             var qty = document.getElementById('qty').value;
             $('.modal-body').load('getModalContent.php?id=<?php echo $_GET['item_id']?>&qty='+qty,function(){
@@ -346,7 +409,7 @@
       });
       })
 
-        </script>
+        </script> -->
           <!--------Shopping List modal ------------>
           <!-- Modal -->
           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -358,12 +421,16 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-              
-          <!-- Content in Modal -->
-          <div class="modal-body">
+          <div class="modal-body" id = "modal-body-list">
+          <script>
+              console.log($(this).data('id'));
+            $('#modal-body-list').load('getModalContent.php?id='+$(this).data('id'),function(){
+            });
+              </script>
           </div>
 
         </div>
+      </div>
       </div>
       <!--------End of Shopping List modal ---------------->
         <!--Login Alert Modal-->
