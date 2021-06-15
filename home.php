@@ -125,7 +125,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
           </script>
         </div>
         <div class="col-4 text-center">
-          <a class="blog-header-logo text-dark" href="homepage.html"
+          <a class="blog-header-logo text-dark" href="home.php"
             ><img src="images/logo.png" style="width: 200px; height: auto"
           /></a>
         </div>
