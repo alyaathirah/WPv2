@@ -379,19 +379,19 @@
       integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
       crossorigin="anonymous"
     ></script>
-    <!-- <script>
+     <script>
         $('#btn-add').click(function(){
             var qty = document.getElementById('qty').value;
-            $('.modal-body').load('getModalContent.php?id=<?php echo $_GET['item_id']?>&qty='+qty,function(){
+            $('#modal-body-list').load('getModalContent.php?id=<?php echo $_GET['item_id']?>&qty='+qty,function(){
             });
          })
 
       $('.list').click(function(){
-      $('.modal-body').load('getModalContent.php',function(){
+      $('#modal-body-list').load('getModalContent.php',function(){
       });
       })
 
-        </script> -->
+        </script> 
           <!--------Shopping List modal ------------>
           <!-- Modal -->
           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -404,11 +404,6 @@
               </button>
             </div>
           <div class="modal-body" id = "modal-body-list">
-          <script>
-              console.log($(this).data('id'));
-            $('#modal-body-list').load('getModalContent.php?id='+$(this).data('id'),function(){
-            });
-              </script>
           </div>
 
         </div>
