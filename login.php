@@ -1,27 +1,28 @@
 <?php 
 session_start(); 
-include "db/config.php";
+include "config.php";
 
-if (isset($_POST['email']) && isset($_POST['password'])) {
+if (isset($_POST['uname']) && isset($_POST['password'])) {
 
-	$email = $_POST['email'];
+	$uname = $_POST['uname'];
 	$pass = $_POST['password'];
 
-	if (empty($email)) {
-		header("Location: login1.php?error=Email is required");
+	if (empty($uname)) {
+		header("Location: login1.php?error=User Name is required");
 	    exit();
 	}else if(empty($pass)){
         header("Location: login1.php?error=Password is required");
 	    exit();
 	}else{
 		        
-		$sql = "SELECT * FROM users2 WHERE Email='$email' AND Password1='$pass'";
+		$sql = "SELECT * FROM users2 WHERE Username='$uname' AND Password1='$pass'";
 
 		$result = mysqli_query($mysqli, $sql);
 
 		if (mysqli_num_rows($result) === 1) {
 			$row = mysqli_fetch_assoc($result);
-            if ($row['Email'] === $email && $row['Password1'] === $pass) {
+            if ($row['Username'] === $uname && $row['Password1'] === $pass) {
+				if(empty($row['status'])){
             	$_SESSION['id'] = $row['id'];
                 $_SESSION['FirstName'] = $row['FirstName'];
                 $_SESSION['LastName'] = $row['LastName'];
@@ -37,13 +38,17 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             	$_SESSION['Password1'] = $row['Password1'];
 				$_SESSION['images'] = $row['images'];
             	header("Location: home.php");
+				}
+				else{
+					header("Location: admin.php");
+				}
 		        exit();
             }else{
-				header("Location: login.php?error=Incorect email or password");
+				header("Location: login1.php?error=Incorect User name or password");
 		        exit();
 			}
 		}else{
-			header("Location: login.php?error=Incorect email or password");
+			header("Location: login1.php?error=Incorect User name or password");
 	        exit();
 		}
 	}
