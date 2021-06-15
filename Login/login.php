@@ -1,13 +1,13 @@
 <?php
 // core configuration
-include_once "config/core.php";
+include_once "Login/config/config.php";
 
 // set page title
 $page_title = "Login";
 
 // include login checker
 $require_login=false;
-include_once "login_checker.php";
+include_once "Login/login_checker.php";
 
 // default to false
 $access_denied=false;
@@ -16,8 +16,8 @@ $access_denied=false;
 if($_POST){
 
 	// include classes
-	include_once "config/database.php";
-	include_once "objects/user.php";
+	include_once "Login/config/database.php";
+	include_once "Login/objects/user.php";
 
 	// get database connection
 	$database = new Database();
@@ -357,9 +357,9 @@ if($_POST){
 
 
 
-// include page footer HTML
-include_once "layout_foot.php";
-?>
+<!-- // include page footer HTML -->
+<!-- include_once "Login/layout_foot.php"; -->
+
 
 </html>
 
