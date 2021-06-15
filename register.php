@@ -18,8 +18,18 @@ if(isset($_POST['Submit']))
 	$uname = mysqli_real_escape_string($mysqli, $_POST['uname']);
 	$Email = mysqli_real_escape_string($mysqli, $_POST['email']);	
 	$Password = mysqli_real_escape_string($mysqli, $_POST['password']);
+	//check if email exists in database
+	$select = mysqli_query($mysqli, "SELECT `Email` FROM `users2` WHERE `Email` = '".$_POST['email']."'"); 
+	if(mysqli_num_rows($select)){
+
+    	//exit('Email already exists');
+		//header("Location: login1.php");
+		echo "<script>window.location.href = 'login1.php'; alert('Email already exists!');</script>";
+		
+		
+	}
 	// checking empty fields
-	if(empty($uname) || empty($Email) || empty($Password) ) {	
+	else if(empty($uname) || empty($Email) || empty($Password) ) {	
 			
 		if(empty($uname)) {
 			echo "<font color='grey'>Empty.</font><br/>";
@@ -37,13 +47,7 @@ if(isset($_POST['Submit']))
 	
 		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
 	}
-	// $select = mysqli_query($connectionID, "SELECT `Email` FROM `users2` WHERE `Email` = '".$_POST['email']."'"); 
-	// if(mysqli_num_rows($select)){
-
-    // 	//exit('Email already exists');
-	// 	echo "<script>alert('Email already exists!');</script>";
-		
-	// }
+	
 	
 	else { 
 		// if all the fields are filled (not empty) 

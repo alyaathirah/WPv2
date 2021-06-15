@@ -117,7 +117,10 @@
             ><img src="images/logo.png" style="width: 200px; height: auto"
           /></a>
         </div>
+        <!-- MY LIST BUTTON -->
         <div class="col-4 d-flex justify-content-end align-items-center">
+        <!-- if logged in show list |logged out go login page -->
+          {% if localStorage.setItem("status") == "logged out"}
           <a
             class="btn btn-sm btn-outline-secondary"
             data-toggle="modal" 
@@ -127,8 +130,13 @@
             class="list"
             src="images/list.png"
             style="width: auto; height: 50px"
-          /><br />My List</a
-        >
+          /><br />My List</a>
+          {% else}
+          <a 
+            data-toggle="modal" 
+            data-target="loginAlrertModal"></a>
+          {% endif %}
+
         <script>
           var switchImg = document.querySelector(".list");
           switchImg.addEventListener("mouseover", function(){
