@@ -100,23 +100,41 @@
   </head>
   <body class="container">
     <!--Start of header-->
-    <header class="blog-header py-3">
-      <div class="row flex-itemrap justify-content-between align-items-center">
+    <header class="container blog-header py-3">
+      <div class="row flex-nowrap justify-content-between align-items-center">
         <!--User's Account modal button-->
         <div class="col-4 pt-1">
-          <a class="account" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-            ><img src="<?php echo $images;?>" alt="profile photo" id="profile photo" style="height: 50px;; width: 50px;; border-radius: 50%;">
-               <br />
-            My Account</a>
-
+        <?php 
+          echo $id;
+        ?>
+        <img src="<?php echo $images;?>" alt="profile photo" id="profilePhoto" style="height: 50px;; width: 50px;; border-radius: 50%;">
+        <script>
+          var status = localStorage.getItem("status");
+             if(status != "logged in"){
+          document.getElementById("profilePhoto").src = "images/default.png";
+             }
+        </script>  
+        <br>
+          <a class="account" href="#" data-toggle="modal" data-target="#staticBackdrop" 
+            >My Account</a>
           <br />
+          <script>
+            var status = localStorage.getItem("status");
+             if(status != "logged in"){
+             account = document.querySelector(".account");
+             account.setAttribute("data-toggle","''");
+             account.setAttribute("data-target","''")
+             account.setAttribute("href","login1.php");
+            }
+          </script>
         </div>
         <div class="col-4 text-center">
-          <a class="blog-header-logo text-dark" href="homepage.html"
+          <a class="blog-header-logo text-dark" href="home.php"
             ><img src="images/logo.png" style="width: 200px; height: auto"
           /></a>
         </div>
         <div class="col-4 d-flex justify-content-end align-items-center">
+        <!-- list button -->
         <a
             class="btn btn-sm btn-outline-secondary"
             data-toggle="modal" 
@@ -126,18 +144,28 @@
             class="list"
             src="images/list.png"
             style="width: auto; height: 50px"
+            
           /><br />My List</a
         >
-        <script>
-          var switchImg = document.querySelector(".list");
-          switchImg.addEventListener("mouseover", function(){
-            switchImg.setAttribute("src","images/listwhite.png")
-          })
-          switchImg.addEventListener("mouseout",function(){
-            switchImg.setAttribute("src","images/list.png")
-          })
-        </script>
-          <a></a>
+          <script>
+            // function loginFirst(){
+            //   if (localStorage.getItem("status") != "logged in"){
+            //     if (confirm("Login first to access shopping list!")) {//gi login
+            //       location.replace("login1.php")
+            //     } 
+            //     else{
+            //       location.replace("home.php")
+            //     }
+            //   }
+            // }
+            var switchImg = document.querySelector(".list");
+            switchImg.addEventListener("mouseover", function(){
+              switchImg.setAttribute("src","images/listwhite.png")
+            })
+            switchImg.addEventListener("mouseout",function(){
+              switchImg.setAttribute("src","images/list.png")
+            })
+          </script>
         </div>
       </div>
     </header>
@@ -388,7 +416,9 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h4 class="modal-title" id="staticBackdropLabel" style="color: #a82c21; font-size:40px;">Profile</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times" style="font-size: 35px;"></i></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
               </div>
                 <?php 
                 
@@ -401,8 +431,13 @@
                 <a href="profile.php">
                     <button type="button" class="btn" style="background-color:  maroon; color: white;">Setting</button>
                 </a>
-                <a href="logout.php">
-                    <button type="button" class="btn btn-secondary">Logout</button>
+                <a href = "home.php">
+                    <button type="button" class="btn btn-secondary" onClick = "Logout()">Logout</button>
+                    <script>
+                  function Logout(){
+                    localStorage.setItem("status","logged out");
+                  }
+                  </script>
                 </a>
               </div>
             </div>
