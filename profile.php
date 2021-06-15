@@ -283,16 +283,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
         <div class="collapse show" id="collapseExample1">
           <div class="card card-body">
             <?php 
-              if (isset($_SESSION['status_pr'])) {
-              ?>
-                <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin: 25px 50px">
-                <strong>Hey!</strong><?php echo $_SESSION['status_pr'];?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                <?php
-                unset ($_SESSION['status_pr']);
-              }
-              else if (isset($_SESSION['status_pr1'])) {
+              if (isset($_SESSION['status_pr1'])) {
                 ?>
                   <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin: 25px 50px">
                   <strong>Hey!</strong><?php echo $_SESSION['status_pr1'];?>
@@ -314,11 +305,11 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
                 </div>
                 <div class="col-md-6">
                   <label for="Username" class="form-label">Username</label>
-                  <input type="text" class="form-control" name="UName" value="<?php echo $UName;?>">
+                  <input type="text" class="form-control" name="UName" value="<?php echo $UName;?>" required>
                 </div>
                 <div class="col-md-6">
                   <label for="Email" class="form-label">Email</label>
-                  <input type="email" class="form-control" name="Email" value="<?php echo $Email;?>">
+                  <input type="email" class="form-control" name="Email" value="<?php echo $Email;?>" required>
                 </div>
                 <div class="col-12">
                   <label for="Bio" class="form-label">Bio</label>
