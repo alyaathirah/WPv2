@@ -49,7 +49,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 	}
 	
 }else{
-	header("Location: login.php");
+	header("Location: login1.php");
 	exit();
 }
 ?>
