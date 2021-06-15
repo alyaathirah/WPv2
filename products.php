@@ -87,6 +87,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <title id="page">Products</title>
+    <script type="text/javascript" src="js/login.js"></script>
     <link rel="icon" href="images/icon.png" type="image/x-icon" />
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="user.css">
@@ -120,8 +121,8 @@
         <!-- MY LIST BUTTON -->
         <div class="col-4 d-flex justify-content-end align-items-center">
         <!-- if logged in show list |logged out go login page -->
-          {% if localStorage.setItem("status") == "logged out"}
-          <a
+ 
+        <a
             class="btn btn-sm btn-outline-secondary"
             data-toggle="modal" 
             data-target="#exampleModal"
@@ -130,12 +131,18 @@
             class="list"
             src="images/list.png"
             style="width: auto; height: 50px"
+            onclick="checkStatus()"
           /><br />My List</a>
-          {% else}
-          <a 
-            data-toggle="modal" 
-            data-target="loginAlrertModal"></a>
-          {% endif %}
+
+        <!-- <script>
+          function checkStatus(){
+            var node = document.getElementById('addlist');
+            //if(localStorage.getItem("status") == "logged in"){
+              node.innerHTML('<a class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#loginAlrertModal" style="margin-right: 10px;"> </a>');
+            //}
+            
+          }
+        </script> -->
 
         <script>
           var switchImg = document.querySelector(".list");
@@ -412,7 +419,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <a href="login.html">
+                <a href="login1.php">
                     <button type="button" class="btn" style="background-color:  maroon; color: white;">Login</button>
                 </a>    
             </div>
