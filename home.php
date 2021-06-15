@@ -130,16 +130,17 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
           /></a>
         </div>
         <div class="col-4 d-flex justify-content-end align-items-center">
-          <a
+        <a
             class="btn btn-sm btn-outline-secondary"
-            href="shoppingList.html"
+            data-toggle="modal" 
+            data-target="#exampleModal"
             style="margin-right: 10px;"
             ><img
-              class="list"
-              src="images/list.png"
-              style="width: auto; height: 50px"
-            /><br />My List</a
-          >
+            class="list"
+            src="images/list.png"
+            style="width: auto; height: 50px"
+          /><br />My List</a
+        >
           <script>
             var switchImg = document.querySelector(".list");
             switchImg.addEventListener("mouseover", function(){
@@ -264,7 +265,9 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
 
                             <div class = "product-btns">
                                 
-                                    <button type = "button" class = "btn-add"> add to list
+                                    <button type = "button" class = "btn-add"
+                                    data-toggle="modal" data-target="#exampleModal" data-id="<?php echo $res['item_id']?>"> 
+                                    add to list
                                     </button>
                                 <a href="#">
                                     <button  type = "button" id="<?= $res['item_id']; ?>" class = "btn-view"> view item
@@ -370,6 +373,41 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
       </div>
       <!-- Copyright -->
     </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                  <script>
+                      $('.btn-add').click(function(){
+                          console.log($(this).data('id'));
+                          $('.modal-body').load('getModalContent.php?id='+$(this).data('id'),function(){
+                          });
+                      })
+
+                      $('.list').click(function(){
+                          $('#modal-body-list').load('getModalContent.php',function(){
+                          });
+                      })
+
+                 </script>
+                <!--------Shopping List modal ------------>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h6 class="modal-title title" id="UserProfileLabel" style="font-size: 40px;">My List</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                    
+                <!-- Content in Modal -->
+                <div class="modal-body" id = "modal-body-list">
+                </div>
+
+              </div>
+            </div>
+            </div>
+            </div>
+            <!--------End Shopping List modal ------------>
         <!-- Profile Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
