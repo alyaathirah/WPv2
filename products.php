@@ -135,32 +135,27 @@
             ><img src="images/logo.png" style="width: 200px; height: auto"
           /></a>
         </div>
-        <div class="col-4 d-flex justify-content-end align-items-center">
-<<<<<<< HEAD
+        <div class="col-4 d-flex justify-content-end align-items-center" id = "addlist">
         <!-- list button -->
-=======
-        <!-- if logged in show list |logged out go login page -->
- 
->>>>>>> 2b3f4e3be4e446fd49a90a7e0c30bb23b9ee7d11
         <a
             class="btn btn-sm btn-outline-secondary"
             data-toggle="modal" 
             data-target="#exampleModal"
             style="margin-right: 10px;"
+            id
             ><img
             class="list"
             src="images/list.png"
             style="width: auto; height: 50px"
-<<<<<<< HEAD
-            onClick = "loginFirst"
+            onclick="checkStatus()"
           /><br />My List</a
         >
           <script>
             
-            if (localStorage.getItem("status") != "logged in"){
-                var list = document.querySelector(".list");
-                list.setAttribute("data-target","#loginAlertModal")
-                } 
+            // if (localStorage.getItem("status") != "logged in"){
+            //     var list = document.querySelector(".list");
+            //     list.setAttribute("data-target","#loginAlertModal")
+            //     } 
             
             var switchImg = document.querySelector(".list");
             switchImg.addEventListener("mouseover", function(){
@@ -170,19 +165,21 @@
               switchImg.setAttribute("src","images/list.png")
             })
           </script>
-=======
-            onclick="checkStatus()"
+            
           /><br />My List</a>
 
-        <!-- <script>
-          function checkStatus(){
-            var node = document.getElementById('addlist');
-            //if(localStorage.getItem("status") == "logged in"){
-              node.innerHTML('<a class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#loginAlrertModal" style="margin-right: 10px;"> </a>');
-            //}
-            
+        <script>
+          if(localStorage.getItem("status")!="logged in"){
+
           }
-        </script> -->
+            // var node = document.getElementById('addlist');
+            // if(localStorage.getItem("status") != "logged in"){
+            //   document.getElementById("loginAlertModal").showModal();
+            // }
+            // else{
+            //   document.getElementById("exampleModal").showModal();
+            // }
+        </script>
 
         <script>
           var switchImg = document.querySelector(".list");
@@ -194,7 +191,6 @@
           })
         </script>
           <a></a>
->>>>>>> 2b3f4e3be4e446fd49a90a7e0c30bb23b9ee7d11
         </div>
       </div>
     </header>
