@@ -20,7 +20,7 @@ $result = mysqli_query($mysqli, "DELETE FROM item WHERE item_id=$id");
 //4. Process the results.
 //redirecting to the display page (index.php in our case)
 $_SESSION['updated'] = $name.' is sucessfully deleted!';
-header("location:editProduct.php?category='$cat'");
+header("location:editProduct.php?category=$cat");
 
 //Step 5: Freeing Resources and Closing Connection using mysqli
 mysqli_close($mysqli);
