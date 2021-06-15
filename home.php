@@ -373,20 +373,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
       </div>
       <!-- Copyright -->
     </footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-                  <script>
-                      $('.btn-add').click(function(){
-                          console.log($(this).data('id'));
-                          $('.modal-body').load('getModalContent.php?id='+$(this).data('id'),function(){
-                          });
-                      })
 
-                      $('.list').click(function(){
-                          $('#modal-body-list').load('getModalContent.php',function(){
-                          });
-                      })
-
-                 </script>
                 <!--------Shopping List modal ------------>
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -462,7 +449,20 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
       integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
       crossorigin="anonymous"
     ></script>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+    $('.btn-add').click(function(){
+     console.log($(this).data('id'));
+     $('.modal-body').load('getModalContent.php?id='+$(this).data('id'),function(){
+     });
+    })
+
+    $('.list').click(function(){
+    $('#modal-body-list').load('getModalContent.php',function(){
+    });
+    })
+
+    </script>
     <script type="text/javascript" src="../WPv2/js/testJS.js"></script>
   </body>
 </html>
