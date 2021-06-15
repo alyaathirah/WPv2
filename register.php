@@ -18,16 +18,17 @@ if(isset($_POST['Submit']))
 	$uname = mysqli_real_escape_string($mysqli, $_POST['uname']);
 	$Email = mysqli_real_escape_string($mysqli, $_POST['email']);	
 	$Password = mysqli_real_escape_string($mysqli, $_POST['password']);
-	// checking empty fields
+	//check if email exists in database
 	$select = mysqli_query($mysqli, "SELECT `Email` FROM `users2` WHERE `Email` = '".$_POST['email']."'"); 
 	if(mysqli_num_rows($select)){
 
     	//exit('Email already exists');
 		//header("Location: login1.php");
 		echo "<script>window.location.href = 'login1.php'; alert('Email already exists!');</script>";
-		//
+		
 		
 	}
+	// checking empty fields
 	else if(empty($uname) || empty($Email) || empty($Password) ) {	
 			
 		if(empty($uname)) {
