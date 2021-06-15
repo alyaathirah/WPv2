@@ -36,23 +36,18 @@ if($_POST){
 	if ($email_exists && password_verify($_POST['password'], $user->password) && $user->status==1){
 
 		// if it is, set the session value to true
+    //fetch user data
 		$_SESSION['logged_in'] = true;
 		$_SESSION['user_id'] = $user->id;
 		$_SESSION['access_level'] = $user->access_level;
 		$_SESSION['firstname'] = htmlspecialchars($user->firstname, ENT_QUOTES, 'UTF-8') ;
 		$_SESSION['lastname'] = $user->lastname;
 
-    $_SESSION['username'] = $row['username'];
     $_SESSION['email'] = $user->email;
-    $_SESSION['bio'] = $row['bio'];
     $_SESSION['contact_number'] = $user->contact_number;
-    $_SESSION['Birthday'] = $row['Birthday'];
     $_SESSION['address'] = $user->address;
-    $_SESSION['City'] = $row['City'];
-    $_SESSION['State1'] = $row['State1'];
-    $_SESSION['Zip'] = $row['Zip'];
     $_SESSION['password'] = $user->password;
-    $_SESSION['images'] = $row['images'];
+
 
 		// if access level is 'Admin', redirect to admin section
 		if($user->access_level=='Admin'){
