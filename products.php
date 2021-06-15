@@ -87,6 +87,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <title id="page">Products</title>
+    <script type="text/javascript" src="js/login.js"></script>
     <link rel="icon" href="images/icon.png" type="image/x-icon" />
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="user.css">
@@ -135,7 +136,12 @@
           /></a>
         </div>
         <div class="col-4 d-flex justify-content-end align-items-center">
+<<<<<<< HEAD
         <!-- list button -->
+=======
+        <!-- if logged in show list |logged out go login page -->
+ 
+>>>>>>> 2b3f4e3be4e446fd49a90a7e0c30bb23b9ee7d11
         <a
             class="btn btn-sm btn-outline-secondary"
             data-toggle="modal" 
@@ -145,6 +151,7 @@
             class="list"
             src="images/list.png"
             style="width: auto; height: 50px"
+<<<<<<< HEAD
             onClick = "loginFirst"
           /><br />My List</a
         >
@@ -163,6 +170,31 @@
               switchImg.setAttribute("src","images/list.png")
             })
           </script>
+=======
+            onclick="checkStatus()"
+          /><br />My List</a>
+
+        <!-- <script>
+          function checkStatus(){
+            var node = document.getElementById('addlist');
+            //if(localStorage.getItem("status") == "logged in"){
+              node.innerHTML('<a class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#loginAlrertModal" style="margin-right: 10px;"> </a>');
+            //}
+            
+          }
+        </script> -->
+
+        <script>
+          var switchImg = document.querySelector(".list");
+          switchImg.addEventListener("mouseover", function(){
+            switchImg.setAttribute("src","images/listwhite.png")
+          })
+          switchImg.addEventListener("mouseout",function(){
+            switchImg.setAttribute("src","images/list.png")
+          })
+        </script>
+          <a></a>
+>>>>>>> 2b3f4e3be4e446fd49a90a7e0c30bb23b9ee7d11
         </div>
       </div>
     </header>
@@ -428,7 +460,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <a href="login.html">
+                <a href="login1.php">
                     <button type="button" class="btn" style="background-color:  maroon; color: white;">Login</button>
                 </a>    
             </div>

@@ -19,3 +19,10 @@ window.onclick = function closeWindow(event) {
     $(".modal").css("display","none");
   }
 }
+
+function checkStatus(){
+  //var status = localStorage.getItem("status")
+  //if(status == "logged in"){
+    $("#exampleModal").modal();
+  //}
+}

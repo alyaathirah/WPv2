@@ -22,7 +22,7 @@ if(!empty($_GET['id'])){
             </a>
             </div>
             <div class="col-md-auto">
-                <a href="deleteList.php?id=<?php echo $listID?>">
+                <a href="deleteList.php?id=<?php echo $listID?>" onclick="return confirm('Delete this list?')">
                 <img src = "images/delete-icn.png" alt="" width="13" height="13"/></a>
             </div>
             </div>
@@ -49,8 +49,8 @@ else{
             </a>
             </div>
             <div class="col-md-auto">
-                <a href="deleteList.php?id=<?php echo $listID?>">
-                <img src = "images/delete-icn.png" alt="" width="13" height="13"/></a>
+                <a href="deleteList.php?id=<?php echo $listID?>" onclick="return confirm('Delete this list?')">
+                <img src = "images/delete-icn.png" alt="" width="13" height="13" /></a>
             </div>
             </div>
     </div>

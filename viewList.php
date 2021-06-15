@@ -224,7 +224,7 @@
             </a>
           </div>
           <div class="col-md-auto">
-          <a href="deleteList.php?id=<?php echo $rows['sl_id'];?>&id2=<?php echo $_GET['id'];?>">
+          <a href="deleteList.php?id=<?php echo $rows['sl_id'];?>&id2=<?php echo $_GET['id'];?>" onclick="return confirm('Delete this list?')">
           <img src = "images/delete-icn.png" alt="" width="13" height="13"/></a>
           </div>
 
