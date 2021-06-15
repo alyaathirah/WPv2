@@ -36,7 +36,16 @@ if(isset($_POST['Submit']))
 
 	
 		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
-	} else { 
+	}
+	// $select = mysqli_query($connectionID, "SELECT `Email` FROM `users2` WHERE `Email` = '".$_POST['email']."'"); 
+	// if(mysqli_num_rows($select)){
+
+    // 	//exit('Email already exists');
+	// 	echo "<script>alert('Email already exists!');</script>";
+		
+	// }
+	
+	else { 
 		// if all the fields are filled (not empty) 
 		//Step 3. Execute the SQL query.	
 		//insert data to database	
