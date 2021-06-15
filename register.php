@@ -15,13 +15,13 @@ if(isset($_POST['Submit']))
 {	
 	//The mysqli_real_escape_string() function escapes special characters in a string for use in an SQL statement.
 	
-	$UName = mysqli_real_escape_string($mysqli, $_POST['uname']);
+	$uname = mysqli_real_escape_string($mysqli, $_POST['uname']);
 	$Email = mysqli_real_escape_string($mysqli, $_POST['email']);	
-	$Password = mysqli_real_escape_string($mysqli, $_POST['Password']);
+	$Password = mysqli_real_escape_string($mysqli, $_POST['password']);
 	// checking empty fields
-	if(empty($UName) || empty($Email) || empty($Password) ) {	
+	if(empty($uname) || empty($Email) || empty($Password) ) {	
 			
-		if(empty($UName)) {
+		if(empty($uname)) {
 			echo "<font color='grey'>Empty.</font><br/>";
 		}
 		
@@ -38,17 +38,14 @@ if(isset($_POST['Submit']))
 		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
 	} else { 
 		// if all the fields are filled (not empty) 
-		
 		//Step 3. Execute the SQL query.	
 		//insert data to database	
-		$result = mysqli_query($mysqli, "INSERT INTO users2(Username,Email,Password1) 
-													VALUES('$UName','$Email','$Password')");
-		
+		$result = mysqli_query($mysqli, "INSERT INTO users2(Username,Email,Password1) VALUES('$uname','$Email','$Password')");
 		//Step 4. Process the results.
 		//display success message & the new data can be viewed on index.php
 		echo "<font color='green'>Data added successfully.";
 		echo "<br/><a href='home.php'>View Result</a>";
-	
+		header("Location: home.php");
 		//Step 5: Freeing Resources and Closing Connection using mysqli
 		mysqli_close($mysqli);
 	}

@@ -138,7 +138,12 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
         <!--User's Account modal button-->
         <div class="col-4 pt-1" style="color: black; font-size: medium;"><strong>
           <img src="<?php echo $images;?>"  style="border-radius:50%; height: 50px; width: 50px; margin-left: 12px; border: 1px solid black;"alt="profile photo" id="profile"/>
-          <a href="logout.php">Logout</a>
+          <a href="home.php" onClick = "Logout()">Logout</a>
+          <script>
+                  function Logout(){
+                    localStorage.setItem("status","logged out");
+                  }
+                  </script>
           <br /></strong>
         </div>
         <div class="col-4 text-center">
@@ -434,8 +439,13 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                 <a href="delete.php">
-                    <button type="button" class="btn" style="background-color:  maroon; color: white; ">Delete</button>
+                    <button type="button" class="btn" style="background-color:  maroon; color: white;" onClick = "Delete()">Delete</button>
                 </a>
+                <script>
+                  function Delete(){
+                    localStorage.setItem("status","logged out");
+                  }
+                  </script>
             </div>
         </div>
         </div>

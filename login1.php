@@ -57,7 +57,12 @@
           <label>Password:</label><br />
           <input type="password" name="password" class="form-control" placeholder="Password" required="">
           <br />
-          <input type="submit" class="btn btn-lg btn-primary btn-block" value="Log In" >
+          <input type="submit" class="btn btn-lg btn-primary btn-block" value="Log In" onClick = "Login()" >
+		  <script>
+			  function Login(){
+				localStorage.setItem("status","logged in");
+			  }
+			  </script>
             
           <!--onclick="window.location.href='homepage.html';               
                      localStorage.setItem('status','logged in');"-->
@@ -82,7 +87,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action = "Login">
+        <form action = "register.php" method = "POST">
           <div class="form-group">
             <label for="recipient-name" class="col-form-label" style = "color: black">Username</label>
             <input type="text" class="form-control" name="uname" required>
@@ -96,7 +101,7 @@
             <input type="password" class="form-control" name="password" required>
           </div>
 		<button type="button" class="btn btn-secondary" data-dismiss="modal" style = "align: right">Cancel</button>
-        <button type="submit" class="btn btn-primary" style = "align: right">Submit</button>
+        <button type="submit" class="btn btn-primary" name = "Submit" style = "align: right">Submit</button>
         </form>
       </div>
       

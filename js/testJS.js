@@ -1,4 +1,4 @@
-var url = "http://localhost/Web%20Programming/Assignment/WPv2/products.php";
+var url = "http://localhost/WPv2/WPv2/products.php";
 var value = "";
 $(document).ready(function(){
     $(".dropdown-item").click(function(){
@@ -7,7 +7,7 @@ $(document).ready(function(){
     });
 });
 
-var url1 = "http://localhost/Web%20Programming/Assignment/WPv2/product_desc.php";
+var url1 = "http://localhost/WPv2/WPv2/product_desc.php";
 var item_name = "";
 $(document).ready(function(){
     $(".btn-view").click(function(){

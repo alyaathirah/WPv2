@@ -439,12 +439,7 @@
                 getModal($images,$FName,$LName,$UName,$Email,$Bio,$Gender,$PNumber,$Birthday,$Address,$City,$Zip,$State); 
                 ?>
             </div>
-              <?php 
-                }else{
-                    header("Location: login.php");
-                    exit();
-                }
-              ?>
+              
               <div class="modal-footer">
                 <a href="profile.php">
                     <button type="button" class="btn" style="background-color:  maroon; color: white;">Setting</button>
@@ -456,17 +451,17 @@
             </div>
           </div>
         </div>
-
-                <script>
-                  function reset(){
-                    localStorage.clear();
-                  }
-                </script>
               </div>
               </div>
           </div>
           </div> 
         </div>
+        <?php 
+                }else{
+                    header("Location: login.php");
+                    exit();
+                }
+              ?>
         <?php
         //Freeing Resource and closing connection
         $pdo = null;
