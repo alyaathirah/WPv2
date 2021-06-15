@@ -206,7 +206,7 @@
                     <div class = "product">
                         <div class = "product-content">
                             <div class = "product-img">
-                            <img id="prdimg" src="<?= $res['image']; ?>" alt="product image">
+                            <img id="prdimg" src="images/<?= $res['image']; ?>" alt="product image">
                             </div>
 
                             <div class = "product-btns">

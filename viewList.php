@@ -76,6 +76,7 @@
     <link rel="stylesheet" href="css/styleShoppingList.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript" src="../WPv2/js/testJS.js"></script>
 
   </head>
   <body class="container">
@@ -287,7 +288,7 @@
 
         <div class = "col-md-2">
           <div class = "images">
-          <img src = "<?php echo $row['image'];?>" alt="" width="120" height="120"/>
+          <img src = "images/<?php echo $row['image'];?>" alt="" width="120" height="120"/>
           </div>
         </div>
 

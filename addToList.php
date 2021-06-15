@@ -4,7 +4,7 @@ include_once("db/config.php");
 //Add item in List 	
 $id = $_GET['id'];
 $itemid = $_GET['id2'];
-echo "You are trying to add this product ID to cart: " . $_GET['id'];
+//echo "You are trying to add this product ID to cart: " . $_GET['id'];
 
 
 //check status 
@@ -28,7 +28,9 @@ $price = $row['price'];
 
 //eader('Location: ' . $_SERVER['HTTP_REFERER']);
 //header("Location: " $_SERVER('HTTP_HOST') . $location);
-header("Location:viewList.php?id=$id");
+//header("Location:viewList.php?id=$id");
+//header("products.php");
+header('Location: ' . $_SERVER['HTTP_REFERER']);
 //$in = mysqli_query($mysqli, "INSERT INTO `itemlist`(`item_id`, `itemlist_qty`)  VALUES('$id','1')");
 //mysqli_close($mysqli);
 ?>
