@@ -52,7 +52,7 @@
         <form class='form-signin' action='login.php' method='post'>
           <br />
           <label>Email:</label><br />
-          <input type="text" name="uname" class="form-control" placeholder="Email" required="" autofocus="">
+          <input type="text" name="email" class="form-control" placeholder="Email" required="" autofocus="">
           <br />
           <label>Password:</label><br />
           <input type="password" name="password" class="form-control" placeholder="Password" required="">

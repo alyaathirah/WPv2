@@ -22,6 +22,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 		if (mysqli_num_rows($result) === 1) {
 			$row = mysqli_fetch_assoc($result);
             if ($row['Email'] === $email && $row['Password1'] === $pass) {
+				if(empty($row['status'])){
             	$_SESSION['id'] = $row['id'];
                 $_SESSION['FirstName'] = $row['FirstName'];
                 $_SESSION['LastName'] = $row['LastName'];
@@ -37,6 +38,9 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             	$_SESSION['Password1'] = $row['Password1'];
 				$_SESSION['images'] = $row['images'];
             	header("Location: home.php");
+			}else{
+				header("Location: admin.php");
+			}
 		        exit();
             }else{
 				header("Location: login.php?error=Incorect email or password");
