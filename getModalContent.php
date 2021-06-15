@@ -62,12 +62,12 @@ else{
 </br>
 <html>
      <div class = "row">
-       <button id="btn" class="buttonz" style = "width: 150px; margin:auto; display:block;" >Add New List</button>
+       <button id="btn" class="btn center" style="background-color:  maroon; color: white;" >Add New List</button>
        
        <form id="editForm"  action="addList.php" method="post" name="editForm" style = "margin:auto; display:block;">
        
          <input type="text" id="input" size="20" name="slname">
-         <input type = "submit" name = "Submit" value = "  +  " >
+         <input type = "submit" class="btn" style="background-color:  maroon; color: white" name = "Submit" value = "+" >
          </input>
        </form>
      </div>

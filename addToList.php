@@ -22,16 +22,17 @@ if($check->num_rows == 0){
 			$in = mysqli_query($mysqli, "INSERT INTO `itemlist`(`item_id`, `itemlist_qty`, `itemlist_status`, `sl_id`, `subprice`)  VALUES('$itemid','1','Out of Stock', '$id', '$price')");
 		}
 	}
-	header("Location:viewList.php?id=$id");
+	//header("Location:viewList.php?id=$id");
+	header('Location: ' . $_SERVER['HTTP_REFERER']);
 }
 else{
 	//header('Refresh: ' . $_SERVER['HTTP_REFERER']);
 	//header('Refresh: 0; URL=http://localhost/WPv2/products.php');
 	//$secondsWait = 1;
 	//echo "<script>alert('Item already in the List')</script>";
-	header('Refresh: 0; URL=http://localhost/WPv2/products.php');
+	//header('Refresh: 0; URL=http://localhost/WPv2/products.php');
 	echo "<script>
-	alert('Item already in the list');
+	alert('Item is already in the list');
 	window.location.href='viewList.php?id=$id';
 	</script>";
 }

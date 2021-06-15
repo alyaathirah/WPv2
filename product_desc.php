@@ -120,14 +120,16 @@
           /></a>
         </div>
         <div class="col-4 d-flex justify-content-end align-items-center">
-          <a
+        <a
             class="btn btn-sm btn-outline-secondary"
-            href="shoppingList.html"
+            data-toggle="modal" 
+            data-target="#exampleModal"
             style="margin-right: 10px;"
             ><img
             class="list"
             src="images/list.png"
             style="width: auto; height: 50px"
+            
           /><br />My List</a
         >
         <script>
@@ -337,6 +339,11 @@
             $('.modal-body').load('getModalContent.php?id=<?php echo $_GET['item_id']?>',function(){
             });
          })
+
+      $('.list').click(function(){
+      $('.modal-body').load('getModalContent.php',function(){
+      });
+      })
 
         </script>
           <!--------Shopping List modal ------------>
