@@ -396,9 +396,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
                     <script>
                   function Logout(){
                     localStorage.setItem("status","logged out");
-                    <?php 
-                    session_destroy();
-                    ?>
                   }
                   </script>
                 </a>
