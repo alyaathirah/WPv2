@@ -400,11 +400,8 @@
             <h5 class="text-uppercase text-dark">Company Policy</h5>
 
             <p class="text-dark">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste
-              atque ea quis molestias. Fugiat pariatur maxime quis culpa
-              corporis vitae repudiandae aliquam voluptatem veniam, est atque
-              cumque eum delectus sint!
-            </p>
+                This is our company policy, which is the policy of our company. This policy is for those who ask what is our policy and not for those that didnt ask.
+              </p>
           </div>
           <!--Grid column-->
 
@@ -414,7 +411,7 @@
 
             <ul class="list-unstyled mb-0">
               <li>
-                <a class="text-dark">Call Us: 014-tekan2 x dpt</a>
+                <a class="text-dark">Call Us: 012-3456789</a>
               </li>
               <li>
                 <a href="#!" class="text-dark">Mail Us</a>
@@ -473,12 +470,10 @@
       <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
         © 2020 Copyright:
         <a class="text-dark" style="font-style: italic" href="#"
-          >webprogramming2021@gmail.com</a
-        >
+          >webprogramming2021@gmail.com</a>
       </div>
       <!-- Copyright -->
     </footer>
-    <!-- Footer -->
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

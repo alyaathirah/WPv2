@@ -1,5 +1,8 @@
 <?php
-session_start();
+if(!isset($_SESSION)) 
+{ 
+	session_start(); 
+} 
 include("db/config.php");
 if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
 	//getting id from url
