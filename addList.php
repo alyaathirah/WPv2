@@ -3,7 +3,7 @@ session_start();
 include("db/config.php");
 if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
 	//getting id from url
-	$id = $_SESSION['id'];
+	$userid = $_SESSION['id'];
 
 
 //Add List 
@@ -21,7 +21,7 @@ if(isset($_POST['Submit'])) {
 
 
 //View List
-$que = "SELECT * FROM `list` WHERE `user_id` = '$id'";
+$que = "SELECT * FROM `list` WHERE `user_id` = '$userid'";
 $try = mysqli_query($mysqli, $que);
 //mysqli_close($mysqli);
 }
