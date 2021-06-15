@@ -123,7 +123,7 @@ if($_POST){
         <br />
         <p>Sign In</p>
 		<!-- SIGN IN -->
-        <form class='form-signin' action='login' method='post'>
+        <form class='form-signin' action='login.php' method='post'>
           <br />
           <label>Email:</label><br />
           <input type="text" name="email" class="form-control" placeholder="Email" required="" autofocus="">

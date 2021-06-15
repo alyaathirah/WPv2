@@ -377,7 +377,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
         </div>
               <?php 
                 }else{
-                    header("Location: Login/login.php");
+                    header("Location: login.php");
                     exit();
                 }
               ?>
