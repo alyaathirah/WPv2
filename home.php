@@ -145,7 +145,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
         >
           <script>
             function loginFirst(){
-              if (localStorage.getItem("status") === "logged in"){
+              if (localStorage.getItem("status") != "logged in"){
                 if (confirm("Login first to access shopping list!")) {//gi login
                   location.replace("login1.php")
                 } 
