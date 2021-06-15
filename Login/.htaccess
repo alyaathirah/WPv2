@@ -4,7 +4,7 @@ Options -Multiviews
 # Mod Rewrite
 Options +FollowSymLinks
 RewriteEngine On
-RewriteBase /Login/
+RewriteBase /WPv2/Login/
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
