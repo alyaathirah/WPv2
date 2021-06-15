@@ -43,9 +43,10 @@ if(isset($_POST['Submit']))
 		$result = mysqli_query($mysqli, "INSERT INTO users2(Username,Email,Password1) VALUES('$uname','$Email','$Password')");
 		//Step 4. Process the results.
 		//display success message & the new data can be viewed on index.php
-		echo "<font color='green'>Data added successfully.";
-		echo "<br/><a href='home.php'>View Result</a>";
-		header("Location: home.php");
+		// echo "<font color='green'>Data added successfully.";
+		// echo "<br/><a href='home.php'>View Result</a>";
+		$_SESSION['success'] ='Registration Successful! <br> Please login to continue.';
+		header("Location: login1.php");
 		//Step 5: Freeing Resources and Closing Connection using mysqli
 		mysqli_close($mysqli);
 	}

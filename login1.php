@@ -40,7 +40,7 @@
     <!-- Float an Image Without Text Wrapping -->
     <div class="box">
       <div class="imgBx">
-        <img src="images/pizza.jpg" />
+        <img src="images/pizza.jpg" id = "pizza" style = "height: auto; width: auto;"/>
         <!-- no need to set size here -->
       </div>
       <div class="content">
@@ -52,12 +52,16 @@
      session_start();
       if (isset($_SESSION['fail'])) {
       ?>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px; margin-bottom: 0px;">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px; margin-bottom: 0px;">-->
           <strong><?php echo $_SESSION['fail'];?></strong>
+          
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
           </button>
         </div>
+        <script>
+          document.getElementById("profilePhoto").style = " height: 100%";
+        </script>
       <?php
         unset ($_SESSION['fail']);
       }
@@ -73,6 +77,7 @@
         unset ($_SESSION['success']);
       }
     ?>
+    
       <form class='form-signin' action='login.php' method='post'>
           <br />
           <label>Email:</label><br />
@@ -99,7 +104,27 @@
       </div>
     </div>
 	
-
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
