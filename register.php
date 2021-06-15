@@ -1,79 +1,58 @@
+<html>
+<head>
+	<title>Add Data</title>
+</head>
+
+<body>
 <?php
-// core configuration
-include_once "config/core.php";
+//Example - MySQLi procedural
+//Step 1. Connect to the database.
+//Step 2. Handle connection errors
+//including the database connection file
+include_once("db/config.php");
 
-// set page title
-$page_title = "Register";
-
-// include login checker
-include_once "login_checker.php";
-
-// include classes
-include_once 'config/database.php';
-include_once 'objects/user.php';
-include_once "libs/php/utils.php";
-
-// include page header HTML
-include_once "layout_head.php";
-
-//echo "<div class='col-md-12'>";
-//echo "<div class='modal'>";
-	// if form was posted
-	if($_POST){
-
-		// get database connection
-		$database = new Database();
-		$db = $database->getConnection();
-
-		// initialize objects
-		$user = new User($db);
-		$utils = new Utils();
-
-		// set user email to detect if it already exists
-		$user->email=$_POST['email'];
-
-		// check if email already exists
-		if($user->emailExists()){
-			echo "<div class='alert alert-danger'>";
-				echo "The email you specified is already registered. Please try again or <a href='{$home_url}login'>login.</a>";
-			echo "</div>";
+if(isset($_POST['Submit']))
+{	
+	//The mysqli_real_escape_string() function escapes special characters in a string for use in an SQL statement.
+	
+	$UName = mysqli_real_escape_string($mysqli, $_POST['uname']);
+	$Email = mysqli_real_escape_string($mysqli, $_POST['email']);	
+	$Password = mysqli_real_escape_string($mysqli, $_POST['Password']);
+	// checking empty fields
+	if(empty($UName) || empty($Email) || empty($Password) ) {	
+			
+		if(empty($UName)) {
+			echo "<font color='grey'>Empty.</font><br/>";
+		}
+		
+				
+		if(empty($Email)) {
+			echo "<font color='grey'>Empty.</font><br/>";
+		}	
+		
+		if(empty($Password)) {
+			echo "<font color='grey'>Empty.</font><br/>";
 		}
 
-		else{
-
-			// set values to object properties
-			$user->firstname=$_POST['firstname'];
-			$user->lastname=$_POST['lastname'];
-			$user->contact_number=$_POST['contact_number'];
-			$user->address=$_POST['address'];
-			$user->password=$_POST['password'];
-			$user->access_level='Customer';
-			$user->status=1;
-
-			// access code for email verification
-			$access_code=$utils->getToken();
-			$user->access_code=$access_code;
-
-			// create the user
-			if($user->create()){
-
-				echo "<div class='alert alert-info'>";
-					echo "Successfully registered. <a href='{$home_url}login'>Please login</a>.";
-				echo "</div>";
-
-				// empty posted values
-				$_POST=array();
-
-			}else{
-				echo "<div class='alert alert-danger' role='alert'>Unable to register. Please try again.</div>";
-			}
-		}
+	
+		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
+	} else { 
+		// if all the fields are filled (not empty) 
+		
+		//Step 3. Execute the SQL query.	
+		//insert data to database	
+		$result = mysqli_query($mysqli, "INSERT INTO users2(Username,Email,Password1) 
+													VALUES('$UName','$Email','$Password')");
+		
+		//Step 4. Process the results.
+		//display success message & the new data can be viewed on index.php
+		echo "<font color='green'>Data added successfully.";
+		echo "<br/><a href='home.php'>View Result</a>";
+	
+		//Step 5: Freeing Resources and Closing Connection using mysqli
+		mysqli_close($mysqli);
 	}
-
+}
 ?>
-
-<!-- //echo "</div>"; -->
-
-// include page footer HTML
-include_once "layout_foot.php";
-?>
+</body>
+</html>
