@@ -136,24 +136,17 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
             data-toggle="modal" 
             data-target="#exampleModal"
             style="margin-right: 10px;"
+            id = "viewList"
             ><img
             class="list"
             src="images/list.png"
             style="width: auto; height: 50px"
-            onClick = "loginFirst()"
           /><br />My List</a
         >
           <script>
-            function loginFirst(){
-              if (localStorage.getItem("status") != "logged in"){
-                if (confirm("Login first to access shopping list!")) {//gi login
-                  location.replace("login1.php")
-                } 
-                else{
-                  location.replace("home.php")
-                }
-              }
-            }
+            if(localStorage.getItem("status")!="logged in"){
+            $('#viewList').attr('data-target','#loginAlertModal');
+          }
             var switchImg = document.querySelector(".list");
             switchImg.addEventListener("mouseover", function(){
               switchImg.setAttribute("src","images/listwhite.png")
@@ -162,6 +155,24 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
               switchImg.setAttribute("src","images/list.png")
             })
           </script>
+        </div>
+      </div>
+      <div class="modal fade" id="loginAlertModal" tabindex="-1" aria-labelledby="loginAlrertModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Deletion" style="color: #a82c21;"><strong>Login Alert</strong> </h5>
+            </div>
+            <div class="modal-body" style="color: black;">
+            Please login first before adding item(s) to your list
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <a href="login1.php">
+                    <button type="button" class="btn" style="background-color:  maroon; color: white;">Login</button>
+                </a>    
+            </div>
+        </div>
         </div>
       </div>
     </header>
@@ -281,6 +292,14 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
                                     data-toggle="modal" data-target="#exampleModal" data-id="<?php echo $res['item_id']?>"> 
                                     add to list
                                     </button>
+                                    <script>
+                                if(localStorage.getItem("status")!="logged in"){
+                                  //$('#viewList').attr('data-target','#loginAlertModal');
+                                  $('.btn-add').attr('data-target','');
+                                  $('.btn-add').attr('data-target','#loginAlertModal');
+                                }
+            
+                              </script>
                                 <a href="#">
                                     <button  type = "button" id="<?= $res['item_id']; ?>" class = "btn-view"> view item
                                     </button>
@@ -385,27 +404,40 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
       </div>
       <!-- Copyright -->
     </footer>
+<!-- <script>
+    $('.btn-add').click(function(){
+     console.log($(this).data('id'));
+     $('.modal-body').load('getModalContent.php?id='+$(this).data('id'),function(){
+     });
+    })
 
-                <!--------Shopping List modal ------------>
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h6 class="modal-title title" id="UserProfileLabel" style="font-size: 40px;">My List</h6>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                    
-                <!-- Content in Modal -->
-                <div class="modal-body" id = "modal-body-list">
-                </div>
+    $('.list').click(function(){
+    $('#modal-body-list').load('getModalContent.php',function(){
+    });
+    })
 
-              </div>
+    </script> -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h6 class="modal-title title" id="UserProfileLabel" style="font-size: 40px;">My List</h6>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-            </div>
-            </div>
+          <div class="modal-body" id = "modal-body-list">
+          <script>
+              console.log($(this).data('id'));
+            $('#modal-body-list').load('getModalContent.php?id='+$(this).data('id'),function(){
+            });
+              </script>
+          </div>
+
+        </div>
+      </div>
+      </div>
+          
             <!--------End Shopping List modal ------------>
         <!-- Profile Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -462,19 +494,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
       crossorigin="anonymous"
     ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script>
-    $('.btn-add').click(function(){
-     console.log($(this).data('id'));
-     $('.modal-body').load('getModalContent.php?id='+$(this).data('id'),function(){
-     });
-    })
-
-    $('.list').click(function(){
-    $('#modal-body-list').load('getModalContent.php',function(){
-    });
-    })
-
-    </script>
+    
     <script type="text/javascript" src="../WPv2/js/testJS.js"></script>
   </body>
 </html>

@@ -140,6 +140,7 @@
             data-toggle="modal" 
             data-target="#exampleModal"
             style="margin-right: 10px;"
+            id = "viewList"
             ><img
             class="list"
             src="images/list.png"
@@ -148,16 +149,9 @@
           /><br />My List</a
         >
           <script>
-            // function loginFirst(){
-            //   if (localStorage.getItem("status") != "logged in"){
-            //     if (confirm("Login first to access shopping list!")) {//gi login
-            //       location.replace("login1.php")
-            //     } 
-            //     else{
-            //       location.replace("home.php")
-            //     }
-            //   }
-            // }
+            if(localStorage.getItem("status")!="logged in"){
+            $('#viewList').attr('data-target','#loginAlertModal');
+          }
             var switchImg = document.querySelector(".list");
             switchImg.addEventListener("mouseover", function(){
               switchImg.setAttribute("src","images/listwhite.png")
@@ -468,6 +462,24 @@
         });
         })
       </script>
+      <div class="modal fade" id="loginAlertModal" tabindex="-1" aria-labelledby="loginAlrertModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Deletion" style="color: #a82c21;"><strong>Login Alert</strong> </h5>
+            </div>
+            <div class="modal-body" style="color: black;">
+            Please login first before adding item(s) to your list
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <a href="login1.php">
+                    <button type="button" class="btn" style="background-color:  maroon; color: white;">Login</button>
+                </a>    
+            </div>
+        </div>
+        </div>
+      </div>
   </body>
   <?php
         //Freeing Resource and closing connection

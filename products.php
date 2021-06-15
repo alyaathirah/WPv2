@@ -140,14 +140,13 @@
         <a
             class="btn btn-sm btn-outline-secondary"
             data-toggle="modal" 
-            data-target="#exampleModal"
+            data-target="#loginAlertModal"
             style="margin-right: 10px;"
-            id
+            id = "viewList"
             ><img
             class="list"
             src="images/list.png"
             style="width: auto; height: 50px"
-            onclick="checkStatus()"
           /><br />My List</a
         >
           <script>
@@ -170,7 +169,8 @@
 
         <script>
           if(localStorage.getItem("status")!="logged in"){
-
+            $('#viewList').attr('data-target','#loginAlertModal');
+            //$('.btn-add').attr('data-target','#loginAlertModal');
           }
             // var node = document.getElementById('addlist');
             // if(localStorage.getItem("status") != "logged in"){
@@ -266,6 +266,14 @@
                               <button type = "button" class = "btn-add" value = "add to list"
                               data-toggle="modal" data-target="#exampleModal" data-id="<?php echo $res['item_id'];?>"> Add to List 
                               </button>
+                              <script>
+                                if(localStorage.getItem("status")!="logged in"){
+                                  //$('#viewList').attr('data-target','#loginAlertModal');
+                                  //$('.btn-add').attr('data-target','');
+                                  $('.btn-add').attr('data-target','#loginAlertModal');
+                                }
+            
+                              </script>
   
 
                                                     
@@ -411,7 +419,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script>
+    <!-- <script>
         $('.btn-add').click(function(){
             console.log($(this).data('id'));
             $('.modal-body').load('getModalContent.php?id='+$(this).data('id'),function(){
@@ -421,9 +429,9 @@
          $('.list').click(function(){
             $('#modal-body-list').load('getModalContent.php',function(){
             });
-         })
+         }) -->
 
-        </script>
+        
           <!--------Shopping List modal ------------>
           <!-- Modal -->
           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -438,12 +446,17 @@
               
           <!-- Content in Modal -->
           <div class="modal-body" id = "modal-body-list">
+            <script>
+              console.log($(this).data('id'));
+            $('.modal-body').load('getModalContent.php?id='+$(this).data('id'),function(){
+            });
+              </script>
           </div>
 
         </div>
       </div>
       </div>
-      </div>
+          </div>
         <!--Login Alert Modal-->
     <div class="modal fade" id="loginAlertModal" tabindex="-1" aria-labelledby="loginAlrertModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -462,7 +475,8 @@
             </div>
         </div>
         </div>
-      </div>-->
+          </div>
+        
         <!-- Profile Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
