@@ -117,9 +117,10 @@
           /></a>
         </div>
         <div class="col-4 d-flex justify-content-end align-items-center">
-          <a
+        <a
             class="btn btn-sm btn-outline-secondary"
-            href="shoppingList.html"
+            data-toggle="modal" 
+            data-target="#exampleModal"
             style="margin-right: 10px;"
             ><img
             class="list"
@@ -341,71 +342,27 @@
       integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
       crossorigin="anonymous"
     ></script>
-       <!----------Shopping List modal -------->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h6 class="modal-title title" id="UserProfileLabel" style="font-size: 25px;">Select List</h6>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                
-            <!-- Content in Modal -->
-            <div class="modal-body">
-                <div class="container-fluid">
-                
-                <div class = "shoppingList" id = "shoppinglist1">
-                <div class="row">
-                    <div class="col">
-                    <a class = "addToList" href="#" class="close" data-dismiss="modal" style="color: black;" onclick="snack()">
-                        <div id = "titleList">Shopping List</div>
-                    </a>
-                    </div>
-                    <div class="col-md-auto">
+               <!--------Shopping List modal ------------>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h6 class="modal-title title" id="UserProfileLabel" style="font-size: 40px;">My List</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
                     
-                    </div>
+                <!-- Content in Modal -->
+                <div class="modal-body" id = "modal-body-list">
                 </div>
-                </div>
-        
-                <div class = "shoppingList" id = "shoppinglist2">
-                <div class="row">
-                    <div class="col">
-                    <a href="#" style="color: black;"><div id = "titleList">Grocery List</div></a>
-                    </div>
-                    <div class="col-md-auto">
-                    </div>
-        
-                    <div class="col col-lg-2">
-                        <span class="deletebtn" id = "2" onClick = "myFunction2()"></span>
-                    </div>
-        
-                </div>
-                </div>
-        
-                <div id = "newSL"></div>
-            
-                    <div class = "row">
-                    <br><br><br>
-                    <button id="btn" class="submit-btn rounded-pill float-sm-end" style = "width: 150px; margin:auto; display:block;" >Add New List</button>
-                    
-                    <form id="editForm"  action="" method="post" name="editForm" style = "margin:auto; display:block;">
-                    
-                        <input type="text" id="input" size="20" name="fname">
-                        <button type="button" class = "submit-btn rounded-pill float-sm-end" style = "width: 50px;" onClick = 'addSL()'>+</button>
-                        <button id="btnClose" class = "submit-btn rounded-pill float-sm-end" style = "width: 150px;" data-dismiss="modal">Cancel</button>
-                    </form>
-                    </div>
-                
-                </div>
-                </div>
-            
+
+              </div>
             </div>
             </div>
-        </div>
-        <div id="snackbar">Item was added into Shopping List</div>
-        <!------End of Shopping List modal -------->
+            </div>
+            <!--------End Shopping List modal ------------>
         <!--Login Alert Modal-->
       <div class="modal fade" id="loginAlrertModal" tabindex="-1" aria-labelledby="loginAlrertModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -470,6 +427,12 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
         <script type="text/javascript" src="js/shoppingList.js"></script>
         <script type="text/javascript" src="../WPv2/js/testJS.js"></script>
+        <script>    
+        $('.list').click(function(){
+        $('#modal-body-list').load('getModalContent.php',function(){
+        });
+        })
+      </script>
   </body>
   <?php
         //Freeing Resource and closing connection
