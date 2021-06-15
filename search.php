@@ -57,16 +57,33 @@
   </head>
   <body class="container">
     <!--Start of header-->
-    <header class="blog-header py-3">
-      <div class="row flex-itemrap justify-content-between align-items-center">
+    <header class="container blog-header py-3">
+      <div class="row flex-nowrap justify-content-between align-items-center">
         <!--User's Account modal button-->
         <div class="col-4 pt-1">
-          <a class="account" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-            ><img src="images/abstract-user-flat-4.png" style="height: 50px; width: 50px; margin-left: 12px"alt="profile photo" id="profile"/>
-               <br />
-            My Account</a>
-
+        <?php 
+          echo $id;
+        ?>
+        <img src="<?php echo $images;?>" alt="profile photo" id="profilePhoto" style="height: 50px;; width: 50px;; border-radius: 50%;">
+        <script>
+          var status = localStorage.getItem("status");
+             if(status != "logged in"){
+          document.getElementById("profilePhoto").src = "images/default.png";
+             }
+        </script>  
+        <br>
+          <a class="account" href="#" data-toggle="modal" data-target="#staticBackdrop" 
+            >My Account</a>
           <br />
+          <script>
+            var status = localStorage.getItem("status");
+             if(status != "logged in"){
+             account = document.querySelector(".account");
+             account.setAttribute("data-toggle","''");
+             account.setAttribute("data-target","''")
+             account.setAttribute("href","login1.php");
+            }
+          </script>
         </div>
         <div class="col-4 text-center">
           <a class="blog-header-logo text-dark" href="homepage.html"
@@ -74,9 +91,10 @@
           /></a>
         </div>
         <div class="col-4 d-flex justify-content-end align-items-center">
-          <a
+        <a
             class="btn btn-sm btn-outline-secondary"
-            href="shoppingList.html"
+            data-toggle="modal" 
+            data-target="#exampleModal"
             style="margin-right: 10px;"
             ><img
             class="list"
@@ -84,16 +102,15 @@
             style="width: auto; height: 50px"
           /><br />My List</a
         >
-        <script>
-          var switchImg = document.querySelector(".list");
-          switchImg.addEventListener("mouseover", function(){
-            switchImg.setAttribute("src","images/listwhite.png")
-          })
-          switchImg.addEventListener("mouseout",function(){
-            switchImg.setAttribute("src","images/list.png")
-          })
-        </script>
-          <a></a>
+          <script>
+            var switchImg = document.querySelector(".list");
+            switchImg.addEventListener("mouseover", function(){
+              switchImg.setAttribute("src","images/listwhite.png")
+            })
+            switchImg.addEventListener("mouseout",function(){
+              switchImg.setAttribute("src","images/list.png")
+            })
+          </script>
         </div>
       </div>
     </header>
@@ -197,7 +214,7 @@
         </div>
         
         <!--Pagination-->
-        <nav aria-label="Page navigation example">
+        <!-- <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
                 <li class="page-item">
 				    <a class="page-link" href="<?= currentPage($CurPageURL,$key) ;?>&page=<?=$previous;?>" aria-label="Previous">
@@ -216,7 +233,7 @@
 				</li>
 
             </ul>
-        </nav>
+        </nav> -->
          <!--End of Pagination-->
 
     </main>

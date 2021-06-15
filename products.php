@@ -212,7 +212,7 @@
                             <div class = "product-btns">
 
                               <button type = "button" class = "btn-add" value = "add to list"
-                              data-toggle="modal" data-target="#exampleModal" data-id="<?php echo $res['item_id'];?>"> add to list 
+                              data-toggle="modal" data-target="#exampleModal" data-id="<?php echo $res['item_id'];?>"> Add to List 
                               </button>
   
 

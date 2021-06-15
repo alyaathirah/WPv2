@@ -21,7 +21,7 @@ $row = mysqli_fetch_array($result);
     <body class="adminBody">
         <nav class="navbar navbar-expand-lg fixed-top py-0" style="background-color:white;">
             <div class="container">
-              <a href="homepage.html">
+              <a href="home.php">
               <img src="images/logoadmin.png" style="width: auto; height: auto;"/></a>
               </a>
                 <div id="navbarSupportedContent" class="collapse navbar-collapse">
@@ -143,7 +143,12 @@ $row = mysqli_fetch_array($result);
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
-              <a href="login.html" type="button" class="btn btn-outline-info">Confirm</a>
+              <a href="login1.php" type="button" class="btn btn-outline-info" onClick = "Logout()">Confirm</a>
+              <script>
+                  function Logout(){
+                    localStorage.setItem("status","logged out");
+                  }
+                  </script>
             </div>
           </div>
         </div>

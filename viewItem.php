@@ -27,7 +27,7 @@ if(isset($_GET['id'])){
     <body class="adminBody">
     <nav class="navbar navbar-expand-lg fixed-top py-0" style="background-color:white;">
             <div class="container">
-              <a href="homepage.html">
+            <a href="home.php">
               <img src="images/logoadmin.png" style="width: auto; height: auto;"/></a>
               </a>
                 <div id="navbarSupportedContent" class="collapse navbar-collapse">

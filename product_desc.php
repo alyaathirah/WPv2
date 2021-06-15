@@ -153,7 +153,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="homepage.html"
+            <a class="nav-link" href="home.php"
               >Home <span class="sr-only">(current)</span></a
             >
           </li>
@@ -183,7 +183,7 @@
           </li>
         </ul>
         
-        <form class="form-inline my-2 my-lg-0" action = "search.php" method = "get" style="margin-right: 200px;">
+        <form class="form-inline my-2 my-lg-0" action = "search.php" method = "get">
           <input class="searchBar form-control mr-sm-2" type="text" placeholder="Search" name = "query">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>

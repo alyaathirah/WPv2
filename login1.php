@@ -28,7 +28,7 @@
     <meta charset="utf-8" />
 
     <link rel="icon" href="images/icon.png" type="image/x-icon" />
-    <link rel="stylesheet" href="css/styleLogin.css" />
+    <link rel="stylesheet" href="css/styleLogin.css?v=<?php echo time(); ?>" />
     <link rel="stylesheet" href="css/bootstrap.css" />
     <script type="text/javascript" src="js/login.js"></script>
     <script type="text/javascript" src="js/userList.js"></script>
@@ -40,7 +40,7 @@
     <!-- Float an Image Without Text Wrapping -->
     <div class="box">
       <div class="imgBx">
-        <img src="images/pizza.jpg" id = "pizza" style = "height: auto; width: auto;"/>
+        <img src="images/pizza.jpg" id = "pizza"/>
         <!-- no need to set size here -->
       </div>
       <div class="content">
@@ -52,7 +52,7 @@
      session_start();
       if (isset($_SESSION['fail'])) {
       ?>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px; margin-bottom: 0px;">-->
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px; margin-bottom: 0px;">
           <strong><?php echo $_SESSION['fail'];?></strong>
           
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
