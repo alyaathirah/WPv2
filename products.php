@@ -140,7 +140,7 @@
         <a
             class="btn btn-sm btn-outline-secondary"
             data-toggle="modal" 
-            data-target="#loginAlertModal"
+            data-target="#exampleModal"
             style="margin-right: 10px;"
             id = "viewList"
             ><img

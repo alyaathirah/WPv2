@@ -182,24 +182,6 @@
         </div>
         </div>
       </div>
-      <div class="modal fade" id="loginAlertModal" tabindex="-1" aria-labelledby="loginAlrertModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="Deletion" style="color: #a82c21;"><strong>Login Alert</strong> </h5>
-            </div>
-            <div class="modal-body" style="color: black;">
-            Please login first before adding item(s) to your list
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <a href="login1.php">
-                    <button type="button" class="btn" style="background-color:  maroon; color: white;">Login</button>
-                </a>    
-            </div>
-        </div>
-        </div>
-      </div>
     </header>
     <!--Start of Navigation Bar-->
     <nav class="navbar sticky-top navbar-expand-lg navbar-light">
