@@ -4,6 +4,7 @@ include_once("db/config.php");
 //Add item in List 	
 $id = $_GET['id'];
 $itemid = $_GET['id2'];
+$itemqty = $_GET['qty'];
 //echo "You are trying to add this product ID to cart: " . $_GET['id'];
 
 
@@ -15,11 +16,12 @@ $check = mysqli_query($mysqli, "SELECT `item_id` FROM `itemlist` WHERE `item_id`
 if($check->num_rows == 0){
 	while($row = $data->fetch_assoc()) {
 	$price = $row['price'];
+	$price = $price * $itemqty;
 		if($row['qty']>0){
-			$in = mysqli_query($mysqli, "INSERT INTO `itemlist`(`item_id`, `itemlist_qty`, `itemlist_status`, `sl_id`, `subprice`)  VALUES('$itemid','1','Available', '$id', '$price')");
+			$in = mysqli_query($mysqli, "INSERT INTO `itemlist`(`item_id`, `itemlist_qty`, `itemlist_status`, `sl_id`, `subprice`)  VALUES('$itemid','$itemqty','Available', '$id', '$price')");
 		}
 		else{
-			$in = mysqli_query($mysqli, "INSERT INTO `itemlist`(`item_id`, `itemlist_qty`, `itemlist_status`, `sl_id`, `subprice`)  VALUES('$itemid','1','Out of Stock', '$id', '$price')");
+			$in = mysqli_query($mysqli, "INSERT INTO `itemlist`(`item_id`, `itemlist_qty`, `itemlist_status`, `sl_id`, `subprice`)  VALUES('$itemid','$itemqty','Out of Stock', '$id', '$price')");
 		}
 	}
 	//header("Location:viewList.php?id=$id");

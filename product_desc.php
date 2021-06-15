@@ -222,7 +222,7 @@
 
                     <form id='myform' method='POST' action='addToList.php'>
                           <input type='submit' value='-' class='qtyminus' field='quantity' />
-                          <input type='text' name='quantity' value='0' class='qty' />
+                          <input type='text' id ="qty" name='quantity' value='1' class='qty' />
                           <input type='submit' value='+' class='qtyplus' field='quantity' />
                           <input type="button" class="btn btn-dark" id="btn-add" value="Add to List" 
                           data-toggle="modal" data-target="#exampleModal"/>
@@ -336,7 +336,8 @@
     ></script>
     <script>
         $('#btn-add').click(function(){
-            $('.modal-body').load('getModalContent.php?id=<?php echo $_GET['item_id']?>',function(){
+            var qty = document.getElementById('qty').value;
+            $('.modal-body').load('getModalContent.php?id=<?php echo $_GET['item_id']?>&qty='+qty,function(){
             });
          })
 

@@ -3,7 +3,15 @@ include_once("db/config.php");
 
 
 if(!empty($_GET['id'])){
-    //for add to list button 
+    //for add to list button
+    
+    if(!empty($_GET['qty'])){
+        $qty = $_GET['qty'];
+    }
+    else{
+        $qty = 1;
+    }
+    
     $id = $_GET['id'];
     require('addList.php');
         if ($try->num_rows > 0) {
@@ -17,7 +25,7 @@ if(!empty($_GET['id'])){
 <div class = "shoppingList" id ="<?php echo $listID?>">
     <div class="row">
         <div class="col">
-        <a href="addToList.php?id=<?php echo $listID?>&id2=<?php echo $id?>" style="color: black;">
+        <a href="addToList.php?id=<?php echo $listID?>&id2=<?php echo $id?>&qty=<?php echo $qty?>" style="color: black;">
             <div id = "titleList"><?php echo $listName?></div>
             </a>
             </div>
