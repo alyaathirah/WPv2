@@ -142,8 +142,8 @@ $row = mysqli_fetch_assoc($result);
                           Local
                         </label>
                       </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="origin" id="flexRadioDefault2" disabled>
+                      <div class="form-check form-check-inline">';
+                        echo '<input class="form-check-input" type="radio" name="origin" id="flexRadioDefault2" disabled>
                         <label class="form-check-label text-dark" for="flexRadioDefault2">
                           Imported
                         </label>
@@ -169,7 +169,10 @@ $row = mysqli_fetch_assoc($result);
                 echo      "<div class='col-5 text-dark'>";?>
                         <a class='btn btn-outline-warning col-sm-4' href="edit.php?id=<?php echo $row['item_id']; ?>&category=<?php echo $row['category_name(FK)']; ?>">Edit</a>
                 <?php
-                echo           "<button type='button' class='btn btn-outline-danger' data-toggle='modal' data-target='#exampleModal'>";
+                // $id2 = $row['item_id'];
+                ?>
+                           <button type='button' class='btn btn-outline-danger' id = "delete-Btn" data-id = "<?php echo $row['item_id']?>" data-toggle='modal' data-target='#exampleModal'>
+                <?php
                 echo          "Delete";
                 echo        "</button>";
                 echo      "</div>";
@@ -179,25 +182,9 @@ $row = mysqli_fetch_assoc($result);
                 echo "</div>";
 
 
-                echo '<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header justify-content-center">
-                      <img src="images/logoadmin.png" style="width: 130px; height: 50px"/>       
-                    </div>
-                    <div class="modal-body">
-                      <h5 class="modal-title text-dark" id="exampleModalLabel">This product will be deleted.</h5>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>';?>
-                        <a class='btn btn-outline-info' href="deleteadmin.php?id=<?php echo $row['item_id'];?>&category=<?php echo $row['category_name(FK)'];?>&name=<?php echo $row['name']?>">Delete</a>
-                        <?php
-                   echo ' </div>
-                  </div>
-                 </div>
-              </div>';
+                
                 ?>
-                </form> 
+                 
                 <?php 
               }
 
@@ -285,5 +272,27 @@ $row = mysqli_fetch_assoc($result);
     crossorigin="anonymous"
     ></script>
     <script type="text/javascript" src="adminproduct.js"></script>
+    <script>
+        $('#delete-Btn').click(function(){
+            console.log($(this).data('id'));
+            $('.modal-body').load('trash.php?id='+$(this).data('id'),function(){
+            });
+         })
+         </script>
+         <?php 
+         echo '<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+           <div class="modal-content">
+             <div class="modal-header justify-content-center">
+               <img src="images/logoadmin.png" style="width: 130px; height: 50px"/>       
+             </div>
+             <div class="modal-body">
+               
+             </div>
+            
+           </div>
+          </div>
+       </div>';
+       ?>
     </body>
 </html>
