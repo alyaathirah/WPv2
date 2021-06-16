@@ -41,8 +41,24 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             	$_SESSION['Zip'] = $row['Zip'];
             	$_SESSION['Password1'] = $row['Password1'];
 				$_SESSION['images'] = $row['images'];
+				$_SESSION['status'] = $row['status'];
             	header("Location: home.php");
 			}else{
+				$_SESSION['id'] = $row['id'];
+                $_SESSION['FirstName'] = $row['FirstName'];
+                $_SESSION['LastName'] = $row['LastName'];
+                $_SESSION['Username'] = $row['Username'];
+            	$_SESSION['Email'] = $row['Email'];
+            	$_SESSION['Bio'] = $row['Bio'];
+                $_SESSION['PhoneNumber'] = $row['PhoneNumber'];
+            	$_SESSION['Birthday'] = $row['Birthday'];
+            	$_SESSION['Address1'] = $row['Address1'];
+                $_SESSION['City'] = $row['City'];
+                $_SESSION['State1'] = $row['State1'];
+            	$_SESSION['Zip'] = $row['Zip'];
+            	$_SESSION['Password1'] = $row['Password1'];
+				$_SESSION['images'] = $row['images'];
+				$_SESSION['status'] = $row['status'];
 				header("Location: admin.php");
 			}
 		        exit();

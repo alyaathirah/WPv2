@@ -138,30 +138,30 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
         <!--User's Account modal button-->
         <div class="col-4 pt-1" style="color: black; font-size: medium;"><strong>
           <img src="<?php echo $images;?>"  style="border-radius:50%; height: 50px; width: 50px; margin-left: 12px; border: 1px solid black;"alt="profile photo" id="profile"/>
-          <a href="home.php" onClick = "Logout()">Logout</a>
-          <script>
-                  function Logout(){
-                    localStorage.setItem("status","logged out");
-                  }
-                  </script>
+          <a href = "logout.php">
+        <button type = "button" name="login-btn"  class="btn rounded-pill" style="background-image: linear-gradient(125deg,#971006, #a72879); color: white;">Log Out</button>
+          </a>
           <br /></strong>
         </div>
         <div class="col-4 text-center">
-          <a class="blog-header-logo text-dark" href="homepage.html"
+          <a class="blog-header-logo text-dark" href="home.php"
             ><img src="images/logo.png" style="width: 200px; height: auto"
           /></a>
         </div>
         <div class="col-4 d-flex justify-content-end align-items-center">
-          <a
+        <!-- list button -->
+        <a
             class="btn btn-sm btn-outline-secondary"
-            href="shoppingList.html"
+            data-toggle="modal" 
+            data-target="#listModal"
             style="margin-right: 10px;"
+            id = "viewList"
             ><img
-              class="list"
-              src="images/list.png"
-              style="width: auto; height: 50px"
-            /><br />My List</a
-          >
+            class="list"
+            src="images/list.png"
+            style="width: auto; height: 50px"
+          /><br />My List</a
+        >
           <script>
             var switchImg = document.querySelector(".list");
             switchImg.addEventListener("mouseover", function(){
@@ -170,11 +170,31 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
             switchImg.addEventListener("mouseout",function(){
               switchImg.setAttribute("src","images/list.png")
             })
-            
-            
           </script>
         </div>
       </div>
+      <div class="modal fade" id="listModal" tabindex="-1" role="dialog" aria-labelledby="listModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h6 class="modal-title title" id="UserProfileLabel" style="font-size: 40px;">My List</h6>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          <div class="modal-body" id = "modal-body-list">
+          </div>
+
+        </div>
+      </div>
+      </div>
+      <script>
+    $('.list').click(function(){
+    $('#modal-body-list').load('getModalContent.php',function(){
+    });
+    })
+
+    </script>
     </header>
     <!--End of header-->
     <!--Start of Navigation Bar-->
@@ -222,17 +242,10 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
                 </li>
             </ul>
             </div>
-            <form class="form-inline my-2 my-lg-0" action = "/search.html">
-              <input class="searchBar form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="getQuery()">Search</button>
-            </form>
-          </div>
-          <script>
-            function getQuery(){
-              var query = document.querySelector(".searchBar").value;
-              localStorage.setItem("query",query)
-            }
-          </script>
+            <form class="form-inline my-2 my-lg-0" action = "search.php" method = "get">
+          <input class="searchBar form-control mr-sm-2" type="text" placeholder="Search" name = "query">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
         </nav>
     <!--End of Navigation Bar-->
     <!--notification-->
@@ -390,10 +403,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
             ?>
             <form action="edit2.php" method="POST"  onSubmit="this.scrollPosition.value=document.body.scrollTop">
               <div class="row g-3 set" name="form2">
-                <div class="col-md-6">
-                  <label for="Password1" class="form-label">Password</label>
-                  <input type="password" class="form-control" name="Password1"  value="<?php echo $Password;?>" disabled >
-                </div>
+                
                   <div class="col-md-6">
                   <label for="Password2" class="form-label">Old Password</label>
                   <input type="password" class="form-control"  name="Password_old" required>
@@ -406,6 +416,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
                   <label for="Password2" class="form-label">Confirm Password</label>
                   <input type="password" class="form-control" name="Password_conf" required>
                 </div>
+                
                 <div class="col-md-1">
                   <td><input type="hidden" name="id" value=<?php echo $_SESSION['id'];?>></td>
                   <button type="submit" class="btn rounded-pill" name="update_p" style="background-image: linear-gradient(125deg,#971006, #a72879); color: white;" >Update</button></div>
@@ -422,7 +433,10 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
         </p>
         <div class="collapse show" id="collapseExample3">
           <div class="card card-body">
-              <div class="row mb-3" style="color: maroon; font-weight:bold"><p>Delete Account?<a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-weight: bold;"> delete</a></p></div>
+          
+              <div class="row mb-3" style="color: maroon; font-weight:bold"><p>Delete Account?</br>
+              
+              <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" name="login-btn"  class="btn rounded-pill" style="background-image: linear-gradient(125deg,#971006, #a72879); color: white;"> Delete</a></p></div>
           </div>
         </div><br>
       <!--Modal Delete-->
@@ -545,7 +559,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
     <!--script-->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script type="text/javascript" src="../WPv2/js/testJS.js"></script>
     <!--manually script-->
@@ -571,8 +584,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
 <?php 
   }
 else{
-     header("Location: login.php");
-     exit();
+     header("Location: home.php");
 }
  ?>
 </html>

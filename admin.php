@@ -2,8 +2,84 @@
 include_once("db/config.php");
 
 $result = mysqli_query($mysqli,"SELECT * FROM item");
+session_start();
 
+if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
+  include_once("config.php");
+  //getting id from url
+  $id = $_SESSION['id'];
+  
+  //selecting data associated with this particular id
+  $result = mysqli_query($mysqli, "SELECT * FROM users2 WHERE id=$id");
+  
+  while($res = mysqli_fetch_array($result))
+  {
+    
+    $FName=$res['FirstName'];
+    $LName=$res['LastName'];
+    $UName=$res['Username'];	
+    $Email=$res['Email'];
+    $Bio=$res['Bio'];
+    $PNumber=$res['PhoneNumber'];	
+    $Birthday=$res['Birthday'];	
+    $Address=$res['Address1'];
+    $City=$res['City'];
+    $State=$res['State1'];
+    $Zip=$res['Zip'];
+    $Password=$res['Password1'];
+    $images=$res['images'];
+    $Gender=$res['Gender'];
+    $status = $res['status'];
+    if(empty($FName) || empty($LName) || empty($UName) || empty($Email) || empty($Bio) || empty($PNumber) || empty($Birthday) || empty($Address) || empty($City) || empty($State) || empty($State) || empty($Zip) || empty($Gender)|| empty($images))
+    {
+      if(empty($images)) {
+        $images="images/default.png";
+      }
+
+      if(empty($FName)) {
+        $FName="Set Now";
+      }
+      
+      if(empty($LName)) {
+        $LName="Set Now";
+      }
+      
+      if(empty($Bio)) {
+        $Bio="Set Now";
+      }
+  
+      if(empty($Address)) {
+        $Address="Set Now";
+      }	
+      
+      if(empty($State)) {
+        $State="";
+      }
+  
+      if(empty($City)) {
+        $City="";
+      }	
+      
+      if(empty($Zip)) {
+        $Zip="";
+      }
+
+      if(empty($Gender)) {
+        $Gender="Set Now";
+      }
+
+      if(empty($PNumber)) {
+        $PNumber="Set Now";
+      }
+      if(empty($Birthday)) {
+        $Birthday="Set Now";
+      }
+    }
+  }
+  
 ?>
+?>
+
 <!DOCTYPE html>
 <html lang="en"> 
     <head>
@@ -20,7 +96,7 @@ $result = mysqli_query($mysqli,"SELECT * FROM item");
     <body class="adminBody">
         <nav class="navbar navbar-expand-lg fixed-top py-0" style="background-color:white;">
             <div class="container">
-            <a href="homeAdmin.php">
+            <a href="home.php">
               <img src="images/logoadmin.png" style="width: auto; height: auto;"/></a>
               </a>
                 <div id="navbarSupportedContent" class="collapse navbar-collapse">
@@ -164,3 +240,6 @@ $result = mysqli_query($mysqli,"SELECT * FROM item");
     ></script>      
     </body>
 </html>
+<?php
+}
+?>
