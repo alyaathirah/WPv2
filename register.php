@@ -53,7 +53,11 @@ if(isset($_POST['Submit']))
 		// if all the fields are filled (not empty) 
 		//Step 3. Execute the SQL query.	
 		// hash the password before saving to database
-		$password_hash = password_hash($Password, PASSWORD_BCRYPT);
+		//$password_hash = password_hash($Password, PASSWORD_BCRYPT);
+
+		//md5
+		$password_hash = md5($Password);
+
 		//insert data to database	
 		$result = mysqli_query($mysqli, "INSERT INTO users2(Username,Email,Password1) VALUES('$uname','$Email','$password_hash')");
 		//Step 4. Process the results.

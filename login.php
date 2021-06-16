@@ -13,7 +13,8 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 	}else if(empty($pass)){
         header("Location: login1.php?error=Password is required");
 	    exit();
-	}else{
+	}
+	else{
 		        
 		$sql = "SELECT * FROM users2 WHERE Email='$email' AND Password1='$pass'";
 
@@ -21,7 +22,9 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
 		if (mysqli_num_rows($result) === 1) {
 			$row = mysqli_fetch_assoc($result);
-            if ($row['Email'] === $email && $row['Password1'] === $pass) {
+			//password_verify($_POST['password'], $user->password)
+			//if ($row['Email'] === $email && $row['Password1'] === $pass)
+			if ($row['Email'] === $email && ($row['Password1'] == md5($pass))){
 				if(empty($row['status'])){
             	$_SESSION['id'] = $row['id'];
                 $_SESSION['FirstName'] = $row['FirstName'];
