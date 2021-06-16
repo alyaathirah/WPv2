@@ -101,19 +101,25 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
       <div class="row flex-nowrap justify-content-between align-items-center">
         <!--User's Account modal button-->
         <div class="col-4 pt-1">
+        <?php 
+        if(empty($status)){
+        ?>
         <img src="<?php echo $images;?>" alt="profile photo" id="profilePhoto" style="height: 50px;; width: 50px;; border-radius: 50%; margin-left: 10px">
+        <?php
+        }
+        ?>
         <br>
         <?php
         if(empty($status)){
-          echo $status
         ?>
           <a class="account" href="#" data-toggle="modal" data-target="#profileModal" 
             >My Account</a>
             <?php
           }else{
             ?>
-            <a class="admin" href="admin.php" 
-            >Back to Admin Page</a>
+            <a class = "back-to-admin"href = "admin.php">
+        <button type = "button" name="login-btn"  class="btn rounded-pill" style="background-image: linear-gradient(125deg,#971006, #a72879); color: white;">Back to Admin Page</button>
+          </a>
             <?php
           }
             ?>
