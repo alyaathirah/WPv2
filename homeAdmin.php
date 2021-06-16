@@ -103,7 +103,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
         <?php 
           echo $id;
         ?>
-        <img src="<?php echo $images;?>" alt="profile photo" id="profilePhoto" style="height: 50px;; width: 50px;; border-radius: 50%;">
+        <img src="images/default.png" alt="profile photo" id="profilePhoto" style="height: 50px;; width: 50px;; border-radius: 50%;">
         <script>
           var status = localStorage.getItem("status");
              if(status != "logged in"){
@@ -111,8 +111,8 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
              }
         </script>  
         <br>
-          <a class="account" href="#" data-toggle="modal" data-target="#staticBackdrop" 
-            >My Account</a>
+          <a class="account" disabled
+            >Grosir Admin</a>
           <br />
           <script>
             var status = localStorage.getItem("status");
