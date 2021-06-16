@@ -43,7 +43,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <title>Setting</title>
     <link rel="icon" href="images/icon.png" type="image/x-icon" />
     <link rel="stylesheet" href="css/bootstrap.css" />
@@ -137,7 +136,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
       <div class="row flex-nowrap justify-content-between align-items-center">
         <!--User's Account modal button-->
         <div class="col-4 pt-1" style="color: black; font-size: medium;"><strong>
-          <img src="<?php echo $images;?>"  style="border-radius:50%; height: 50px; width: 50px; margin-left: 12px; border: 1px solid black;"alt="profile photo" id="profile"/>
           <a href = "logout.php">
         <button type = "button" name="login-btn"  class="btn rounded-pill" style="background-image: linear-gradient(125deg,#971006, #a72879); color: white;">Log Out</button>
           </a>
@@ -434,9 +432,13 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
         <div class="collapse show" id="collapseExample3">
           <div class="card card-body">
           
-              <div class="row mb-3" style="color: maroon; font-weight:bold"><p>Delete Account?</br>
+              <div class="row mb-3" style="color: maroon; font-weight:bold"><p>Delete Account?</br></p>
               
-              <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" name="login-btn"  class="btn rounded-pill" style="background-image: linear-gradient(125deg,#971006, #a72879); color: white;"> Delete</a></p></div>
+              <button type="button" class="btn rounded-pill" data-toggle="modal" data-target="#exampleModal" 
+              style="background-image: linear-gradient(125deg,#971006, #a72879); color: white;">
+                Delete
+              </button>
+              </div>
           </div>
         </div><br>
       <!--Modal Delete-->
@@ -453,13 +455,9 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                 <a href="delete.php">
-                    <button type="button" class="btn" style="background-color:  maroon; color: white;" onClick = "Delete()">Delete</button>
+                    <button type="button" class="btn" style="background-color:  maroon; color: white;">Delete</button>
                 </a>
-                <script>
-                  function Delete(){
-                    localStorage.setItem("status","logged out");
-                  }
-                  </script>
+              
             </div>
         </div>
         </div>

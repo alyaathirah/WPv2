@@ -20,6 +20,7 @@ mysqli_close($mysqli);
 
 //4. Process the results.
 //redirecting to the display page (index.php in our case)
+session_destroy();
 header("Location:home.php");
 }
 ?>
