@@ -5,7 +5,8 @@ include "db/config.php";
 if (isset($_POST['email']) && isset($_POST['password'])) {
 
 	$email = $_POST['email'];
-	$pass = $_POST['password'];
+	$passOriginal = $_POST['password'];
+	$pass = md5($passOriginal);
 
 	if (empty($email)) {
 		header("Location: login1.php?error=Email is required");
@@ -24,7 +25,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 			$row = mysqli_fetch_assoc($result);
 			//password_verify($_POST['password'], $user->password)
 			//if ($row['Email'] === $email && $row['Password1'] === $pass)
-			if ($row['Email'] === $email && ($row['Password1'] == md5($pass))){
+			if ($row['Email'] === $email && ($row['Password1'] === $pass)){
 				if(empty($row['status'])){
             	$_SESSION['id'] = $row['id'];
                 $_SESSION['FirstName'] = $row['FirstName'];
