@@ -52,8 +52,10 @@ if(isset($_POST['Submit']))
 	else { 
 		// if all the fields are filled (not empty) 
 		//Step 3. Execute the SQL query.	
+		// hash the password before saving to database
+		$password_hash = password_hash($Password, PASSWORD_BCRYPT);
 		//insert data to database	
-		$result = mysqli_query($mysqli, "INSERT INTO users2(Username,Email,Password1) VALUES('$uname','$Email','$Password')");
+		$result = mysqli_query($mysqli, "INSERT INTO users2(Username,Email,Password1) VALUES('$uname','$Email','$password_hash')");
 		//Step 4. Process the results.
 		//display success message & the new data can be viewed on index.php
 		// echo "<font color='green'>Data added successfully.";
