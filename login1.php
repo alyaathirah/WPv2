@@ -154,6 +154,7 @@
           </div>
 		<button type="button" class="btn btn-secondary" data-dismiss="modal" style = "align: right">Cancel</button>
         <button type="submit" class="btn btn-primary" name = "Submit" style = "align: right" onClick = "Login()">Submit</button>
+
         </form>
       </div>
       
