@@ -83,16 +83,17 @@ else if(isset($_POST['update_p']))
 	$OPassword = mysqli_real_escape_string($mysqli, $_POST['Password_old']);
     $NPassword = mysqli_real_escape_string($mysqli, $_POST['Password_new']);
     $CPassword = mysqli_real_escape_string($mysqli, $_POST['Password_conf']);
-	$APassword = mysqli_real_escape_string($mysqli, $_POST['Password1']);
+	$Npassword_hash = md5($NPassword);
+	//$APassword = mysqli_real_escape_string($mysqli, $_POST['Password1']);
     $result = mysqli_query($mysqli, "SELECT * FROM users2 WHERE id=$id");
-	
+	$OPassword_hash = md5($OPassword);
 	while($res = mysqli_fetch_array($result))
 	{
 		$Password=$res['Password1'];
 	}
 	
     // checking empty fields
-	if(empty($OPassword) || empty($NPassword) || empty($CPassword) || ($NPassword != $CPassword) || ($OPassword != $Password) ) {	
+	if(empty($OPassword) || empty($NPassword) || empty($CPassword) || ($NPassword != $CPassword) || ($OPassword_hash != $Password) ) {	
 		
 		if(empty($OPassword)) {
 			$_SESSION['status_ps'] = "Empty field ";
@@ -110,8 +111,9 @@ else if(isset($_POST['update_p']))
 			$_SESSION['status_ps'] = "Not matching new password";
 	    }
 
-        if($OPassword != $Password){
+        if($OPassword_hash != $Password){
 			$_SESSION['status_ps'] = "Not matching current password";
+			
         }
 		header("Location:profile.php");
         mysqli_close($mysqli);
@@ -119,7 +121,8 @@ else if(isset($_POST['update_p']))
     }else {	
 		//Step 3. Execute the SQL query.
 		//updating the table
-		$result = mysqli_query($mysqli, "UPDATE users2 SET Password1='$NPassword' WHERE id=$id");
+		
+		$result = mysqli_query($mysqli, "UPDATE users2 SET Password1='$Npassword_hash' WHERE id=$id");
 		$_SESSION['status_ps1'] = "Updated successfully ";
 		//redirectig to the display page. In our case, it is index.php
 		header("Location: profile.php");
