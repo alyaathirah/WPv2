@@ -21,7 +21,7 @@ $row = mysqli_fetch_array($result);
     <body class="adminBody">
         <nav class="navbar navbar-expand-lg fixed-top py-0" style="background-color:white;">
             <div class="container">
-              <a href="home.php">
+              <a href="homeAdmin.php">
               <img src="images/logoadmin.png" style="width: auto; height: auto;"/></a>
               </a>
                 <div id="navbarSupportedContent" class="collapse navbar-collapse">
