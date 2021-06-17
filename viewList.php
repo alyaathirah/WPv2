@@ -55,6 +55,51 @@
         $Password=$res['Password1'];
         $images=$res['images'];
         $Gender=$res['Gender'];
+        if(empty($FName) || empty($LName) || empty($UName) || empty($Email) || empty($Bio) || empty($PNumber) || empty($Birthday) || empty($Address) || empty($City) || empty($State) || empty($State) || empty($Zip) || empty($Gender)|| empty($images))
+    {
+      if(empty($images)) {
+        $images="images/default.png";
+      }
+
+      if(empty($FName)) {
+        $FName="Set Now";
+      }
+      
+      if(empty($LName)) {
+        $LName="Set Now";
+      }
+      
+      if(empty($Bio)) {
+        $Bio="Set Now";
+      }
+  
+      if(empty($Address)) {
+        $Address="Set Now";
+      }	
+      
+      if(empty($State)) {
+        $State="";
+      }
+  
+      if(empty($City)) {
+        $City="";
+      }	
+      
+      if(empty($Zip)) {
+        $Zip="";
+      }
+
+      if(empty($Gender)) {
+        $Gender="Set Now";
+      }
+
+      if(empty($PNumber)) {
+        $PNumber="Set Now";
+      }
+      if(empty($Birthday)) {
+        $Birthday="Set Now";
+      }
+    }
       }
 ?>
 
@@ -86,40 +131,42 @@
         <!--User's Account modal button-->
         <div class="col-4 pt-1">
         <?php 
-          echo $id;
+        if(empty($status)){
         ?>
-        <img src="<?php echo $images;?>" alt="profile photo" id="profilePhoto" style="height: 50px;; width: 50px;; border-radius: 50%;">
-        <script>
-          var status = localStorage.getItem("status");
-             if(status != "logged in"){
-          document.getElementById("profilePhoto").src = "images/default.png";
-             }
-        </script>  
+        <img src="<?php echo $images;?>" alt="profile photo" id="profilePhoto" style="height: 50px;; width: 50px;; border-radius: 50%; margin-left: 10px">
+        <?php
+        }
+        ?>
         <br>
-          <a class="account" href="#" data-toggle="modal" data-target="#staticBackdrop" 
+        <?php
+        if(empty($status)){
+        ?>
+          <a class="account" href="#" data-toggle="modal" data-target="#profileModal" 
             >My Account</a>
+            <?php
+          }else{
+            ?>
+            <a class = "back-to-admin"href = "admin.php">
+        <button type = "button" name="login-btn"  class="btn rounded-pill" style="background-image: linear-gradient(125deg,#971006, #a72879); color: white;">Back to Admin Page</button>
+          </a>
+            <?php
+          }
+            ?>
           <br />
-          <script>
-            var status = localStorage.getItem("status");
-             if(status != "logged in"){
-             account = document.querySelector(".account");
-             account.setAttribute("data-toggle","''");
-             account.setAttribute("data-target","''")
-             account.setAttribute("href","login1.php");
-            }
-          </script>
         </div>
         <div class="col-4 text-center">
-          <a class="blog-header-logo text-dark" href="homepage.html"
+          <a class="blog-header-logo text-dark" href="home.php"
             ><img src="images/logo.png" style="width: 200px; height: auto"
           /></a>
         </div>
         <div class="col-4 d-flex justify-content-end align-items-center">
+        <!-- list button -->
         <a
             class="btn btn-sm btn-outline-secondary"
             data-toggle="modal" 
-            data-target="#exampleModal"
+            data-target="#listModal"
             style="margin-right: 10px;"
+            id = "viewList"
             ><img
             class="list"
             src="images/list.png"
@@ -135,6 +182,24 @@
               switchImg.setAttribute("src","images/list.png")
             })
           </script>
+        </div>
+      </div>
+      <div class="modal fade" id="loginAlertModal" tabindex="-1" aria-labelledby="loginAlrertModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Deletion" style="color: #a82c21;"><strong>Login Alert</strong> </h5>
+            </div>
+            <div class="modal-body" style="color: black;">
+            Please login first before adding item(s) to your list
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <a href="login1.php">
+                    <button type="button" class="btn" style="background-color:  maroon; color: white;">Login</button>
+                </a>    
+            </div>
+        </div>
         </div>
       </div>
     </header>
@@ -191,12 +256,12 @@
   <div class = "row md"> 
     <!-- Button trigger modal -->
     <div style = "margin-right: 10px;"></div>"
-    <button class="buttonz fa fa-bars" data-toggle="modal" data-target="#exampleModal">
+    <button class="buttonz fa fa-bars" data-toggle="modal" data-target="#listModal">
     </button>
 
      <!--------Shopping List modal ------------>
     <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="listModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -486,12 +551,14 @@
     ></script>
       
    <!-- Profile Modal -->
-   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+   <<div class="modal fade" id="profileModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h4 class="modal-title" id="staticBackdropLabel" style="color: #a82c21; font-size:40px;">Profile</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times" style="font-size: 35px;"></i></button>
+                <h4 class="modal-title" id="profileModalLabel" style="color: #a82c21; font-size:40px;">Profile</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
               </div>
                 <?php 
                 
@@ -499,37 +566,29 @@
                 getModal($images,$FName,$LName,$UName,$Email,$Bio,$Gender,$PNumber,$Birthday,$Address,$City,$Zip,$State); 
                 ?>
             </div>
-              <?php 
+              
+              <div class="modal-footer">
+                <a href="profile.php">
+                    <button type="button" class="btn" style="background-color:  maroon; color: white;">Setting</button>
+                </a>
+                <a href = "logout.php">
+                    <button type="button" class="btn btn-secondary">Logout</button>
+                    <script>
+                  
+                  </script>
+                </a>
+              </div>
+            </div>
+          </div>
+      </div> 
+    </div>
+    <?php 
                 }else{
-                    header("Location: loginDummy.php");
+                    header("Location: home.php");
                     exit();
                 }
               ?>
-          <div class="modal-footer">
-            <a href="setting.html"><button type="submit" class="setting-btn rounded-pill float-end" id="Setting">Setting</button></a>
-            <a href="homepage.html" onclick="reset()"><button type="submit" class="logout setting-btn rounded-pill" id="Logout">Logout</button>
-            <script>
-         //modal addSL
-            $(document).ready(function(){
-                $("#editForm").hide();
-                $("#btn").click(function(e) {
-                    $("#editForm").show();
-                    $("#btn").hide();
-                });
-            });
+    </div>
 
-            $(document).ready(function(){
-                $("#btnClose").click(function(e) {
-                    $("#editForm").hide();
-                    $("#btn").show();
-                });
-            });
-            </script>
-          </div>
-          </div>
-      </div>
-      </div> 
-    </div>
-    </div>
   </body>
 </html>
