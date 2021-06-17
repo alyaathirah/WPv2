@@ -55,6 +55,7 @@
         $Password=$res['Password1'];
         $images=$res['images'];
         $Gender=$res['Gender'];
+        $status = $res['status'];
         if(empty($FName) || empty($LName) || empty($UName) || empty($Email) || empty($Bio) || empty($PNumber) || empty($Birthday) || empty($Address) || empty($City) || empty($State) || empty($State) || empty($Zip) || empty($Gender)|| empty($images))
     {
       if(empty($images)) {

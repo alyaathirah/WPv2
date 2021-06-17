@@ -28,6 +28,7 @@
         $Password=$res['Password1'];
         $images=$res['images'];
         $Gender=$res['Gender'];
+        $status = $res['status'];
         if(empty($FName) || empty($LName) || empty($UName) || empty($Email) || empty($Bio) || empty($PNumber) || empty($Birthday) || empty($Address) || empty($City) || empty($State) || empty($State) || empty($Zip) || empty($Gender)|| empty($images))
         {
           if(empty($images)) {
@@ -104,10 +105,28 @@
       <div class="row flex-nowrap justify-content-between align-items-center">
         <!--User's Account modal button-->
         <div class="col-4 pt-1">
-        <img src="<?php echo $images;?>" alt="profile photo" id="profilePhoto" style="height: 50px;; width: 50px;; border-radius: 50%; margin-left: 10px">  
+        <?php 
+        if(empty($status)){
+        ?>
+        <img src="<?php echo $images;?>" alt="profile photo" id="profilePhoto" style="height: 50px;; width: 50px;; border-radius: 50%; margin-left: 10px">
+        <?php
+        }
+        ?>
         <br>
+        <?php
+        if(empty($status)){
+        ?>
           <a class="account" href="#" data-toggle="modal" data-target="#profileModal" 
             >My Account</a>
+            <?php
+          }else{
+            ?>
+            <a class = "back-to-admin"href = "admin.php">
+        <button type = "button" name="login-btn"  class="btn rounded-pill" style="background-image: linear-gradient(125deg,#971006, #a72879); color: white;">Back to Admin Page</button>
+          </a>
+            <?php
+          }
+            ?>
           <br />
         </div>
         <div class="col-4 text-center">
@@ -127,7 +146,6 @@
             class="list"
             src="images/list.png"
             style="width: auto; height: 50px"
-            
           /><br />My List</a
         >
           <script>
@@ -139,6 +157,24 @@
               switchImg.setAttribute("src","images/list.png")
             })
           </script>
+        </div>
+      </div>
+      <div class="modal fade" id="loginAlertModal" tabindex="-1" aria-labelledby="loginAlrertModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Deletion" style="color: #a82c21;"><strong>Login Alert</strong> </h5>
+            </div>
+            <div class="modal-body" style="color: black;">
+            Please login first before adding item(s) to your list
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <a href="login1.php">
+                    <button type="button" class="btn" style="background-color:  maroon; color: white;">Login</button>
+                </a>    
+            </div>
+        </div>
         </div>
       </div>
     </header>

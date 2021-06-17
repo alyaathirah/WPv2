@@ -28,6 +28,7 @@
         $Password=$res['Password1'];
         $images=$res['images'];
         $Gender=$res['Gender'];
+        $status = $res['status'];
         if(empty($FName) || empty($LName) || empty($UName) || empty($Email) || empty($Bio) || empty($PNumber) || empty($Birthday) || empty($Address) || empty($City) || empty($State) || empty($State) || empty($Zip) || empty($Gender)|| empty($images))
         {
           if(empty($images)) {
@@ -107,19 +108,25 @@
       <div class="row flex-nowrap justify-content-between align-items-center">
         <!--User's Account modal button-->
         <div class="col-4 pt-1">
+        <?php 
+        if(empty($status)){
+        ?>
         <img src="<?php echo $images;?>" alt="profile photo" id="profilePhoto" style="height: 50px;; width: 50px;; border-radius: 50%; margin-left: 10px">
+        <?php
+        }
+        ?>
         <br>
         <?php
         if(empty($status)){
-          echo $status
         ?>
           <a class="account" href="#" data-toggle="modal" data-target="#profileModal" 
             >My Account</a>
             <?php
           }else{
             ?>
-            <a class="admin" href="admin.php" 
-            >Back to Admin Page</a>
+            <a class = "back-to-admin"href = "admin.php">
+        <button type = "button" name="login-btn"  class="btn rounded-pill" style="background-image: linear-gradient(125deg,#971006, #a72879); color: white;">Back to Admin Page</button>
+          </a>
             <?php
           }
             ?>
