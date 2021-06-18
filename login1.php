@@ -45,7 +45,7 @@
       </div>
       <div class="content">
         
-        <h2>Welcome to GroSir</h2>
+        <h2>Welcome to Gro-Sir</h2>
 
         
         <br />
