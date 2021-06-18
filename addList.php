@@ -17,14 +17,14 @@ if(isset($_POST['Submit'])) {
 		echo "<font color='red'>Name field is empty.</font><br/>";
 	}
 	else { 
-		$listIn = mysqli_query($mysqli, "INSERT INTO `list`(`sl_name`, `user_id`) VALUES ('$name','$userid')");
+		$listIn = mysqli_query($mysqli, "INSERT INTO `list`(`sl_name`, `id`) VALUES ('$name','$userid')");
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
 	}
 }
 
 
 //View List
-$que = "SELECT * FROM `list` WHERE `user_id` = '$userid'";
+$que = "SELECT * FROM `list` WHERE `id` = '$userid'";
 $try = mysqli_query($mysqli, $que);
 //mysqli_close($mysqli);
 }
