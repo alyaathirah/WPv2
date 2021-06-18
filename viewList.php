@@ -288,9 +288,6 @@
           <a href="viewList.php?id=<?php echo $rows['sl_id'];?>" style="color: black;">
               <div id = "titleList"><?php echo $rows['sl_name'];?></div>
             </a>
-          </div>
-          <div class="col-md-auto">
-
           <!--edit name list-->
           <form class = "editname" id="editname<?php echo $rows['sl_id']?>"  action="editListName.php" method="post" name="editName">
           <input type="text" name = "newName" placeholder = "New list name..." required />
@@ -300,10 +297,12 @@
           <input type = "button" onClick="window.location.reload();" class ="btn" 
           style="background-color:  maroon; color: white;" value = "Cancel" />
           </form>
+          <!--edit name list-->
+          </div>
+          <div class="col-md-auto">
 
           <a class="editbtn" href ="#" id="<?php echo $rows['sl_id']?>" style = "margin-left:5px; margin-right:5px">
           <img src = "images/edit.png" alt="" width="13" height="13"/></a>
-          <!--edit name list-->
 
           <a href="deleteList.php?id=<?php echo $rows['sl_id'];?>&id2=<?php echo $_GET['id'];?>" 
           style = "margin-left:5px" onclick="return confirm('Delete this list?')">
