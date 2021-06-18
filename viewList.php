@@ -163,7 +163,7 @@
         <div class="col-4 d-flex justify-content-end align-items-center">
         <!-- list button -->
         <a
-            class="btn btn-sm btn-outline-secondary"
+            class="btn btn-sm btn-outline-secondary disabled"
             data-toggle="modal" 
             data-target="#listModal"
             style="margin-right: 10px;"
@@ -290,7 +290,23 @@
             </a>
           </div>
           <div class="col-md-auto">
-          <a href="deleteList.php?id=<?php echo $rows['sl_id'];?>&id2=<?php echo $_GET['id'];?>" onclick="return confirm('Delete this list?')">
+
+          <!--edit name list-->
+          <form class = "editname" id="editname<?php echo $rows['sl_id']?>"  action="editListName.php" method="post" name="editName">
+          <input type="text" name = "newName" placeholder = "New list name..." required />
+          <input type="hidden" name = "listid" value = "<?php echo $rows['sl_id']?>"/>
+          <input type = "submit" name = "Update" class ="btn" 
+          style="background-color:  maroon; color: white;" value = "+" />
+          <input type = "button" onClick="window.location.reload();" class ="btn" 
+          style="background-color:  maroon; color: white;" value = "Cancel" />
+          </form>
+
+          <a class="editbtn" href ="#" id="<?php echo $rows['sl_id']?>" style = "margin-left:5px; margin-right:5px">
+          <img src = "images/edit.png" alt="" width="13" height="13"/></a>
+          <!--edit name list-->
+
+          <a href="deleteList.php?id=<?php echo $rows['sl_id'];?>&id2=<?php echo $_GET['id'];?>" 
+          style = "margin-left:5px" onclick="return confirm('Delete this list?')">
           <img src = "images/delete-icn.png" alt="" width="13" height="13"/></a>
           </div>
 
@@ -301,26 +317,46 @@
           }} else {
             echo "0 results";
           }?>
-     
+      <br>
       <div id = "newSL"></div>
      
-          <div class = "row">
-            <br><br><br>
-            <button id="btn" class="buttonz" style = "width: 150px; margin:auto; display:block;" >Add New List</button>
-            
-            <form id="editForm"  action="addList.php" method="post" name="editForm" style = "margin:auto; display:block;">
-              <input type="hidden" value =<?php echo $_GET['id']?> name="id">
-              <input type="text" id="input" size="20" name="slname">
-              <input type = "submit" name = "Submit" value = "+" >
-              </input>
-            </form>
-          </div>
+      <div class = "row">
+       <button id="btn" class="btn center" style="background-color:  maroon; color: white;" >Add New List</button>
+       
+       <form id="editForm"  action="addList.php" method="post" name="editForm" style = "margin:auto; display:block;">
+         <input type="text" id="input" size="20" name="slname" required>
+         <input type = "submit" class="btn" style="background-color:  maroon; color: white;" name = "Submit" value = "+" >
+         </input>
+       </form>
+
+     </div>
       
         </div>
       </div>
     </div>
   </div>
 </div>
+  <script>
+          //add list
+              $(document).ready(function(){
+                  $("#editForm").hide();
+                  $("#btn").click(function(e) {
+                      $("#editForm").show();
+                      $("#btn").hide();
+                  });
+              });
+
+            //edit name list 
+            $(document).ready(function(){
+            $(".editname").hide();
+            $(".editbtn").click(function(e) {
+                var id = this.id;
+                console.log(id);
+                $("#editname"+id).show();
+                });
+              });
+              
+      </script>
 <!------End of Shopping List modal--------->
 
         <!-- Title --> 
