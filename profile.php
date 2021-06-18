@@ -27,6 +27,9 @@ if (isset($_SESSION['id']) && isset($_SESSION['Username'])) {
     $Password=$res['Password1'];
     $images=$res['images'];
     $Gender=$res['Gender'];
+    if(empty($images)) {
+        $images="images/default.png";
+    }
   }
   ?>
 <!DOCTYPE html>
